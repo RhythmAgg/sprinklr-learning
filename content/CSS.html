@@ -1,0 +1,922 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CSS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bb48dc2d-67af-441c-b231-f20ce3d4a1d9" class="page sans"><header><h1 class="page-title">CSS</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_by"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedBy"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 10.4229C6.05176 10.4229 4.54785 11.1133 3.83008 11.9131C2.90039 10.9082 2.33301 9.55469 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 9.55469 13.1064 10.9082 12.1699 11.9131C11.4521 11.1133 9.94824 10.4229 8 10.4229ZM8 9.30176C9.32617 9.30859 10.3516 8.18066 10.3516 6.71094C10.3516 5.33008 9.31934 4.18164 8 4.18164C6.6875 4.18164 5.6416 5.33008 5.64844 6.71094C5.65527 8.18066 6.68066 9.28809 8 9.30176Z"></path></svg></span>Created by</th><td><span class="user"><img src="https://lh3.googleusercontent.com/a/AAcHTtdVMzWiNJElQvXdTP1pSxRi2yNGZEv9C2jiMYYmZar4=s100" class="icon user-icon"/>rhythm aggarwal</span></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Last edited</th><td><time>@May 17, 2024 5:12 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td><span class="selected-value select-value-color-blue">learning</span></td></tr></tbody></table></header><div class="page-body"><p id="07629a05-f7a0-4db1-8bc1-8aaba0094944" class=""><strong>Follow w3schools.com</strong></p><h3 id="cd7589df-5050-4ae6-b562-9289716421ba" class="">Links</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b1c16112-9541-4dac-9237-607b96e48ded" class="code"><code class="language-CSS">/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+# Follow this order only for links css</code></pre><p id="01b23a55-dd0e-4d21-a3cb-9b2e427c67d9" class="">
+</p><p id="837d1e00-9234-4ea7-881b-c7d3a3a97407" class="">Float and clear</p><p id="e21fe6f8-3012-4a9d-9d64-38c1911a5837" class="">Eg:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4b370ea2-bc91-437b-8342-e34dd639d3cc" class="code"><code class="language-CSS">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+img {
+  float: right;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Float Right&lt;/h2&gt;
+
+&lt;p&gt;In this example, the image will float to the right in the paragraph, and the text in the paragraph will wrap around the image.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;pineapple.jpg&quot; alt=&quot;Pineapple&quot; style=&quot;width:170px;height:170px;margin-left:15px;&quot;&gt;
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="722dc0d2-2619-4ecc-ba06-21de96cb1c9f" class="">The <code>float</code> property can have one of the following values:</p><ul id="396721a0-0fa8-4ea5-8805-9223d56cc030" class="bulleted-list"><li style="list-style-type:disc"><code>left</code> - The element floats to the left of its container</li></ul><ul id="123c9a48-4934-48cf-8ea8-2dc653e5e8cd" class="bulleted-list"><li style="list-style-type:disc"><code>right</code> - The element floats to the right of its container</li></ul><ul id="61e2d7f0-103a-45a7-ae11-de1b086d6b75" class="bulleted-list"><li style="list-style-type:disc"><code>none</code> - The element does not float (will be displayed just where it occurs in the text). This is default</li></ul><ul id="b4b26d08-6e19-4368-8867-1b093330380c" class="bulleted-list"><li style="list-style-type:disc"><code>inherit</code> - The element inherits the float value of its parent</li></ul><p id="eeb44ab3-c470-44f7-8164-65b66bc5dbc1" class="">NOTE: float breaks the normal layout and the element no longer belongs to it</p><p id="7f2c5e4c-e813-447a-8ae2-77bbaf70f873" class="">
+</p><p id="e360507d-c1f6-4797-87c5-a862f4f7d903" class="">The <code>clear</code> property can have one of the following values:</p><ul id="e4847740-c6a4-41b6-8c93-8f5fb2b46a1a" class="bulleted-list"><li style="list-style-type:disc"><code>none</code> - The element is not pushed below left or right floated elements. This is default</li></ul><ul id="e04e54b2-35b7-49d9-9cd6-33ea04c42c03" class="bulleted-list"><li style="list-style-type:disc"><code>left</code> - The element is pushed below left floated elements</li></ul><ul id="b585d6d9-23ec-4dd4-9666-b3da6bdeb231" class="bulleted-list"><li style="list-style-type:disc"><code>right</code> - The element is pushed below right floated elements</li></ul><ul id="594b491d-3fc3-422f-93b6-e25632421c5f" class="bulleted-list"><li style="list-style-type:disc"><code>both</code> - The element is pushed below both left and right floated elements</li></ul><ul id="f344af4b-40bf-4f8d-85be-9246151ae45e" class="bulleted-list"><li style="list-style-type:disc"><code>inherit</code> - The element inherits the clear value from its parent</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6ec454d4-4621-444c-8263-213089057b9f" class="code"><code class="language-CSS">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.div1 {
+  float: left;
+  padding: 10px;
+  border: 3px solid #73AD21;
+}
+
+.div2 {
+  padding: 10px;
+  border: 3px solid red;
+}
+
+.div3 {
+  float: left;
+  padding: 10px;  
+  border: 3px solid #73AD21;
+}
+
+.div4 {
+  padding: 10px;
+  border: 3px solid red;
+  clear: left;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Without clear&lt;/h2&gt;
+&lt;div class=&quot;div1&quot;&gt;div1&lt;/div&gt;
+&lt;div class=&quot;div2&quot;&gt;div2 - Notice that div2 is after div1 in the HTML code. However, since div1 floats to the left, the text in div2 flows around div1.&lt;/div&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;h2&gt;With clear&lt;/h2&gt;
+&lt;div class=&quot;div3&quot;&gt;div3&lt;/div&gt;
+&lt;div class=&quot;div4&quot;&gt;div4 - Here, clear: left; moves div4 down below the floating div3. The value &quot;left&quot; clears elements floated to the left. You can also clear &quot;right&quot; and &quot;both&quot;.&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="6c80a4f1-acd0-42ee-a6ec-1aa11ae1c9a9" class="">NOTE: </p><p id="9c4010c6-218d-4b34-ac02-647fd9d0e9b9" class="">The clearfix Hack</p><p id="400fb686-2628-4f4a-acf2-cc8db94e222b" class="">If a floated element is taller than the containing element, it will &quot;overflow&quot; outside of its container. We can then add a clearfix hack to solve this problem:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4214ee01-8943-46eb-80e1-579f55f37173" class="code"><code class="language-CSS"># Add this class to the container
+.clearfix::after {
+  content: &quot;&quot;;
+  clear: both;
+  display: table;
+}</code></pre><p id="311a623e-a975-456b-a10b-ab8fd6d4b285" class="">
+</p><h3 id="38f6534e-b60c-48f2-aee9-9f078ffa2695" class="">CSS Combinatorics</h3><p id="dec945ef-1f81-406e-a23b-b4781e03e478" class="">There are four different combinators in CSS:</p><ul id="f56573bd-edf5-4940-839d-011d6255ad5b" class="bulleted-list"><li style="list-style-type:disc">descendant selector (space)<ul id="0100317e-b9ed-4b1d-8b23-e3faebc3168d" class="bulleted-list"><li style="list-style-type:circle">matches all elements that are descendants of a specified element. Eg div p {…}</li></ul></li></ul><ul id="fed03769-53c0-4541-8cfc-679491ab4160" class="bulleted-list"><li style="list-style-type:disc">child selector (&gt;)<ul id="4ff6f283-7132-42a6-9ced-e334ddaa2ce2" class="bulleted-list"><li style="list-style-type:circle">selects all elements that are the children of a specified <a href="http://element.Eg">element. Eg</a> div &gt; p {…}</li></ul></li></ul><ul id="a544b9a8-6c3d-4c2b-bcb1-8bbdb2d68843" class="bulleted-list"><li style="list-style-type:disc">adjacent sibling selector (+)<ul id="01929cb5-bacd-499d-8a92-5e3d756ffe52" class="bulleted-list"><li style="list-style-type:circle">used to select an element that is directly after another specific element. Eg div+p {…}</li></ul><ul id="11bdb0a4-ab29-46a3-984e-ec74414df7c1" class="bulleted-list"><li style="list-style-type:circle">Sibling elements must have the same parent element, and &quot;adjacent&quot; means &quot;immediately following”</li></ul></li></ul><ul id="1ebd265c-9ec6-44fa-82a2-ffaad3ff29b2" class="bulleted-list"><li style="list-style-type:disc">general sibling selector (~)<ul id="ed2fe475-f1f7-4f93-b26a-0d4704f2231f" class="bulleted-list"><li style="list-style-type:circle">selector selects all elements that are next siblings of a specified element.</li></ul></li></ul><ul id="39319cb4-e7bf-4f23-bc6e-b2aa8f609462" class="bulleted-list"><li style="list-style-type:disc">div1,div2 ⇒ applies to both div1, div2 (grouping)</li></ul><p id="9bdc77bf-b9ab-4422-b941-d64c3df145ae" class="">
+</p><h3 id="04e09f70-e3e1-4254-a5cd-53909760f86c" class="">Pseudo Classes</h3><table id="76b8580d-b2de-451c-b7bc-aaa3e7841716" class="simple-table"><tbody><tr id="06ebc912-d30e-41a5-a2ee-9c78421ca6df"><td id="[F{J" class="">Selector</td><td id="j=lR" class="">Example</td><td id="}P^G" class="">Example description</td></tr><tr id="da9282c9-17f2-4042-a55e-34c7cb28cbe0"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_active.asp">:active</a></td><td id="j=lR" class="">a:active</td><td id="}P^G" class="">Selects the active link</td></tr><tr id="e0085d49-1df0-4e0d-b967-d0c8f859c495"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_checked.asp">:checked</a></td><td id="j=lR" class="">input:checked</td><td id="}P^G" class="">Selects every checked &lt;input&gt; element</td></tr><tr id="c2b34fd0-b5a7-42e5-80e1-954760d4f71e"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_disabled.asp">:disabled</a></td><td id="j=lR" class="">input:disabled</td><td id="}P^G" class="">Selects every disabled &lt;input&gt; element</td></tr><tr id="ae9569e0-eafb-4ab1-990c-6fd28b26cbba"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_empty.asp">:empty</a></td><td id="j=lR" class="">p:empty</td><td id="}P^G" class="">Selects every &lt;p&gt; element that has no children</td></tr><tr id="a6651ea2-e746-476e-a12d-082c3a780737"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_enabled.asp">:enabled</a></td><td id="j=lR" class="">input:enabled</td><td id="}P^G" class="">Selects every enabled &lt;input&gt; element</td></tr><tr id="633855b7-7c05-481a-8caa-9be70420f7f0"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_firstchild.asp">:first-child</a></td><td id="j=lR" class="">p:first-child</td><td id="}P^G" class="">Selects every &lt;p&gt; elements that is the first child of its parent</td></tr><tr id="abd4bbde-e290-4fb0-b06f-c9f6b50f6def"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_first-of-type.asp">:first-of-type</a></td><td id="j=lR" class="">p:first-of-type</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the first &lt;p&gt; element of its parent</td></tr><tr id="8072f0d5-1146-42c0-a9b3-e6fe34e384ba"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_focus.asp">:focus</a></td><td id="j=lR" class="">input:focus</td><td id="}P^G" class="">Selects the &lt;input&gt; element that has focus</td></tr><tr id="7deda754-2121-4a4c-8b3e-ecf927c45530"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_hover.asp">:hover</a></td><td id="j=lR" class="">a:hover</td><td id="}P^G" class="">Selects links on mouse over</td></tr><tr id="58aa3f1e-0bdf-433b-9332-ee033fc2367e"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_in-range.asp">:in-range</a></td><td id="j=lR" class="">input:in-range</td><td id="}P^G" class="">Selects &lt;input&gt; elements with a value within a specified range</td></tr><tr id="18d66db9-f713-4fb0-94a7-6ec1feb2307a"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_invalid.asp">:invalid</a></td><td id="j=lR" class="">input:invalid</td><td id="}P^G" class="">Selects all &lt;input&gt; elements with an invalid value</td></tr><tr id="22562495-1005-4cbe-b328-d6c46a47752d"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_lang.asp">:lang(</a><a href="https://www.w3schools.com/cssref/sel_lang.asp"><em>language</em></a><a href="https://www.w3schools.com/cssref/sel_lang.asp">)</a></td><td id="j=lR" class="">p:lang(it)</td><td id="}P^G" class="">Selects every &lt;p&gt; element with a lang attribute value starting with &quot;it&quot;</td></tr><tr id="790f9a45-6bfc-4174-8716-675d78d8ad47"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_last-child.asp">:last-child</a></td><td id="j=lR" class="">p:last-child</td><td id="}P^G" class="">Selects every &lt;p&gt; elements that is the last child of its parent</td></tr><tr id="07a2505e-f2d8-495b-ae5e-e3a1256854bc"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_last-of-type.asp">:last-of-type</a></td><td id="j=lR" class="">p:last-of-type</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the last &lt;p&gt; element of its parent</td></tr><tr id="11d93d0c-a536-4464-9031-725ec181d20c"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_link.asp">:link</a></td><td id="j=lR" class="">a:link</td><td id="}P^G" class="">Selects all unvisited links</td></tr><tr id="1251df3b-5495-47de-981c-377adc3e62c7"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_not.asp">:not(selector)</a></td><td id="j=lR" class="">:not(p)</td><td id="}P^G" class="">Selects every element that is not a &lt;p&gt; element</td></tr><tr id="cab72db2-613b-4c87-9678-1acf9bd7f255"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_nth-child.asp">:nth-child(n)</a></td><td id="j=lR" class="">p:nth-child(2)</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the second child of its parent</td></tr><tr id="1ca1f473-df46-4314-83fd-340c73d37ffd"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_nth-last-child.asp">:nth-last-child(n)</a></td><td id="j=lR" class="">p:nth-last-child(2)</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the second child of its parent, counting from the last child</td></tr><tr id="44015c32-c31a-488a-a0fa-f434b5756369"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_nth-last-of-type.asp">:nth-last-of-type(n)</a></td><td id="j=lR" class="">p:nth-last-of-type(2)</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the second &lt;p&gt; element of its parent, counting from the last child</td></tr><tr id="d3290353-976c-4a89-84d9-75bce599cbf3"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_nth-of-type.asp">:nth-of-type(n)</a></td><td id="j=lR" class="">p:nth-of-type(2)</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the second &lt;p&gt; element of its parent</td></tr><tr id="e1b7c3df-f61b-4005-80d0-fa422a716367"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_only-of-type.asp">:only-of-type</a></td><td id="j=lR" class="">p:only-of-type</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the only &lt;p&gt; element of its parent</td></tr><tr id="b004597e-1c9a-4d5a-a465-c14b8852f477"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_only-child.asp">:only-child</a></td><td id="j=lR" class="">p:only-child</td><td id="}P^G" class="">Selects every &lt;p&gt; element that is the only child of its parent</td></tr><tr id="68d14402-bda0-44ec-8435-79a56e7be9f0"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_optional.asp">:optional</a></td><td id="j=lR" class="">input:optional</td><td id="}P^G" class="">Selects &lt;input&gt; elements with no &quot;required&quot; attribute</td></tr><tr id="63d4193a-6bf3-4d7a-bbf0-5cfad9ea4f6b"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_out-of-range.asp">:out-of-range</a></td><td id="j=lR" class="">input:out-of-range</td><td id="}P^G" class="">Selects &lt;input&gt; elements with a value outside a specified range</td></tr><tr id="55cfd9a9-c05c-4b40-807e-9744aaa56d15"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_read-only.asp">:read-only</a></td><td id="j=lR" class="">input:read-only</td><td id="}P^G" class="">Selects &lt;input&gt; elements with a &quot;readonly&quot; attribute specified</td></tr><tr id="d4bd96e6-ef93-4b5d-8809-ad758c36f47a"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_read-write.asp">:read-write</a></td><td id="j=lR" class="">input:read-write</td><td id="}P^G" class="">Selects &lt;input&gt; elements with no &quot;readonly&quot; attribute</td></tr><tr id="f263eee1-b8de-4749-b24e-297029e13bbd"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_required.asp">:required</a></td><td id="j=lR" class="">input:required</td><td id="}P^G" class="">Selects &lt;input&gt; elements with a &quot;required&quot; attribute specified</td></tr><tr id="a7b4bbd7-9642-49cf-9d18-ff138d17e13d"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_root.asp">:root</a></td><td id="j=lR" class="">root</td><td id="}P^G" class="">Selects the document&#x27;s root element</td></tr><tr id="90c06368-a38d-4356-a476-644658068186"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_target.asp">:target</a></td><td id="j=lR" class="">#news:target</td><td id="}P^G" class="">Selects the current active #news element (clicked on a URL containing that anchor name)</td></tr><tr id="8ac7ceef-6d8b-4ff6-8a9e-f134d8b9f7d8"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_valid.asp">:valid</a></td><td id="j=lR" class="">input:valid</td><td id="}P^G" class="">Selects all &lt;input&gt; elements with a valid value</td></tr><tr id="91b11c54-24c1-4750-b14d-66561a5756f3"><td id="[F{J" class=""><a href="https://www.w3schools.com/cssref/sel_visited.asp">:visited</a></td><td id="j=lR" class="">a:visited</td><td id="}P^G" class="">Selects all visited links</td></tr></tbody></table><h3 id="0beaa19f-6f47-4acf-943c-41bb985214bf" class="">Pseudo Elements</h3><table id="b066d9e4-d676-40b5-ba66-18c52989657e" class="simple-table"><tbody><tr id="184d3bc9-d451-4181-b2ca-0fec80ecc54b"><td id="NcoG" class="">Selector</td><td id="DssU" class="">Example</td><td id="dnSx" class="">Example description</td></tr><tr id="00261a39-d0f5-4494-8ceb-67e73510d4ed"><td id="NcoG" class=""><a href="https://www.w3schools.com/cssref/sel_after.asp">::after</a></td><td id="DssU" class="">p::after</td><td id="dnSx" class="">Insert something after the content of each &lt;p&gt; element</td></tr><tr id="b8c767dd-424c-41ac-a9db-6f6280b0cd6d"><td id="NcoG" class=""><a href="https://www.w3schools.com/cssref/sel_before.asp">::before</a></td><td id="DssU" class="">p::before</td><td id="dnSx" class="">Insert something before the content of each &lt;p&gt; element</td></tr><tr id="6bd06471-ab82-4355-a787-92a8bf2f484f"><td id="NcoG" class=""><a href="https://www.w3schools.com/cssref/sel_firstletter.asp">::first-letter</a></td><td id="DssU" class="">p::first-letter</td><td id="dnSx" class="">Selects the first letter of each &lt;p&gt; element</td></tr><tr id="678c61b1-3b5c-47b5-b259-45d4c5a8457f"><td id="NcoG" class=""><a href="https://www.w3schools.com/cssref/sel_firstline.asp">::first-line</a></td><td id="DssU" class="">p::first-line</td><td id="dnSx" class="">Selects the first line of each &lt;p&gt; element</td></tr><tr id="0af52f72-7dbf-42f9-a572-c522b91d11a2"><td id="NcoG" class=""><a href="https://www.w3schools.com/cssref/sel_marker.asp">::marker</a></td><td id="DssU" class="">::marker</td><td id="dnSx" class="">Selects the markers of list items</td></tr><tr id="6a60f86c-152e-4644-9342-6c899c1fa4bc"><td id="NcoG" class=""><a href="https://www.w3schools.com/cssref/sel_selection.asp">::selection</a></td><td id="DssU" class="">p::selection</td><td id="dnSx" class="">Selects the portion of an element that is selected by a user</td></tr></tbody></table><p id="3a17b194-d98e-4cd1-a4c4-5901f8c736c5" class="">NOTE: <strong>Note:</strong> The <code>::first-letter</code> pseudo-element can only be applied to block-level elements.</p><h3 id="94c06a8a-5aaf-4aff-aac5-7656532816ed" class="">CSS attribute selectors</h3><p id="5ef96574-ad6c-4aa8-ac5a-18c0b7ba0e2d" class="">The <code>[attribute]</code> selector is used to select elements with a specified attribute.</p><p id="d3cba088-e2ef-4c23-9174-9b8d5cf599df" class="">Eg:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b4dd1f04-1ac3-4f35-873f-51bf22a567bb" class="code"><code class="language-CSS">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+a[target] {
+  background-color: yellow;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;CSS [attribute] Selector&lt;/h2&gt;
+&lt;p&gt;The links with a target attribute gets a yellow background:&lt;/p&gt;
+
+&lt;a href=&quot;https://www.w3schools.com&quot;&gt;w3schools.com&lt;/a&gt;
+&lt;a href=&quot;http://www.disney.com&quot; target=&quot;_blank&quot;&gt;disney.com&lt;/a&gt;
+&lt;a href=&quot;http://www.wikipedia.org&quot; target=&quot;_top&quot;&gt;wikipedia.org&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="5ecb4a5a-3bb7-4f25-a7ac-fd2afe16bf80" class="">The <code>[attribute=&quot;value&quot;]</code> selector is used to select elements with a specified attribute and value.</p><p id="1a5bf42e-8c7f-4f18-a842-dc720d935636" class="">The <code>[attribute~=&quot;value&quot;]</code> selector is used to select elements with an attribute value containing a specified word.</p><p id="56b1f355-950e-40f6-9dee-ab19acbc8f73" class="">The <code>[attribute|=&quot;value&quot;]</code> selector is used to select elements with the specified attribute, whose value can be exactly the specified value, or the specified value followed by a hyphen (-).</p><p id="3c477cd3-fc64-4c33-8dc7-89402ad8ad7a" class="">The <code>[attribute^=&quot;value&quot;]</code> selector is used to select elements with the specified attribute, whose value starts with the specified value.</p><p id="5d2dcbcb-692c-43de-88ca-200391f4f8b9" class="">The <code>[attribute$=&quot;value&quot;]</code> selector is used to select elements whose attribute value ends with a specified value.</p><p id="e30ef215-a1b5-476d-acd1-7bf92f03d0bf" class="">The <code>[attribute*=&quot;value&quot;]</code> selector is used to select elements whose attribute value contains a specified value</p><p id="47ff82fb-7f1e-48be-8f9e-069b725b035e" class="">Eg.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bfdf619b-1d2d-42b7-aa74-cf9524fd56b7" class="code"><code class="language-CSS">[class*=&quot;te&quot;] {
+  background: yellow;
+}</code></pre><h3 id="2c28dd32-cdea-4624-b8a7-6dbd058cc149" class="">Forms</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14873d90-c91b-4f3b-8f10-b762b2425235" class="code"><code class="language-CSS">&lt;form&gt;
+  &lt;select id=&quot;country&quot; name=&quot;country&quot;&gt;
+  &lt;option value=&quot;au&quot;&gt;Australia&lt;/option&gt;
+  &lt;option value=&quot;ca&quot;&gt;Canada&lt;/option&gt;
+  &lt;option value=&quot;usa&quot;&gt;USA&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;</code></pre><h3 id="5598da12-cd53-4c2a-8821-b32ae82e9792" class=""><strong>CSS Counters</strong></h3><p id="9c341ec3-503e-4e0e-b8e4-58c80f19a8e8" class="">CSS counters are like &quot;variables&quot;. The variable values can be incremented by CSS rules (which will track how many times they are used).</p><p id="b9330f5d-d62e-4952-a05d-272898112062" class="">To work with CSS counters we will use the following properties:</p><ul id="427e6f1d-2f47-4afd-958a-ede4a92104d5" class="bulleted-list"><li style="list-style-type:disc"><code>counter-reset</code> - Creates or resets a counter</li></ul><ul id="28da82b1-bbf7-4fff-bf9d-7bc1e2ec33b0" class="bulleted-list"><li style="list-style-type:disc"><code>counter-increment</code> - Increments a counter value</li></ul><ul id="e0d610df-a437-4866-859e-4198f6e2f167" class="bulleted-list"><li style="list-style-type:disc"><code>content</code> - Inserts generated content</li></ul><ul id="7da592c4-0551-4125-b236-4eeff5c378cc" class="bulleted-list"><li style="list-style-type:disc"><code>counter()</code> or <code>counters()</code> function - Adds the value of a counter to an element</li></ul><p id="3d2e2f57-16a5-443a-9510-ab78ca5a9372" class="">Eg:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5d06bc60-8f80-4b06-9969-defb0d0eddeb" class="code"><code class="language-CSS">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+body {
+  counter-reset: section;
+}
+
+h2::before {
+  counter-increment: section;
+  content: &quot;Section &quot; counter(section) &quot;: &quot;;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Using CSS Counters&lt;/h1&gt;
+
+&lt;h2&gt;HTML Tutorial&lt;/h2&gt;
+&lt;h2&gt;CSS Tutorial&lt;/h2&gt;
+&lt;h2&gt;JavaScript Tutorial&lt;/h2&gt;
+&lt;h2&gt;Python Tutorial&lt;/h2&gt;
+&lt;h2&gt;SQL Tutorial&lt;/h2&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p id="128d23ce-c63b-467d-ba09-02ac8308d816" class="">NOTE: Its better to use em, rem unit sfor more scalable and responsive web design</p><h3 id="5f5b926a-e603-4454-8aab-2a0825e45c5a" class="">Specificity Hierarchy</h3><p id="eb04ed22-d17f-461d-aa60-81cfc1dbe591" class="">Every CSS selector has its place in the specificity hierarchy.</p><p id="7b02bfa1-5ebe-454b-8528-f60e7e68ddb6" class="">There are four categories which define the specificity level of a selector:</p><ol type="1" id="0f50fdda-79d5-40e1-b909-43a697844e1f" class="numbered-list" start="1"><li><strong>Inline styles</strong> - Example: &lt;h1 style=&quot;color: pink;&quot;&gt;</li></ol><ol type="1" id="e0564fe0-2852-4fd3-9e0d-d2387df339c6" class="numbered-list" start="2"><li><strong>IDs</strong> - Example: #navbar</li></ol><ol type="1" id="659d15f7-00f2-4aa4-9e39-30cc50856ec6" class="numbered-list" start="3"><li><strong>Classes, pseudo-classes, attribute selectors</strong> - Example: .test, :hover, [href]</li></ol><ol type="1" id="0e2401e5-0856-428e-8b9a-271002d85a7e" class="numbered-list" start="4"><li><strong>Elements and pseudo-elements</strong> - Example: h1, ::before</li></ol><p id="699224a5-66a3-4972-804d-bbd22dcba002" class="">The <code>!important</code> rule in CSS is used to add more importance to a property/value than normal.</p><p id="680cb027-820d-4147-8e80-90c951ebdf8b" class="">In fact, if you use the <code>!important</code> rule, it will override ALL previous styling rules for that specific property on that element!</p><h3 id="7a8ba18d-270c-4865-bdd1-91eadef91bbb" class="">Math functions</h3><p id="8bacaf66-b23e-4249-b2f0-f207fefe2153" class="">calc, max, min</p><h3 id="0667c025-3b75-43f2-8cbd-1aee3d9875c4" class="">CSS 2D Transforms Methods</h3><p id="8782923a-d475-4c9c-9692-c12a88dee03d" class="">With the CSS <code>transform</code> property you can use the following 2D transformation methods:</p><ul id="08c481fd-a31c-4d68-bbdd-c23e77e97def" class="bulleted-list"><li style="list-style-type:disc"><code>translate()</code><ul id="f8950ae4-cd59-44ee-9c92-f92d9a7d82de" class="bulleted-list"><li style="list-style-type:circle">The <code>translate()</code> method moves an element from its current position (according to the parameters given for the X-axis and the Y-axis).</li></ul></li></ul><ul id="b853533c-fde5-4194-ac67-aa13e47d9f28" class="bulleted-list"><li style="list-style-type:disc"><code>rotate()</code><ul id="72e9199f-e90f-4a57-acb1-493f6047dbc2" class="bulleted-list"><li style="list-style-type:circle">The <code>rotate()</code> method rotates an element clockwise or counter-clockwise according to a given degree. Eg transform: rotate(20deg);</li></ul></li></ul><ul id="9ccb2cf3-9711-4467-9572-449d52ad8221" class="bulleted-list"><li style="list-style-type:disc"><code>scaleX()</code></li></ul><ul id="3215c3c6-be1c-476b-b04d-a5a3d044a854" class="bulleted-list"><li style="list-style-type:disc"><code>scaleY()</code></li></ul><ul id="1a2380c0-df30-4ca3-80d6-f91f8fd8b061" class="bulleted-list"><li style="list-style-type:disc"><code>scale()</code><ul id="4457cac9-34fe-43db-8a2d-e0cf2752c2f1" class="bulleted-list"><li style="list-style-type:circle">The <code>scale()</code> method increases or decreases the size of an element (according to the parameters given for the width and height).</li></ul></li></ul><ul id="95cccc8d-379f-47c6-9e46-bc7f83dfad45" class="bulleted-list"><li style="list-style-type:disc"><code>skewX()</code><ul id="99425aea-c876-41d5-9ba0-498f0e7fdd4b" class="bulleted-list"><li style="list-style-type:circle">The <code>skewX()</code> method skews an element along the X-axis by the given angle.</li></ul></li></ul><ul id="cc03b316-4128-4f7e-828f-38f940b8b9cb" class="bulleted-list"><li style="list-style-type:disc"><code>skewY()</code></li></ul><ul id="00be05cd-c876-4724-8cff-924ec17451f8" class="bulleted-list"><li style="list-style-type:disc"><code>skew()</code></li></ul><ul id="ece7600f-d558-429b-8acb-0e12e6a56581" class="bulleted-list"><li style="list-style-type:disc"><code>matrix()</code><ul id="de62e4f4-f783-4d8c-aef3-5c1502ef9eec" class="bulleted-list"><li style="list-style-type:circle">matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY())</li></ul><p id="8b351271-cb3e-4e62-a855-20b2d21e15bd" class="">
+</p></li></ul><p id="dacaad70-50fc-4d51-9407-569201571ac5" class="">With the CSS <code>transform</code> property you can use the following 3D transformation methods:</p><ul id="99840383-123a-49e3-b301-a22344c37dfe" class="bulleted-list"><li style="list-style-type:disc"><code>rotateX()</code></li></ul><ul id="7a5912b9-8dd5-4d96-8177-c0a841f92ddd" class="bulleted-list"><li style="list-style-type:disc"><code>rotateY()</code></li></ul><ul id="0810073c-9c0d-46ce-bb74-f4f7d34847e9" class="bulleted-list"><li style="list-style-type:disc"><code>rotateZ()</code></li></ul><h3 id="24907080-322b-4cf4-94c9-dc7da46dafab" class="">Animations</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eccd0dd5-f737-4ce1-95df-8ae1204778a3" class="code"><code class="language-CSS">div {
+  animation-name: example;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="17206b04-96d7-40f3-ba28-175031359a4d" class="code"><code class="language-CSS">div {
+  animation: example 5s linear 2s infinite alternate;
+}</code></pre><p id="68511ebc-7cb2-4d76-b852-e9a309028d19" class="">NOTE: animation-fill-mode: forwards | backwards | both | none</p><p id="c82369ab-bb07-451a-b577-a5a370d4ab99" class="">
+</p><h3 id="68532f62-7e44-4428-b912-8a08edb11f17" class="">All Filters</h3><p id="fb9af575-f55f-4cf8-9371-aeae4db6c1f7" class="">A demonstration of all filter functions:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ce5dc03c-644b-42d7-9fae-0323653b9592" class="code"><code class="language-CSS">.blur {
+  filter: blur(4px);
+}
+
+.brightness {
+  filter: brightness(0.30);
+}
+
+.contrast {
+  filter: contrast(180%);
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.huerotate {
+  filter: hue-rotate(180deg);
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+.opacity {
+  filter: opacity(50%);
+}
+
+.saturate {
+  filter: saturate(7);
+}
+
+.sepia {
+  filter: sepia(100%);
+}
+
+.shadow {
+  filter: drop-shadow(8px 8px 10px green);
+}</code></pre><h3 id="15bd44b7-ecc7-43f8-a74a-24bbc981c145" class="">Variables</h3><p id="36ad1eee-899e-46fe-8efe-3c8eef3b17b8" class="">CSS variables have access to the DOM, which means that you can create variables with local or global scope, change the variables with JavaScript, and change the variables based on media queries.</p><p id="9e1aaea9-9e0b-4531-89ad-0a91cb3df770" class="">To create a variable with global scope, declare it inside the <code>:root</code> selector. The <a href="https://www.w3schools.com/cssref/sel_root.asp"><code>:root</code></a> selector matches the document&#x27;s root element.</p><p id="8b593d65-08fe-42b6-9b0f-488d05754de3" class="">To create a variable with local scope, declare it inside the selector that is going to use it.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5c1604b5-eac1-4695-91bf-ebb3b102c49e" class="code"><code class="language-CSS">&lt;style&gt;
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff; 
+}
+
+body {
+  background-color: var(--blue);
+}
+
+h2 {
+  border-bottom: 2px solid var(--blue);
+}
+
+.container {
+  color: var(--blue);
+  background-color: var(--white);
+  padding: 15px;
+}
+
+button {
+  background-color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 5px;
+}
+&lt;/style&gt;</code></pre><p id="22bc3768-0924-4243-baaf-a7c54d20594c" class="">To override a global variable in a particular block, do like this</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="44cce301-4ee3-4cb7-b31e-a4752f6600c7" class="code"><code class="language-CSS">button {
+  --blue: #0000ff; /* local variable will override global */
+  --button-blue: #0000ff; /* new local variable */
+  background-color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 5px;
+}</code></pre><p id="cf0985f8-2a4f-4eac-aba4-92131176ae85" class="">To get these variables in JS, do<br/><br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fcd906aa-4629-487c-86d6-a37a698ca610" class="code"><code class="language-JavaScript">&lt;script&gt;
+// Get the root element
+var r = document.querySelector(&#x27;:root&#x27;);
+
+// Create a function for getting a variable value
+function myFunction_get() {
+  // Get the styles (properties and values) for the root
+  var rs = getComputedStyle(r);
+  // Alert the value of the --blue variable
+  alert(&quot;The value of --blue is: &quot; + rs.getPropertyValue(&#x27;--blue&#x27;));
+}
+
+// Create a function for setting a variable value
+function myFunction_set() {
+  // Set the value of variable --blue to another value (in this case &quot;lightblue&quot;)
+  r.style.setProperty(&#x27;--blue&#x27;, &#x27;lightblue&#x27;);
+}
+&lt;/script&gt;</code></pre><h3 id="4394ac5b-6e03-4a9a-a650-c9b0332a3276" class="">Media Queries</h3><p id="63ba89ad-6717-4153-9947-18838a24bafb" class="">Types</p><table id="9bcb10f5-969c-48a3-8c08-f8521bd81e4b" class="simple-table"><tbody><tr id="896a3abb-01eb-41ee-be3a-c353bd31e5f1"><td id="&lt;z`n" class="">Value</td><td id="F_]Y" class="">Description</td></tr><tr id="49a3969f-3e42-4836-be62-26cf94b8d44e"><td id="&lt;z`n" class="">all</td><td id="F_]Y" class="">Used for all media type devices</td></tr><tr id="2efc3b52-15f1-42c8-b7e7-3eafd42b46fa"><td id="&lt;z`n" class="">print</td><td id="F_]Y" class="">Used for print preview mode</td></tr><tr id="a581ad35-66d4-4a21-bea1-33316c6c4e05"><td id="&lt;z`n" class="">screen</td><td id="F_]Y" class="">Used for computer screens, tablets, smart-phones etc.</td></tr></tbody></table><p id="4eedd2fc-c1dd-4db2-b9fd-6f5ea088698a" class="">Here are some commonly used media features:</p><table id="4e36774e-9792-4dcc-a76a-1339e1349fd5" class="simple-table"><tbody><tr id="8d3ae875-3a46-41b8-aaff-a29353aebda9"><td id="r&gt;&gt;T" class="">Value</td><td id="RcY]" class="">Description</td></tr><tr id="d5dc3b99-86e7-4b25-8ec2-786021d3ee71"><td id="r&gt;&gt;T" class="">orientation</td><td id="RcY]" class="">Orientation of the viewport. Landscape or portrait</td></tr><tr id="32715784-0ca0-4d19-ad6e-9aee5ff47045"><td id="r&gt;&gt;T" class="">max-height</td><td id="RcY]" class="">Maximum height of the viewport</td></tr><tr id="4db93f12-3714-48df-90c9-f63f42ce62ef"><td id="r&gt;&gt;T" class="">min-height</td><td id="RcY]" class="">Minimum height of the viewport</td></tr><tr id="e33ec33d-efbf-44d3-9bb9-aa61d0c1424e"><td id="r&gt;&gt;T" class="">height</td><td id="RcY]" class="">Height of the viewport (including scrollbar)</td></tr><tr id="c3fb554f-c36b-409f-9414-a95fcfa76704"><td id="r&gt;&gt;T" class="">max-width</td><td id="RcY]" class="">Maximum width of the viewport</td></tr><tr id="906998b2-da95-492c-989a-6d7e0c7a4176"><td id="r&gt;&gt;T" class="">min-width</td><td id="RcY]" class="">Minimum width of the viewport</td></tr><tr id="7aa55ce8-28ee-44c0-9fa0-91a8f0ba71f4"><td id="r&gt;&gt;T" class="">width</td><td id="RcY]" class="">Width of the viewport (including scrollbar)</td></tr></tbody></table><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3b4c4b1a-6adb-456f-b5ae-3d9b23a9fab5" class="code"><code class="language-CSS">@media not|only mediatype and (media feature) and (media feature) {
+  CSS-Code;
+}
+also like this
+&lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;screen.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (min-width: 480px)&quot; href=&quot;example1.css&quot;&gt;</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

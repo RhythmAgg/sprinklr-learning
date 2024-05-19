@@ -1,0 +1,49 @@
+{
+    "topics": [
+        {
+            "name": "Clean Code",
+            "link": "content/Clean code.html",
+            "subtopics": [
+                {
+                    "name": "Variables",
+                    "link": "content/Variables.html"
+                },
+                {
+                    "name": "Objects and Data Structures",
+                    "link": "content/Objects and Data Structures.html"
+                },
+                {
+                    "name": "Functions",
+                    "link": "content/Functions.html"
+                },
+                {
+                    "name": "Classes",
+                    "link": "content/Classes.html"
+                },
+                {
+                    "name": "S.O.L.I.D",
+                    "link": "content/SOLID.html"
+                },
+                {
+                    "name": "Error Handling",
+                    "link": "content/Error Handling.html"
+                },
+                {
+                    "name": "Concurrency",
+                    "link": "content/Concurrency.html"
+                }
+            ]
+        },
+        {
+            "name": "CSS",
+            "link": "content/CSS.html",
+            "subtopics": []
+        },
+        {
+            "name": "JS and CSS Engine",
+            "link": "content/JS and CSS engine.html",
+            "subtopics": []
+        }
+    ]
+
+}

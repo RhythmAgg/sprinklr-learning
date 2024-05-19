@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprinklr Journey</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head> 
+<body>
+    <div class="introduction">
+        <img id="sprinklr-logo" src="images/sprinklrLogo.svg" />
+        <h1 id="text">My Sprinklr Learning</h1>
+        <div id="scroll-footer">
+            <span style="display: block;">Scroll down</span>
+            <i class="fa fa-caret-down" onclick="onScroll(true)" style="font-size:2em"></i>
+
+        </div>
+        <script src="script.js"></script>
+    </div>
+    <div class="main">
+        <div class="navbar">
+            <div style="flex: 1;text-align: center;padding-top: 5px;">
+                <img id="nav-logo" src="images/sprinklrLogo.svg" />
+            </div>
+            <span id="nav-heading">Learn and Grow</span>
+            <div class="nav-search-container" style="position: relative;width: 20%;margin-right: 10px;" onmouseover="search()" onmouseout="searchLeave()">
+                <input class="nav-search-box" placeholder="search ..."/>
+                <i class="fa fa-search nav-search"  style="font-size:1.3em"></i>
+            </div>
+            <div class="nav-mobile-select">
+                <i class="fa fa-bars nav-mobile-bars" onclick="mobileSelect()" style="font-size:1.3em"></i>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="nav-mobile-container">
+                <div class="nav-mobile-search">
+                    <input class="nav-mobile-search-box" placeholder="search ..."/>
+                    <i class="fa fa-search nav-mobile-search-icon"  style="font-size:1.3em"></i>
+                </div>
+            </div>
+            <div class="main-sidebar">
+                <h1 class="sidebar-heading">Topics</h1>
+                <div class="topics-list">
+                    <!-- <div class="topic">
+                        <span class="topic-name">Clean Code</span>
+                        <div class="topic-subtopics">
+                            <span class="subtopic-name">Variables</span>
+                            <span class="subtopic-name">Functions</span>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="sidebar-show">
+                    <i class="fa fa-angle-double-left" onclick="showTopics()" style="font-size:36px;"></i>
+                    <span style="writing-mode: vertical-rl;font-size: 1.2em;">Hide Topics</span>
+
+                </div>
+                <iframe 
+                    class="main-content-iframe"
+                    src="content/css.html"
+                >
+                </iframe>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
