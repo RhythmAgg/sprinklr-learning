@@ -118,6 +118,8 @@ const showTopics = () => {
             mainContent.style.flex = 1
         sidebar.style.display = 'none'
         sidebarShow.style.transform = 'translate(5%,-50%)'
+        sidebarShow.classList.remove('sidebar-show-left')
+        sidebarShow.classList.add('sidebar-show-right')
         icon.classList.remove('fa-angle-double-left')
         icon.classList.add('fa-angle-double-right')
         showSpan.innerHTML = 'Show Topics'
@@ -127,6 +129,8 @@ const showTopics = () => {
             mainContent.style.flex = 0
         sidebar.style.display = 'block'
         sidebarShow.style.transform = 'translate(-100%,-50%)'
+        sidebarShow.classList.remove('sidebar-show-right')
+        sidebarShow.classList.add('sidebar-show-left')
         icon.classList.remove('fa-angle-double-right')
         icon.classList.add('fa-angle-double-left')
         showSpan.innerHTML = 'Hide Topics'

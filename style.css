@@ -222,7 +222,29 @@ body, html {
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.664) 2.95px 2.95px 2.6px;
+}
+.sidebar-show-left {
+    border: 2px solid rgb(14, 40, 1);
+    border-right: none;
+    padding: 5px;
+    border-radius: 10px 0px 0px 10px;
+    background-color: rgb(255, 162, 119);
+}
+.sidebar-show-left:hover {
+    box-shadow: none;
+}
+.sidebar-show-right {
+    border: 2px solid rgb(14, 40, 1);
+    border-left: none;
+    padding: 5px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgb(255, 162, 119);
+    opacity: 0.1;
+}
+.sidebar-show-right:hover {
+    opacity: 0.9;
 }
 .sidebar-heading {
     text-align: center;
