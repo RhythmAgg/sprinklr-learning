@@ -1,0 +1,848 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Objects</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="21293c32-0fb3-4562-a87a-155d059c068b" class="page sans"><header><h1 class="page-title">Objects</h1><p class="page-description"></p></header><div class="page-body"><div id="d7cd3e46-5e27-47a2-aeb5-8f22d8bf264a" class="column-list"><div id="4fb43843-212a-4c90-bd16-da26795a6fb8" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="801b2e31-e577-4519-a893-5aa9d1add57f" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let key = prompt(&quot;What do you want to know about the user?&quot;, &quot;name&quot;);
+
+// access by variable
+alert( user[key] ); // John (if enter &quot;name&quot;)</code></pre></div><div id="c1a74094-bfaf-4fe2-a772-a0522d89b55c" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5a16c74f-78fb-4a92-b16b-d04cae341f60" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let key = &quot;name&quot;;
+alert( user.key ) // undefined</code></pre></div></div><h3 id="b04518d1-8a9c-4945-8ac9-649dd68f4261" class=""><a href="https://javascript.info/object#computed-properties">Computed properties</a></h3><p id="3b028929-ffaf-4014-bb2e-68b63e1fd0eb" class="">We can use square brackets in an object literal, when creating an object. That’s called <em>computed properties</em>.</p><p id="d2f56132-20f4-4a76-83fb-41f8fbb66e98" class="">For instance:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="05a6452a-1563-4d4e-9beb-d5c1ccbe6888" class="code"><code class="language-JavaScript">let fruit = prompt(&quot;Which fruit to buy?&quot;, &quot;apple&quot;);
+
+let bag = {
+  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit + &#x27;Computers&#x27;]: 5 // bag.appleComputers = 5
+};
+
+alert( bag.apple ); // 5 if fruit=&quot;apple&quot;</code></pre><p id="7497856b-1d0c-4c15-bc46-94d9543bb263" class="">in operator</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ce7fa1a-f571-46cc-a16a-aabde1efe9b3" class="code"><code class="language-JavaScript">let obj = {
+  test: undefined
+};
+
+alert( obj.test ); // it&#x27;s undefined, so - no such property?
+
+alert( &quot;test&quot; in obj ); // true, the property does exist!</code></pre><p id="9021f1ee-a77c-4c1e-8467-201b103529cd" class="">for..in</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bd45d021-70d9-4b2f-9c6f-32033ac5f996" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  age: 30,
+  isAdmin: true
+};
+
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}</code></pre><p id="26fc30fe-1d33-49ca-bbe8-4d377d30384c" class="">The short answer is: “ordered in a special fashion”: integer properties are sorted, others appear in creation order. The “integer property” term here means a string that can be converted to-and-from an integer without a change.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2844ed71-665a-4ff2-b940-2f7ea016fe99" class="code"><code class="language-JavaScript">user = {
+  sayHi: function() {
+    alert(&quot;Hello&quot;);
+  }
+};
+
+// method shorthand looks better, right?
+user = {
+  sayHi() { // same as &quot;sayHi: function(){...}&quot;
+    alert(&quot;Hello&quot;);
+    // &quot;this&quot; is the &quot;current object&quot;
+    alert(this.name);
+  }
+};</code></pre><h1 id="ea8a83f0-45b9-4b8d-b64c-a1f2799d9381" class=""><a href="https://javascript.info/object-methods#this-is-not-bound">“this” is not bound</a></h1><p id="8e13ccda-acd8-4c66-a294-89af857fcf17" class="">In JavaScript, keyword <code>this</code> behaves unlike most other programming languages. It can be used in any function, even if it’s not a method of an object.</p><p id="6de643e3-b948-445c-9bd1-9a2c12f5e791" class="">There’s no syntax error in the following example:</p><p id="88d96b21-6337-402a-b014-fef8446eace2" class=""><code>function sayHi() {alert( </code><code><em>this</em></code><code>.name );}</code></p><p id="5d206a6f-968e-4ced-b36a-c9186dc9ea61" class="">The value of <code>this</code> is evaluated during the run-time, depending on the context.</p><p id="3ccbc502-f042-404f-ad7e-1298dbff12f3" class="">For instance, here the same function is assigned to two different objects and has different “this” in the calls:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e1bb81f-9c44-4bd9-9018-c86b5082e3c2" class="code"><code class="language-JavaScript">let user = { name: &quot;John&quot; };
+let admin = { name: &quot;Admin&quot; };
+
+function sayHi() {
+  alert( this.name );
+}
+
+// use the same function in two objects
+user.f = sayHi;
+admin.f = sayHi;
+
+// these calls have different this
+// &quot;this&quot; inside the function is the object &quot;before the dot&quot;
+user.f(); // John  (this == user)
+admin.f(); // Admin  (this == admin)
+
+admin[&#x27;f&#x27;](); // Admin (dot or square brackets access the method – doesn&#x27;t matter)</code></pre><p id="f0d24377-bf36-4f2f-89e7-70dff0ac9853" class="">The rule is simple: if <code>obj.f()</code> is called, then <code>this</code> is <code>obj</code> during the call of <code>f</code>. So it’s either <code>user</code> or <code>admin</code> in the example above.</p><h3 id="e58ff9c1-c168-4b5a-aa1c-3bc9d0ad2fa3" class=""><strong>Calling without an object: </strong><code><strong>this == undefined</strong></code></h3><p id="ddad65c8-f56d-4ff0-a4a6-d467e2257560" class="">We can even call the function without an object at all:</p><p id="94cfe0ee-2d15-4377-8f34-0762f9c615c0" class=""><code>function sayHi() {alert(this);}sayHi(); // undefined</code></p><p id="5a3519e7-dee2-4cad-848b-611d4cbc6b55" class="">In this case <code>this</code> is <code>undefined</code> in strict mode. If we try to access <code>this.name</code>, there will be an error.</p><p id="7070698f-2aab-4779-9f3f-75b02d912279" class="">In non-strict mode the value of <code>this</code> in such case will be the <em>global object</em> (<code>window</code> in a browser)</p><h3 id="c212bcfc-1602-4551-aeb1-c1b1cd84bcb4" class=""><a href="https://javascript.info/object-methods#arrow-functions-have-no-this">Arrow functions have no “this”</a></h3><p id="61f08608-10f8-4338-a7df-318e95c5b31a" class="">Arrow functions are special: they don’t have their “own” <code>this</code>. If we reference <code>this</code> from such a function, it’s taken from the outer “normal” function.</p><h3 id="29d7c2cc-06fe-41b0-abe7-f9e131c22e85" class=""><a href="https://javascript.info/symbol#symbols">Symbols</a></h3><p id="b773542b-ef20-4268-9635-6d6090bd73fb" class="">A “symbol” represents a unique identifier.</p><p id="fb52c05b-3baf-4b5e-905c-f80f00a27403" class="">A value of this type can be created using <code>Symbol()</code>:</p><p id="c129c4eb-b323-4911-8f63-acd3daae0d5d" class=""><code>let id = Symbol();</code></p><p id="b7d2c53d-bfa7-46a2-adb1-94b288736e23" class="">Upon creation, we can give symbols a description (also called a symbol name), mostly useful for debugging purposes:</p><p id="2f7466fc-619e-432c-84f8-1502e68b6540" class=""><code>// id is a symbol with the description &quot;id&quot;let id = Symbol(&quot;id&quot;);</code></p><p id="ec67900b-3676-4a6f-b149-f5e3ed697c43" class="">Symbols are guaranteed to be unique. Even if we create many symbols with exactly the same description, they are different values. The description is just a label that doesn’t affect anything.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a371794c-145a-4d3a-bf90-61bfd46564ed" class="code"><code class="language-JavaScript">let id1 = Symbol(&quot;id&quot;);
+let id2 = Symbol(&quot;id&quot;);
+
+alert(id1 == id2); // false</code></pre><p id="01d1ac07-6f70-49af-9fad-e528e365f272" class=""><strong>Symbols don’t auto-convert to a string, use id.toString()</strong></p><p id="ab0fb348-bb98-44d5-9388-39bfc8692d20" class="">Symbols allow us to create “hidden” properties of an object, that no other part of code can accidentally access or overwrite.</p><p id="50369d8f-c56a-4a25-86a0-fab8143f143d" class="">For instance, if we’re working with <code>user</code> objects, that belong to a third-party code. We’d like to add identifiers to them.</p><p id="6c69a9d7-9e9e-4f4d-9b2b-e21f5d153cee" class="">Let’s use a symbol key for it:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="61f5ecbc-7bbf-4c5b-93e5-5303af9eb154" class="code"><code class="language-JavaScript">let user = { // belongs to another code
+  name: &quot;John&quot;
+};
+
+let id = Symbol(&quot;id&quot;);
+
+user[id] = 1;
+
+alert( user[id] ); // we can access the data using the symbol as the key</code></pre><p id="83345c89-a9b9-481f-837e-c8e86787f7ac" class="">Its better to use Symbol(”id”) instead of “id” since all the symbols are unique, so its guranteed to not modify an existing key and rather add a new one.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d29b7424-d3d1-400a-ac04-4ea260a7d26a" class="code"><code class="language-JavaScript">let id = Symbol(&quot;id&quot;);
+
+let user = {
+  name: &quot;John&quot;,
+  [id]: 123 // not &quot;id&quot;: 123
+};</code></pre><p id="e46bd269-4c0c-4d71-91e6-960f177d70f3" class=""><a href="https://javascript.info/symbol#symbols-are-skipped-by-for-in"><strong>Symbols are skipped by for…in</strong></a><strong>, </strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys(user)</a> also ignores them. That’s a part of the general “hiding symbolic properties” principle. If another script or a library loops over our object, it won’t unexpectedly access a symbolic property.</p><p id="ea05529f-7a3d-4852-a934-0e132e04ac0a" class="">there exists a <em>global symbol registry</em>. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.</p><p id="179e7d7f-0a6a-40e4-a27d-02b50edc411c" class="">In order to read (create if absent) a symbol from the registry, use <code>Symbol.for(key)</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="35b35b62-5a0d-4ed4-9cdb-d216600c2abe" class="code"><code class="language-JavaScript">// read from the global registry
+let id = Symbol.for(&quot;id&quot;); // if the symbol did not exist, it is created
+
+// read it again (maybe from another part of the code)
+let idAgain = Symbol.for(&quot;id&quot;);
+
+// the same symbol
+alert( id === idAgain ); // true
+alert( Symbol.keyFor(id) ); // id</code></pre><p id="d98bda75-5af2-4c15-bcf7-b47093da5208" class="">The <code>Symbol.keyFor</code> internally uses the global symbol registry to look up the key for the symbol. So it doesn’t work for non-global symbols. If the symbol is not global, it won’t be able to find it and returns <code>undefined</code>. for local symbols, use id.description</p><p id="ca19a700-e219-4e8e-8992-a56edb4ceca6" class="">
+</p><p id="4c32e1ac-f5ed-4be3-8a64-3beff405832c" class="">One of the fundamental differences of objects versus primitives is that objects are stored and copied “by reference”, whereas primitive values: strings, numbers, booleans, etc – are always copied “as a whole value”.</p><p id="8feffcf9-996f-4eee-8490-4fb7f4bad051" class="">to clone an object, do Object.assign</p><div id="5b5df25e-16b4-4620-bf40-dbc3fe3e45f4" class="column-list"><div id="6cf7f0fe-00f2-45f2-b5ce-a8627cf36e7d" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="76878922-99ec-4908-9de9-deaaa9d5d703" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let clone = Object.assign({}, user);
+
+alert(clone.name); // John
+alert(clone.age); // 30</code></pre></div><div id="88249534-d8e7-4844-aa59-4f079524362d" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a33a0872-7330-46ac-bad4-f0d8232b62b3" class="code"><code class="language-JavaScript">let user = { name: &quot;John&quot; };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: &quot;John&quot;, canView: true, canEdit: true }
+alert(user.name); // John
+alert(user.canView); // true
+alert(user.canEdit); // true
+
+Object.assign(user, { name: &quot;Pete&quot; });
+
+alert(user.name); // now user = { name: &quot;Pete&quot; }</code></pre></div></div><p id="67f5c413-463b-4882-994a-5da492044e41" class="">The syntax is:</p><p id="afdff7e4-3f3b-4c3f-b1ba-41b3825f872a" class=""><code>Object.assign(dest, ...sources)</code></p><ul id="637dc3b0-c5f0-4048-aba4-26fe32a1eff7" class="bulleted-list"><li style="list-style-type:disc">The first argument <code>dest</code> is a target object.</li></ul><ul id="a95ef461-8b2b-4c5c-bf8e-04146986ad68" class="bulleted-list"><li style="list-style-type:disc">Further arguments is a list of source objects.</li></ul><p id="85f37b78-f92e-48ab-b49a-6a9d3c1f3729" class="">It copies the properties of all source objects into the target <code>dest</code>, and then returns it as the result.</p><p id="566705f6-f7b5-466c-96d2-d6fc70a91e94" class="">Or do clone = {…user}</p><p id="7b36d991-e168-4c65-9a32-7623ca80ae5b" class=""><code><em>let</em></code><em> clone </em><code><em>=</em></code><em> </em><code><em>structuredClone(</em></code><em>user</em><code><em>);</em></code><em> works tge best, even with nested objects</em></p><h3 id="a6a43bcb-4382-4929-a385-c3f78db45b14" class=""><a href="https://javascript.info/constructor-new#constructor-function">Constructor function</a></h3><p id="e5990039-4196-4f9f-840d-b45b75f04658" class="">Constructor functions technically are regular functions. There are two conventions though:</p><ol type="1" id="81c1ffe3-d541-474c-aa06-70f89472f548" class="numbered-list" start="1"><li>They are named with capital letter first.</li></ol><ol type="1" id="a8712837-14af-4d8c-aa60-647b89ea0b68" class="numbered-list" start="2"><li>They should be executed only with <code>&quot;new&quot;</code> operator.</li></ol><p id="6fbc4914-5dc4-466b-b58e-6dda6f38b95a" class="">Eg: </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e9c92e35-47ab-4e99-8005-940d30883eb3" class="code"><code class="language-JavaScript">function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User(&quot;Jack&quot;);
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+
+// new User does this
+function User(name) {
+  // this = {};  (implicitly)
+
+  // add properties to this
+  this.name = name;
+  this.isAdmin = false;
+
+  // return this;  (implicitly)
+}</code></pre><p id="8180c7e2-321f-48ae-afa9-b15bf3c0c5bf" class="">But if there is a <code>return</code> statement, then the rule is simple:</p><ul id="60c5db4d-53c0-47bf-8fa1-d57c2e1bdbb3" class="bulleted-list"><li style="list-style-type:disc">If <code>return</code> is called with an object, then the object is returned instead of <code>this</code>.</li></ul><ul id="20df769d-19f6-4a6f-8655-0de0aa1becc4" class="bulleted-list"><li style="list-style-type:disc">If <code>return</code> is called with a primitive, it’s ignored.</li></ul><h3 id="a259d4e1-f80f-4cbc-91ff-17e6602aa394" class="">Object to primitive</h3><ol type="1" id="1ea29e71-ad5b-4aa7-8675-6430cf970c21" class="numbered-list" start="1"><li>There’s no conversion to boolean. All objects are <code>true</code> in a boolean context, as simple as that. There exist only numeric and string conversions.</li></ol><ol type="1" id="3c70c404-f25a-45ed-a660-607ccf2fa672" class="numbered-list" start="2"><li>The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, <code>Date</code> objects (to be covered in the chapter <a href="https://javascript.info/date">Date and time</a>) can be subtracted, and the result of <code>date1 - date2</code> is the time difference between two dates.</li></ol><ol type="1" id="bd7349d4-334e-4394-9016-03e69535e7dd" class="numbered-list" start="3"><li>As for the string conversion – it usually happens when we output an object with <code>alert(obj)</code> and in similar contexts.</li></ol><p id="07bde585-416c-42d9-a68c-2ec05a907284" class="">JS uses hint to convert objects to primitve types, like alert(obj) converts to string. These hints are context derived.</p><p id="4d66c815-9db8-4ffb-b028-32b16a9df596" class=""><strong>To do the conversion, JavaScript tries to find and call three object methods:</strong></p><ol type="1" id="a1fa60fd-d981-496e-b57e-eb8d845ea1d3" class="numbered-list" start="1"><li>Call <code>obj[Symbol.toPrimitive](hint)</code> – the method with the symbolic key <code>Symbol.toPrimitive</code> (system symbol), if such method exists,<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="affdfb50-5728-4b23-b9ba-22cbedea7f8c" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  money: 1000,
+
+  [Symbol.toPrimitive](hint) {
+    alert(`hint: ${hint}`);
+    return hint == &quot;string&quot; ? `{name: &quot;${this.name}&quot;}` : this.money;
+  }
+};
+
+// conversions demo:
+alert(user); // hint: string -&gt; {name: &quot;John&quot;}
+alert(+user); // hint: number -&gt; 1000
+alert(user + 500); // hint: default -&gt; 1500</code></pre></li></ol><ol type="1" id="27cf7aa1-4026-47cc-89f5-f866b1644f80" class="numbered-list" start="2"><li>Otherwise if hint is <code>&quot;string&quot;</code><ul id="295527a8-e829-459b-b1d6-c330bffd123b" class="bulleted-list"><li style="list-style-type:disc">try calling <code>obj.toString()</code> or <code>obj.valueOf()</code>, whatever exists.</li></ul><p id="917070bc-ee34-4d00-a58a-08f47ac6fe43" class="">If there’s no <code>Symbol.toPrimitive</code> then JavaScript tries to find methods <code>toString</code> and <code>valueOf</code>:</p><ul id="18d5451d-3f1b-438a-ae0e-1b6578289a54" class="bulleted-list"><li style="list-style-type:disc">For the <code>&quot;string&quot;</code> hint: call <code>toString</code> method, and if it doesn’t exist or if it returns an object instead of a primitive value, then call <code>valueOf</code> (so <code>toString</code> has the priority for string conversions).</li></ul><ul id="77db2a81-0ddf-429e-89e3-be09591bc161" class="bulleted-list"><li style="list-style-type:disc">For other hints: call <code>valueOf</code>, and if it doesn’t exist or if it returns an object instead of a primitive value, then call <code>toString</code> (so <code>valueOf</code> has the priority for maths).</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="891978ac-d22d-437a-9053-eef1b5c1b2b4" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  money: 1000,
+
+  // for hint=&quot;string&quot;
+  toString() {
+    return `{name: &quot;${this.name}&quot;}`;
+  },
+
+  // for hint=&quot;number&quot; or &quot;default&quot;
+  valueOf() {
+    return this.money;
+  }
+
+};
+
+alert(user); // toString -&gt; {name: &quot;John&quot;}
+alert(+user); // valueOf -&gt; 1000
+alert(user + 500); // valueOf -&gt; 1500
+
+NOTE:
+By default, a plain object has following toString and valueOf methods:
+
+The toString method returns a string &quot;[object Object]&quot;.
+The valueOf method returns the object itself.</code></pre></li></ol><ol type="1" id="609799ed-67d1-4e70-ad1b-48a28e824182" class="numbered-list" start="3"><li>Otherwise if hint is <code>&quot;number&quot;</code> or <code>&quot;default&quot;</code><ul id="757fc39b-d07d-477f-aeaa-107138bde21f" class="bulleted-list"><li style="list-style-type:disc">try calling <code>obj.valueOf()</code> or <code>obj.toString()</code>, whatever exists.</li></ul></li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

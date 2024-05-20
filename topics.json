@@ -43,6 +43,20 @@
             "name": "JS and CSS Engine",
             "link": "content/JS and CSS engine.html",
             "subtopics": []
+        },
+        {
+            "name": "Javascript Fundamentals",
+            "link": "content/JS.html",
+            "subtopics": [
+                {
+                    "name": "Garbage Collection",
+                    "link": "content/Garbage collection.html"
+                },
+                {
+                    "name": "Objects",
+                    "link": "content/Objects.html"
+                }
+            ]
         }
     ]
 
