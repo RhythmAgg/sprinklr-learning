@@ -1,0 +1,882 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Classes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0e27d79f-b295-4e3d-8bff-859af1d9e361" class="page sans"><header><h1 class="page-title">Classes</h1><p class="page-description"></p></header><div class="page-body"><p id="1ca133ab-51a8-48c8-a6b1-c32805f69aa2" class="">In JavaScript, a class is a kind of function.</p><p id="d0a83df5-063f-4b3d-bcf5-b748e58eff87" class="">What <code>class User {...}</code> construct really does is:</p><ol type="1" id="524225cf-4024-49e0-8abc-3546dc45ba56" class="numbered-list" start="1"><li>Creates a function named <code>User</code>, that becomes the result of the class declaration. The function code is taken from the <code>constructor</code> method (assumed empty if we don’t write such method).</li></ol><ol type="1" id="f9989044-d69d-48ad-b314-2fd611fed205" class="numbered-list" start="2"><li>Stores class methods, such as <code>sayHi</code>, in <code>User.prototype</code>.</li></ol><p id="6a5edd29-c72f-449e-bb68-d51636edd4db" class="">After <code>new User</code> object is created, when we call its method, it’s taken from the prototype</p><figure id="223db228-4216-430d-9d92-239f8e63b028" class="image"><a href="Classes%200e27d79fb2954e3d8bff859af1d9e361/Untitled.png"><img style="width:708px" src="Classes%200e27d79fb2954e3d8bff859af1d9e361/Untitled.png"/></a></figure><p id="0220f5c8-c261-4452-a5e1-e6d9786517ce" class="">Class fields:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9d0c4fc9-c0aa-475d-b843-3822d33c0385" class="code"><code class="language-JavaScript">class User {
+  name = &quot;John&quot;;
+
+  sayHi() {
+    alert(`Hello, ${this.name}!`);
+  }
+}
+
+new User().sayHi(); // Hello, John!</code></pre><p id="e9ebdd50-6fdf-4f39-8db0-2bbc3cc5110d" class="">They are not updated in User.prototype as other class methods, instead belong to individual object.</p><p id="09f365cb-0791-403f-a7c4-201eeb4ed002" class="">get.set</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5a95b303-d2f1-4e3e-be95-fff1cc4cf75b" class="code"><code class="language-JavaScript">class User {
+
+  constructor(name) {
+    // invokes the setter
+    this.name = name;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    if (value.length &lt; 4) {
+      alert(&quot;Name is too short.&quot;);
+      return;
+    }
+    this._name = value;
+  }
+
+}
+
+let user = new User(&quot;John&quot;);
+alert(user.name); // John
+
+user = new User(&quot;&quot;); // Name is too short.</code></pre><p id="ade99450-d10e-4697-8edc-5f81110e8051" class="">
+</p><p id="41f5b7e8-0cd5-4744-af21-091aca8071da" class="">In JavaScript, there are two types of object fields (properties and methods):</p><ul id="f18c47eb-4658-42fa-8bb8-f942f4135c03" class="bulleted-list"><li style="list-style-type:disc">Public: accessible from anywhere. They comprise the external interface. Until now we were only using public properties and methods.</li></ul><ul id="815a3b33-c853-4f06-b60c-438f3b2238b9" class="bulleted-list"><li style="list-style-type:disc">Private: accessible only from inside the class. These are for the internal interface.</li></ul><ul id="c768e536-0a9e-4de4-af31-056501bd7924" class="bulleted-list"><li style="list-style-type:disc">Protected fields are not implemented in JavaScript on the language level, but in practice they are very convenient, so they are emulated.</li></ul><p id="2e5c6d87-6ebb-4a8f-b06d-a34ccf50d67a" class=""><strong>Protected properties are usually prefixed with an underscore </strong><code><strong>_</strong></code><strong>.</strong></p><p id="6c0c7464-d972-4a2f-bf16-39d4dd19c261" class="">That is not enforced on the language level, but there’s a well-known convention between programmers that such properties and methods should not be accessed from the outside.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="03d6af1c-8012-4f3f-99f3-5d4460acb1a9" class="code"><code class="language-JavaScript">class CoffeeMachine {
+  _waterAmount = 0; // to be protected
+
+  set waterAmount(value) {
+    if (value &lt; 0) {
+      value = 0;
+    }
+    this._waterAmount = value;
+  }
+
+  get waterAmount() {
+    return this._waterAmount;
+  }
+
+  constructor(power) {
+    this._power = power;
+  }
+
+}
+
+// create the coffee machine
+let coffeeMachine = new CoffeeMachine(100);
+
+// add water
+coffeeMachine.waterAmount = -10; // _waterAmount will become 0, not -10</code></pre><p id="9ead1db4-bd37-4999-9483-0cf5686c9d88" class="">To make it read only, remove the setter.</p><p id="60bed962-adb6-4a08-a99a-3b0f9dc266eb" class=""><strong>Protected fields are inherited</strong></p><p id="ad6332e3-37fd-4dfa-8f3a-3664edf83d37" class="">If we inherit <code>class MegaMachine extends CoffeeMachine</code>, then nothing prevents us from accessing <code>this._waterAmount</code> or <code>this._power</code> from the methods of the new class</p><p id="5a62bdf0-093f-43a1-aaf2-6d09bb5c58e2" class="">PRIVATE:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2cc9a52c-b601-44d5-bb85-20dad62ee3d5" class="code"><code class="language-JavaScript">class CoffeeMachine {
+  #waterLimit = 200; // private
+
+  #fixWaterAmount(value) {
+    if (value &lt; 0) return 0;
+    if (value &gt; this.#waterLimit) return this.#waterLimit;
+  }
+
+  setWaterAmount(value) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
+
+}
+
+let coffeeMachine = new CoffeeMachine();
+
+// can&#x27;t access privates from outside of the class
+coffeeMachine.#fixWaterAmount(123); // Error
+coffeeMachine.#waterLimit = 1000; // Error</code></pre><h3 id="420bdccd-687c-4e0c-80d4-94e71ae08c4e" class="">Inheritence</h3><figure id="b9d09aa1-9ac1-491b-9306-b18fbccd4850" class="image"><a href="Classes%200e27d79fb2954e3d8bff859af1d9e361/Untitled%201.png"><img style="width:708px" src="Classes%200e27d79fb2954e3d8bff859af1d9e361/Untitled%201.png"/></a></figure><p id="1c7f50ce-8efe-45d4-9414-37dfb55ce830" class="">Classes provide <code>&quot;super&quot;</code> keyword for that.</p><ul id="c3d0fb4e-d0d8-428f-aa6b-d0d363662b69" class="bulleted-list"><li style="list-style-type:disc"><code>super.method(...)</code> to call a parent method.</li></ul><ul id="b5ffe81e-0f8d-4926-b1dc-33855da22918" class="bulleted-list"><li style="list-style-type:disc"><code>super(...)</code> to call a parent constructor (inside our constructor only).</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="67fd02f3-aa32-4771-bc57-31ecbb3ba80d" class="code"><code class="language-JavaScript">class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+  // ...
+}
+
+class Rabbit extends Animal {
+
+  constructor(name, earLength) {
+// 	  super(name); &lt;- Need to do this
+    this.speed = 0;
+    this.name = name;
+    this.earLength = earLength;
+  }
+
+  // ...
+}
+
+// Doesn&#x27;t work!
+let rabbit = new Rabbit(&quot;White Rabbit&quot;, 10); // Error: this is not defined.</code></pre><p id="077af90a-b994-451b-9259-f5dd62d84260" class="">In JavaScript, there’s a distinction between a constructor function of an inheriting class (so-called “derived constructor”) and other functions. A derived constructor has a special internal property <code>[[ConstructorKind]]:&quot;derived&quot;</code>. That’s a special internal label.</p><ul id="d3af9ca6-62bd-4171-9481-a5ba6e3270af" class="bulleted-list"><li style="list-style-type:disc"><strong>Constructors in inheriting classes must call </strong><code><strong>super(...)</strong></code><strong>, and (!) do it before using </strong><code><strong>this</strong></code><strong>.</strong></li></ul><figure id="acd4e21b-6ba4-4746-90b7-6cc974569fdb" class="image"><a href="Classes%200e27d79fb2954e3d8bff859af1d9e361/Untitled%202.png"><img style="width:1702px" src="Classes%200e27d79fb2954e3d8bff859af1d9e361/Untitled%202.png"/></a></figure><p id="f826ff8f-4e88-41f9-83f7-4e3390a87f82" class=""><code>[[HomeObject]]</code> is defined for methods both in classes and in plain objects. But for objects, methods must be specified exactly as <code>method()</code>, not as <code>&quot;method: function()&quot;</code>.</p><h3 id="736d9e12-7806-47ba-9a05-d2527cd4c94b" class="">Static</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d5afff4a-7c86-4d9c-94e6-ded043ec59b1" class="code"><code class="language-JavaScript">class User {
+  static staticMethod() {
+    alert(this === User);
+  }
+}
+
+User.staticMethod(); // true</code></pre><p id="8369ba98-842b-4897-8d27-9fc210d1c326" class="">The value of <code>this</code> in <code>User.staticMethod()</code> call is the class constructor <code>User</code> itself (the “object before dot” rule).</p><p id="ad52c90e-7dee-4f7a-b052-8246560e4e37" class="">Usually, static methods are used to implement functions that belong to the class as a whole, but not to any particular object of it.</p><p id="0cd74e67-18c6-45c1-8cc2-087de73bd928" class="">For instance, we have <code>Article</code> objects and need a function to compare them.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="31ce7a12-9fa7-4a77-b9ea-b0c1e3d1b892" class="code"><code class="language-JavaScript">class Article {
+  constructor(title, date) {
+    this.title = title;
+    this.date = date;
+  }
+
+  static compare(articleA, articleB) {
+    return articleA.date - articleB.date;
+  }
+}
+
+// usage
+let articles = [
+  new Article(&quot;HTML&quot;, new Date(2019, 1, 1)),
+  new Article(&quot;CSS&quot;, new Date(2019, 0, 1)),
+  new Article(&quot;JavaScript&quot;, new Date(2019, 11, 1))
+];
+
+articles.sort(Article.compare);
+
+alert( articles[0].title ); // CSS
+
+article.createTodays(); /// Error: article.createTodays is not a function</code></pre><p id="d2d3328c-b0ef-495e-9b24-d587eb180782" class="">Static properties and methods are inherited.</p><p id="5e138327-9afa-4ed4-8296-e1330b8008d2" class="">For instance, <code>Animal.compare</code> and <code>Animal.planet</code> in the code below are inherited and accessible as <code>Rabbit.compare</code></p><h3 id="ae56e521-80bf-410d-b242-41929cf3365a" class="">Extending built ins</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6b54cc64-1b71-40f9-b6cf-9a3aadcd2573" class="code"><code class="language-JavaScript">// add one more method to it (can do more)
+class PowerArray extends Array {
+  isEmpty() {
+    return this.length === 0;
+  }
+}
+
+let arr = new PowerArray(1, 2, 5, 10, 50);
+alert(arr.isEmpty()); // false
+
+let filteredArr = arr.filter(item =&gt; item &gt;= 10);
+alert(filteredArr); // 10, 50
+alert(filteredArr.isEmpty()); // false</code></pre><p id="806df100-0f41-4904-bf70-a86ffe7febd6" class="">Built-in methods like <code>filter</code>, <code>map</code> and others – return new objects of exactly the inherited type <code>PowerArray</code>. Their internal implementation uses the object’s <code>constructor</code> property for that. <code>arr.constructor === PowerArray</code></p><p id="d9e0f3b2-cdbe-480c-98db-9fd3fa6d57ee" class="">When <code>arr.filter()</code> is called, it internally creates the new array of results using exactly <code>arr.constructor</code>, not basic <code>Array</code>. To change it, we can use [Symbol.species]</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0936a7e3-8985-4921-aaeb-249a324d046c" class="code"><code class="language-JavaScript">class PowerArray extends Array {
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  // built-in methods will use this as the constructor
+  static get [Symbol.species]() {
+    return Array; // an Array object will be returned
+  }
+}
+
+let arr = new PowerArray(1, 2, 5, 10, 50);
+alert(arr.isEmpty()); // false
+
+// filter creates new array using arr.constructor[Symbol.species] as constructor
+let filteredArr = arr.filter(item =&gt; item &gt;= 10);
+
+// filteredArr is not PowerArray, but Array
+alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
+</code></pre><p id="7c2d3df6-12ea-496b-af93-41a3ddc2d9ac" class="">Built-in objects have their own static methods, for instance <code>Object.keys</code>, <code>Array.isArray</code> etc.</p><p id="e5c004c8-e856-404c-a5ed-f514eb7ea399" class="">As we already know, native classes extend each other. For instance, <code>Array</code> extends <code>Object</code>.</p><p id="907d4127-8acc-4f65-b8d3-3960781a0919" class="">Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the article <a href="https://javascript.info/static-properties-methods#statics-and-inheritance">Static properties and methods</a>.</p><p id="58677e7f-b102-4efc-ae14-09b9442874c1" class="">But built-in classes are an exception. They don’t inherit statics from each other.</p><p id="27510856-0e02-4a84-a526-fabfeb27cd58" class="">
+</p><p id="eb52a188-0f55-40f0-9826-188a00dcc369" class="">obj <code>instanceof</code> <code>Class</code></p><p id="4d91a1b7-28be-4b31-b401-c8a6bbced364" class="">Normally, <code>instanceof</code> examines the prototype chain for the check. We can also set a custom logic in the static method <code>Symbol.hasInstance</code>.</p><p id="bc84e665-f4de-44f9-baf1-325f05a015b0" class="">The algorithm of <code>obj instanceof Class</code> works roughly as follows:</p><ol type="1" id="085fb1d2-aaaa-4f6b-b84e-cdaf2922cf42" class="numbered-list" start="1"><li>If there’s a static method <code>Symbol.hasInstance</code>, then just call it: <code>Class[Symbol.hasInstance](obj)</code>. It should return either <code>true</code> or <code>false</code>, and we’re done. That’s how we can customize the behavior of <code>instanceof</code>.</li></ol><ol type="1" id="18430999-eba4-4b38-8a6e-790a708a2fc7" class="numbered-list" start="2"><li>Most classes do not have <code>Symbol.hasInstance</code>. In that case, the standard logic is used: <code>obj instanceOf Class</code> checks whether <code>Class.prototype</code> is equal to one of the prototypes in the <code>obj</code> prototype chain.</li></ol><h3 id="01a3091d-6cfb-4ea0-8cb3-6abdb17c9cca" class="">Mixin</h3><p id="395e2671-7e55-4750-b12d-b4b21bab2090" class="">There’s a concept that can help here, called “mixins”.</p><p id="8cd2bd53-bcaa-48fd-937b-9986f0d154df" class="">As defined in Wikipedia, a <a href="https://en.wikipedia.org/wiki/Mixin">mixin</a> is a class containing methods that can be used by other classes without a need to inherit from it.</p><p id="00e59606-33ee-4163-bde5-6f49079e4069" class="">In other words, a <em>mixin</em> provides methods that implement a certain behavior, but we do not use it alone, we use it to add the behavior to other classes.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b02a93b3-f780-4e41-bfe3-a65111cd407f" class="code"><code class="language-JavaScript">// mixin
+let sayHiMixin = {
+  sayHi() {
+    alert(`Hello ${this.name}`);
+  },
+  sayBye() {
+    alert(`Bye ${this.name}`);
+  }
+};
+
+// usage:
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
+
+// now User can say hi
+new User(&quot;Dude&quot;).sayHi(); // Hello Dude!</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fa94fb99-56c3-4b22-a3fa-3ef8077f6db9" class="code"><code class="language-JavaScript">let sayMixin = {
+  say(phrase) {
+    alert(phrase);
+  }
+};
+
+let sayHiMixin = {
+  __proto__: sayMixin, // (or we could use Object.setPrototypeOf to set the prototype here)
+
+  sayHi() {
+    // call parent method
+    super.say(`Hello ${this.name}`); // (*)
+  },
+  sayBye() {
+    super.say(`Bye ${this.name}`); // (*)
+  }
+};
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
+
+// now User can say hi
+new User(&quot;Dude&quot;).sayHi(); // Hello Dude!</code></pre><p id="438de3a1-598e-4f2d-ad00-8f8a21d244af" class="">That’s because methods <code>sayHi</code> and <code>sayBye</code> were initially created in <code>sayHiMixin</code>. So even though they got copied, their <code>[[HomeObject]]</code> internal property references <code>sayHiMixin</code>, as shown in the picture above.</p><p id="a6790284-7b49-41cd-9add-d75d576f45ba" class="">As <code>super</code> looks for parent methods in <code>[[HomeObject]].[[Prototype]]</code>, that means it searches <code>sayHiMixin.[[Prototype]]</code>.</p><p id="55795294-d314-4bd5-b0bc-b63ef48b9cd4" class=""><a href="https://javascript.info/mixins#eventmixin">EventMixin</a> Great example of using mixins to Add event handlers to any object</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

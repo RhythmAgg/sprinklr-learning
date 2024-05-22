@@ -845,4 +845,70 @@ NOTE:
 By default, a plain object has following toString and valueOf methods:
 
 The toString method returns a string &quot;[object Object]&quot;.
-The valueOf method returns the object itself.</code></pre></li></ol><ol type="1" id="609799ed-67d1-4e70-ad1b-48a28e824182" class="numbered-list" start="3"><li>Otherwise if hint is <code>&quot;number&quot;</code> or <code>&quot;default&quot;</code><ul id="757fc39b-d07d-477f-aeaa-107138bde21f" class="bulleted-list"><li style="list-style-type:disc">try calling <code>obj.valueOf()</code> or <code>obj.toString()</code>, whatever exists.</li></ul></li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+The valueOf method returns the object itself.</code></pre></li></ol><ol type="1" id="609799ed-67d1-4e70-ad1b-48a28e824182" class="numbered-list" start="3"><li>Otherwise if hint is <code>&quot;number&quot;</code> or <code>&quot;default&quot;</code><ul id="757fc39b-d07d-477f-aeaa-107138bde21f" class="bulleted-list"><li style="list-style-type:disc">try calling <code>obj.valueOf()</code> or <code>obj.toString()</code>, whatever exists.</li></ul></li></ol><p id="5765e397-3476-4f95-9972-5ab69bb51b59" class="">
+</p><p id="8e2bc732-4ba0-4107-bc23-d6cdc737ed56" class="">Object properties, besides a <code><strong>value</strong></code>, have three special attributes (so-called “flags”):</p><ul id="381964a9-8502-4dff-9764-a2aa9032e799" class="bulleted-list"><li style="list-style-type:disc"><code><strong>writable</strong></code> – if <code>true</code>, the value can be changed, otherwise it’s read-only.</li></ul><ul id="b3ef8a42-6e98-4d2e-8aed-1fa3563fc51c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>enumerable</strong></code> – if <code>true</code>, then listed in loops, otherwise not listed.</li></ul><ul id="e4677dc8-3d09-415f-bec5-a6489934e18e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>configurable</strong></code> – if <code>true</code>, the property can be deleted and these attributes can be modified, otherwise not.</li></ul><p id="b3918945-1df6-4cdb-9703-b8ae5315ebe4" class="">We didn’t see them yet, because generally they do not show up. When we create a property “the usual way”, all of them are <code>true</code>. But we also can change them anytime.</p><p id="59f9fd53-76d2-4013-8c42-4bb793995125" class="">First, let’s see how to get those flags.</p><p id="9499fa62-3580-455c-adec-1c2a2933bcba" class="">The method <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor</a> allows to query the <em>full</em> information about a property. <code>let</code> descriptor <code>=</code> Object<code>.getOwnPropertyDescriptor(</code>obj<code>,</code> propertyName<code>);</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2029f271-f9b9-4586-9ab4-fa12236c98c7" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;
+};
+
+let descriptor = Object.getOwnPropertyDescriptor(user, &#x27;name&#x27;);
+
+alert( JSON.stringify(descriptor, null, 2 ) );
+/* property descriptor:
+{
+  &quot;value&quot;: &quot;John&quot;,
+  &quot;writable&quot;: true,
+  &quot;enumerable&quot;: true,
+  &quot;configurable&quot;: true
+}
+*/</code></pre><p id="8ce04456-a805-463e-9e36-07ab333da6f2" class="">To change the flags, we can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a>.</p><p id="acbfdbe6-98df-40e2-9607-9b6ecffddb6f" class="">The syntax is:</p><p id="c147dc44-39b3-435c-9a79-f1a3b1ff8494" class=""><code>Object.defineProperty(obj, propertyName, descriptor)</code></p><p id="9d57807f-2464-4b87-9264-ae74c3de0795" class="">If the property exists, <code>defineProperty</code> updates its flags. Otherwise, it creates the property with the given value and flags; in that case, if a flag is not supplied, it is assumed <code>false</code>.</p><p id="14f30ec1-5a63-4c41-be4b-510860641970" class="">Non enumerable:</p><p id="65c22fc7-ca99-45db-84e4-aeb2cafa8edb" class="">Normally, a built-in <code>toString</code> for objects is non-enumerable, it does not show up in <code>for..in</code>. But if we add a <code>toString</code> of our own, then by default it shows up in <code>for..in</code>, like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a16fbe60-2000-4bc9-86e8-aa99c03dc026" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  toString() {
+    return this.name;
+  }
+};
+
+// By default, both our properties are listed:
+for (let key in user) alert(key); // name, toString
+
+Object.defineProperty(user, &quot;toString&quot;, {
+  enumerable: false
+});
+
+// Now our toString disappears:
+for (let key in user) alert(key); // name</code></pre><p id="1995f27a-f261-4d38-99e7-c3f5587ee511" class="">Non configurable:</p><p id="61919b0e-d0d9-4327-ab95-8e9f6dbb8e45" class=""><strong>Please note: </strong><code><strong>configurable: false</strong></code><strong> prevents changes of property flags and its deletion, while allowing to change its value. </strong></p><p id="60422fea-cbbe-47ad-952d-a4321a07b168" class="">Making a property non-configurable is a one-way road. We cannot change it back with <code>defineProperty</code>.</p><p id="e296ea8a-0c9a-45e4-9503-c06fe61b2fb1" class="">
+</p><h3 id="f94f2536-3bd2-4c91-b718-e7af15f35d7b" class="">Get, set</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0919ceb2-740e-4cfd-80d2-53ee1ba0c0a3" class="code"><code class="language-JavaScript">let user = {
+  name: &quot;John&quot;,
+  surname: &quot;Smith&quot;,
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  }
+};
+
+alert(user.fullName); // John Smith
+user.fullName = &quot;Test&quot;; // error
+
+let user = {
+  name: &quot;John&quot;,
+  surname: &quot;Smith&quot;,
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  },
+
+  set fullName(value) {
+    [this.name, this.surname] = value.split(&quot; &quot;);
+  }
+};
+
+// set fullName is executed with the given value.
+user.fullName = &quot;Alice Cooper&quot;;</code></pre><p id="4176054e-0d6f-48d2-930b-a8d16d43234d" class="">
+</p><p id="af8dde50-5773-4dc6-910d-bfe0241bf224" class="">Descriptors for accessor properties are different from those for data properties.</p><p id="1dbc5980-de61-4c96-9c7b-4eb818c9cbca" class="">For accessor properties, there is no <code>value</code> or <code>writable</code>, but instead there are <code>get</code> and <code>set</code> functions.</p><p id="da135995-84f1-4918-85a9-2baf4fa89e07" class="">That is, an accessor descriptor may have:</p><ul id="28570c59-206d-473c-86c2-9531e2457e2d" class="bulleted-list"><li style="list-style-type:disc"><code><strong>get</strong></code> – a function without arguments, that works when a property is read,</li></ul><ul id="c62a529d-db5e-428e-b3cd-63b87323f3fb" class="bulleted-list"><li style="list-style-type:disc"><code><strong>set</strong></code> – a function with one argument, that is called when the property is set,</li></ul><ul id="6b0e3b74-00f0-4ef9-8743-d0dcfe0cfb5a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>enumerable</strong></code> – same as for data properties,</li></ul><ul id="e7894354-65db-46e3-aa19-b6a4938bf42a" class="bulleted-list"><li style="list-style-type:disc"><code><strong>configurable</strong></code> – same as for data properties.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="015590a5-049d-46e9-b9e6-4ff94d736aba" class="code"><code class="language-JavaScript">Object.defineProperty(user, &#x27;fullName&#x27;, {
+  get() {
+    return `${this.name} ${this.surname}`;
+  },
+
+  set(value) {
+    [this.name, this.surname] = value.split(&quot; &quot;);
+  }
+});</code></pre><p id="a6cb8d5d-cfcb-416c-8e2c-d02ac6410f19" class="">Please note that a property can be either an accessor (has <code>get/set</code> methods) or a data property (has a <code>value</code>), not both.</p><p id="aef37d77-3f91-4915-b66f-fe7cfd41ae76" class="">If we try to supply both <code>get</code> and <code>value</code> in the same descriptor, there will be an error:</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

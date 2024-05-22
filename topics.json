@@ -55,6 +55,30 @@
                 {
                     "name": "Objects",
                     "link": "content/Objects.html"
+                },
+                {
+                    "name": "Lexical Environment",
+                    "link": "content/Lexical Environment/Lexical Environment.html"
+                },
+                {
+                    "name": "Advanced Functions",
+                    "link": "content/Advanced Functions.html"
+                },
+                {
+                    "name": "Classes",
+                    "link": "content/Classes/Classes.html"
+                },
+                {
+                    "name": "Prototypes",
+                    "link": "content/Prototypes/Prototypes.html"
+                },
+                {
+                    "name": "Promises",
+                    "link": "content/Promises/Promises.html"
+                },
+                {
+                    "name": "Event Loop, Micro and Macro Task queues",
+                    "link": "content/Event Loop, Micro and Macro Task queues/Event loop microtasks and macrotasks.html"
                 }
             ]
         }
