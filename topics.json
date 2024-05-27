@@ -81,6 +81,52 @@
                     "link": "content/Event Loop, Micro and Macro Task queues/Event loop microtasks and macrotasks.html"
                 }
             ]
+        },
+        {
+            "name": "Browser, DOM",
+            "link": "content/Browser, DOM.html",
+            "subtopics": [
+                {
+                    "name": "Document",
+                    "link": "content/Document.html"
+                },
+                {
+                    "name": "Events",
+                    "link": "content/Events.html"
+                },
+                {
+                    "name": "Load Events",
+                    "link": "content/Load events.html"
+                },
+                {
+                    "name": "Mutation Observer",
+                    "link": "content/Mutation Observer.html"
+                }
+            ]
+        },
+        {
+            "name": "Apollo GraphQL",
+            "link": "content/Apollo GraphQL.html",
+            "subtopics": [
+                {
+                    "name": "GraphQL",
+                    "link": "content/GraphQL.html"
+                }
+            ]
+        },
+        {
+            "name": "Typescript",
+            "link": "content/TS.html"
+        },
+        {
+            "name": "React 18",
+            "link": "content/React 18.html",
+            "subtopics": [
+                {
+                    "name": "Automatic Batching",
+                    "link": "content/Automatic Batching.html"
+                }
+            ]
         }
     ]
 

@@ -1,0 +1,812 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Events</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="46cb7773-358a-4f1c-b8d9-534c36bc45b8" class="page sans"><header><h1 class="page-title">Events</h1><p class="page-description"></p></header><div class="page-body"><figure id="8e451b54-f521-4382-b592-4702e3b5f111" class="image"><a href="Events%2046cb7773358a4f1cb8d9534c36bc45b8/Untitled.png"><img style="width:1488px" src="Events%2046cb7773358a4f1cb8d9534c36bc45b8/Untitled.png"/></a></figure><p id="c3003bcf-f9a3-4bd2-ba05-ec6cc0e7ac18" class="">Please note that inside <code>onclick</code> we use single quotes, because the attribute itself is in double quotes. If we forget that the code is inside the attribute and use double quotes inside, like this: <code>onclick=&quot;alert(&quot;Click!&quot;)&quot;</code>, then it won’t work right.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a72233fd-b0f1-4117-a560-69e5327d077e" class="code"><code class="language-JavaScript">elem.onclick = function() {
+    alert(&#x27;Thank you&#x27;);
+  };</code></pre><p id="4f677d91-fadd-4752-a132-7438058e3e87" class="">The value of <code>this</code> inside a handler is the element. The one which has the handler on it.</p><p id="b6f8fbf8-ecfa-4a20-b9f8-5793e2bdb9ca" class="">The syntax to add a handler:</p><p id="efdaba0e-2ab4-4e03-8653-a37c6f5eaeab" class=""><code>element.addEventListener(event, handler, [options]);</code></p><p id="c42fab20-9ac6-4f34-bdbe-bc3e8adb35d1" class=""><code><strong>event</strong></code>Event name, e.g. <code>&quot;click&quot;</code>.<code><strong>handler</strong></code>The handler function.<code><strong>options</strong></code>An additional optional object with properties:<br/>• <br/><code>once</code>: if <code>true</code>, then the listener is automatically removed after it triggers.<br/>• <br/><code>capture</code>: the phase where to handle the event, to be covered later in the chapter <a href="https://javascript.info/bubbling-and-capturing">Bubbling and capturing</a>. For historical reasons, <code>options</code> can also be <code>false/true</code>, that’s the same as <code>{capture: false/true}</code>.<br/>• <br/><code>passive</code>: if <code>true</code>, then the handler will not call <code>preventDefault()</code>, we’ll explain that later in <a href="https://javascript.info/default-browser-action">Browser default actions</a>.</p><p id="a68c820e-af62-444c-ae48-76753634451b" class="">To remove the handler, use <code>removeEventListener</code>:</p><p id="9a8bfd0d-8bb5-435c-82f3-1ac4da780f5f" class=""><code>element.removeEventListener(event, handler, [options]);</code></p><h3 id="ea5c62d8-08d8-421e-8629-7ff01b8b6b3a" class="">Event Object</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f0e2295e-0190-40d4-b4b5-13e9d1716be5" class="code"><code class="language-JavaScript">&lt;input type=&quot;button&quot; value=&quot;Click me&quot; id=&quot;elem&quot;&gt;
+
+&lt;script&gt;
+  elem.onclick = function(event) {
+    // show event type, element and coordinates of the click
+    alert(event.type + &quot; at &quot; + event.currentTarget);
+    alert(&quot;Coordinates: &quot; + event.clientX + &quot;:&quot; + event.clientY);
+  };
+&lt;/script&gt;</code></pre><p id="1c4c9102-1836-44f0-9bd8-f448ad62a6b8" class=""><code><strong>event.type</strong></code></p><p id="4c5f50a7-3f2d-4d9c-a064-adf6ed32f547" class="">Event type, here it’s <code>&quot;click&quot;</code>.</p><p id="62a17cf9-59d4-4148-9012-87b1b4aa8f7b" class=""><code><strong>event.currentTarget</strong></code></p><p id="ce2342b1-191d-4bd7-bf55-f06cec891487" class="">Element that handled the event. That’s exactly the same as <code>this</code>, unless the handler is an arrow function, or its <code>this</code> is bound to something else, then we can get the element from <code>event.currentTarget</code>.</p><p id="85cefc2a-c0c2-4406-acb9-5259cbeaccd2" class=""><code><strong>event.clientX</strong></code><strong> / </strong><code><strong>event.clientY</strong></code></p><p id="6a76e652-c53b-49e9-8495-67a12f40e7c5" class="">Window-relative coordinates of the cursor, for pointer event</p><p id="c3109eee-cffa-4961-8811-3bb389ca6464" class="">We can assign not just a function, but an object as an event handler using <code>addEventListener</code>. When an event occurs, its <code>handleEvent</code> method is called.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="40747388-68ec-4ba7-9459-54ba9b30fb15" class="code"><code class="language-JavaScript">&lt;button id=&quot;elem&quot;&gt;Click me&lt;/button&gt;
+
+&lt;script&gt;
+  let obj = {
+    handleEvent(event) {
+      alert(event.type + &quot; at &quot; + event.currentTarget);
+    }
+  };
+
+  elem.addEventListener(&#x27;click&#x27;, obj);
+&lt;/script&gt;
+</code></pre><h2 id="a0c5313a-c9ad-4cd6-9512-6503ca60b837" class=""><strong>Bubbling and capturing</strong></h2><p id="7323f824-f37d-4ecd-9e2b-2cab554cddbe" class=""><strong>When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors. called bubbling</strong></p><p id="14366e21-c48a-474c-b02e-4a55860295b8" class="">NOTE: <em><strong>Almost</strong></em><strong> all events bubble. but events eg focus doesnt bubble</strong></p><p id="ddd4a340-4ef3-4093-8061-5080e7559b39" class="">Note the differences from <code>this</code> (=<code>event.currentTarget</code>):</p><ul id="4dc05766-ca2f-4e0b-923f-dd657c46b4cf" class="bulleted-list"><li style="list-style-type:disc"><code>event.target</code> – is the “target” element that initiated the event, it doesn’t change through the bubbling process.</li></ul><ul id="1fd82d78-f599-4610-bedc-c55dfe0d609b" class="bulleted-list"><li style="list-style-type:disc"><code>this</code> – is the “current” element, the one that has a currently running handler on it.</li></ul><p id="d366b2fe-78ac-4d3d-a7fd-ad8a7fe1e516" class=""><code>event.stopPropagation()</code>to prevent the event from bubbling</p><p id="1720f66d-64a9-413d-9991-bf279d1f80ea" class=""><code>event.stopImmediatePropagation()</code>. After it no other handlers execute.</p><p id="e43d5786-574f-4341-988a-b97bb3ceb7ad" class="">we can write our data into the <code>event</code> object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.</p><p id="e4ab3f57-fc4a-4837-978f-7ceceef8b16a" class=""><br/>• <br/><code>event.eventPhase</code> – the current phase (capturing=1, target=2, bubbling=3).</p><h3 id="16d178ad-f6cb-4a28-85b2-8871a20a65bb" class="">Event delegation</h3><p id="d7576994-108c-432c-aeca-759910f172a6" class="">The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.</p><p id="d4832bdd-23be-4a27-ae54-a06d6e66dcb8" class="">In the handler we get <code>event.target</code> to see where the event actually happened and handle it.</p><p id="47d464b5-7876-4cd8-bd37-16ae60add0a7" class="">Eg:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cf9078ca-a2c2-4f48-acab-eeebf08ab1e9" class="code"><code class="language-JavaScript">&lt;div id=&quot;menu&quot;&gt;
+  &lt;button data-action=&quot;save&quot;&gt;Save&lt;/button&gt;
+  &lt;button data-action=&quot;load&quot;&gt;Load&lt;/button&gt;
+  &lt;button data-action=&quot;search&quot;&gt;Search&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  class Menu {
+    constructor(elem) {
+      this._elem = elem;
+      elem.onclick = this.onClick.bind(this); // (*)
+    }
+
+    save() {
+      alert(&#x27;saving&#x27;);
+    }
+
+    load() {
+      alert(&#x27;loading&#x27;);
+    }
+
+    search() {
+      alert(&#x27;searching&#x27;);
+    }
+
+    onClick(event) {
+      let action = event.target.dataset.action;
+      if (action) {
+        this[action]();
+      }
+    };
+  }
+
+  new Menu(menu);
+&lt;/script&gt;</code></pre><p id="1e1ca724-51c7-4699-892f-d8bb5c1b8534" class="">We can also use event delegation to add “behaviors” to elements <em>declaratively</em>, with special attributes and classes.</p><p id="c3496848-8226-4c17-8ca5-7d943503e209" class="">The pattern has two parts:</p><ol type="1" id="e7f77286-49ef-41b1-a1ce-9c7f388508a7" class="numbered-list" start="1"><li>We add a custom attribute to an element that describes its behavior.</li></ol><ol type="1" id="fe78051b-7590-41ba-bd32-2fbc1fe3df5e" class="numbered-list" start="2"><li>A document-wide handler tracks events, and if an event happens on an attributed element – performs the action.</li></ol><p id="134d5a4e-5b1a-41ec-8680-5ffcf12ef4d0" class="">Eg</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0543a41c-664c-4ce7-b60b-eb7c76affade" class="code"><code class="language-JavaScript">&lt;button data-toggle-id=&quot;subscribe-mail&quot;&gt;
+  Show the subscription form
+&lt;/button&gt;
+
+&lt;form id=&quot;subscribe-mail&quot; hidden&gt;
+  Your mail: &lt;input type=&quot;email&quot;&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  document.addEventListener(&#x27;click&#x27;, function(event) {
+    let id = event.target.dataset.toggleId;
+    if (!id) return;
+
+    let elem = document.getElementById(id);
+
+    elem.hidden = !elem.hidden;
+  });
+&lt;/script&gt;</code></pre><p id="a290a4fb-5d65-4b68-9c05-2b10fdb48986" class="">There are two ways to tell the browser we don’t want it to act:</p><ul id="6f3a5936-67b7-4f72-a3a9-ea3c08e38f57" class="bulleted-list"><li style="list-style-type:disc">The main way is to use the <code>event</code> object. There’s a method <code>event.preventDefault()</code>.</li></ul><ul id="035ee1d1-d3b1-4797-8e77-2f95eaf657fb" class="bulleted-list"><li style="list-style-type:disc">If the handler is assigned using <code>on&lt;event&gt;</code> (not by <code>addEventListener</code>), then returning <code>false</code> also works the same.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4da2939d-f9b7-48b6-baf1-f1a023a4856b" class="code"><code class="language-JavaScript">menu.onclick = function(event) {
+  if (event.target.nodeName != &#x27;A&#x27;) return;
+
+  let href = event.target.getAttribute(&#x27;href&#x27;);
+  alert( href ); // ...can be loading from the server, UI generation etc
+
+  return false; // prevent browser action (don&#x27;t go to the URL)
+};</code></pre><p id="594e6024-d19e-4e03-a7dc-d840018c2a8a" class="">Certain events flow one into another. If we prevent the first event, there will be no second.</p><p id="16000ffd-c4fd-4672-befc-21a6bbae23d9" class="">For instance, <code>mousedown</code> on an <code>&lt;input&gt;</code> field leads to focusing in it, and the <code>focus</code> event. If we prevent the <code>mousedown</code> event, there’s no focus.</p><h3 id="5778d634-7a53-480e-8f3f-160d55b37f6d" class="">Passive handler</h3><p id="cf46890f-56b4-4976-8f83-c897f206cd78" class="">The optional <code>passive: true</code> option of <code>addEventListener</code> signals the browser that the handler is not going to call <code>preventDefault()</code>.</p><p id="1dd9d2c6-671b-4255-8bdf-b876e2820b79" class="">Why might that be needed?</p><p id="7d37b544-4a79-48e3-894e-74f3416c7281" class="">There are some events like <code>touchmove</code> on mobile devices (when the user moves their finger across the screen), that cause scrolling by default, but that scrolling can be prevented using <code>preventDefault()</code> in the handler.</p><p id="883eea58-2800-4456-9924-e2e1a005e70d" class="">So when the browser detects such event, it has first to process all handlers, and then if <code>preventDefault</code> is not called anywhere, it can proceed with scrolling. That may cause unnecessary delays and “jitters” in the UI.</p><p id="f08492dd-5e18-4683-9395-96f3fd2da19f" class="">The <code>passive: true</code> options tells the browser that the handler is not going to cancel scrolling. Then browser scrolls immediately providing a maximally fluent experience, and the event is handled by the way.</p><p id="4454cce8-ca6d-458f-b293-95577e509be6" class="">For some browsers (Firefox, Chrome), <code>passive</code> is <code>true</code> by default for <code>touchstart</code> and <code>touchmove</code> events.</p><h2 id="10d70c30-dfc3-4a4a-b39a-f94bd22ec287" class="">Custom Events</h2><p id="f4d7e942-7308-4185-8f91-ae586093f49f" class="">Built-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in <a href="https://dom.spec.whatwg.org/#events">Event</a> class.</p><p id="646067ea-32ee-4c33-b384-fd708e58538a" class="">We can create <code>Event</code> objects like this:</p><p id="4512c83c-98da-4bf8-a233-ec0ac1ad32d8" class=""><code>let event = new Event(type[, options]);</code></p><p id="937c8f7e-81c9-46a8-8a0d-fe0e35553ea2" class="">Arguments:</p><ul id="bf4e51bd-1c47-4a86-8029-e1a234b9454d" class="bulleted-list"><li style="list-style-type:disc"><em>type</em> – event type, a string like <code>&quot;click&quot;</code> or our own like <code>&quot;my-event&quot;</code>.</li></ul><ul id="a9462905-e017-4d46-959c-4013c2d04b4f" class="bulleted-list"><li style="list-style-type:disc"><em>options</em> – the object with two optional properties:<ul id="5d9beb68-b6be-4cbd-921b-4041a8d9e431" class="bulleted-list"><li style="list-style-type:circle"><code>bubbles: true/false</code> – if <code>true</code>, then the event bubbles.</li></ul><ul id="aea82685-44e0-4982-a811-5fb5697589b5" class="bulleted-list"><li style="list-style-type:circle"><code>cancelable: true/false</code> – if <code>true</code>, then the “default action” may be prevented. Later we’ll see what it means for custom events.</li></ul><p id="4253a8c9-ab94-402b-9944-6d1ae3bdc01f" class="">By default both are false: <code>{bubbles: false, cancelable: false}</code>.</p></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ba124b9-5b58-4df3-ae63-11a823c90699" class="code"><code class="language-JavaScript">&lt;button id=&quot;elem&quot; onclick=&quot;alert(&#x27;Click!&#x27;);&quot;&gt;Autoclick&lt;/button&gt;
+
+&lt;script&gt;
+  let event = new Event(&quot;click&quot;);
+  elem.dispatchEvent(event);
+&lt;/script&gt;
+
+&lt;script&gt;
+  // catch on document...
+  document.addEventListener(&quot;hello&quot;, function(event) { // (1)
+    alert(&quot;Hello from &quot; + event.target.tagName); // Hello from H1
+  });
+
+  // ...dispatch on elem!
+  let event = new Event(&quot;hello&quot;, {bubbles: true}); // (2)
+  elem.dispatchEvent(event);
+
+  // the handler on document will activate and display the message.
+
+&lt;/script&gt;</code></pre><p id="6f92acd6-f3c9-4ae0-af72-d8ae167b6ea0" class="">NOTE: The property <code>event.isTrusted</code> is <code>true</code> for events that come from real user actions and <code>false</code> for script-generated events.</p><p id="06d30d19-7125-48f4-b479-4f7272c96b53" class="">Notes:</p><ol type="1" id="4205139e-74cb-4f22-afaf-2994edc64f64" class="numbered-list" start="1"><li>We should use <code>addEventListener</code> for our custom events, because <code>on&lt;event&gt;</code> only exists for built-in events, <code>document.onhello</code> doesn’t work.</li></ol><ol type="1" id="0f29b7ea-ed70-412b-ade7-98a1bc93d72c" class="numbered-list" start="2"><li>Must set <code>bubbles:true</code>, otherwise the event won’t bubble up.</li></ol><p id="0e686cf6-8a2d-451b-8de5-51ffb6bf4ffa" class="">For our own, completely new events types like <code>&quot;hello&quot;</code> we should use <code>new CustomEvent</code>. Technically <a href="https://dom.spec.whatwg.org/#customevent">CustomEvent</a> is the same as <code>Event</code>, with one exception.</p><p id="4efd6b50-0c00-4a47-835a-b4013e634abc" class="">In the second argument (object) we can add an additional property <code>detail</code> for any custom information that we want to pass with the event.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e9fa606-7f6e-45a7-87dd-8bce597b0358" class="code"><code class="language-JavaScript">&lt;h1 id=&quot;elem&quot;&gt;Hello for John!&lt;/h1&gt;
+
+&lt;script&gt;
+  // additional details come with the event to the handler
+  elem.addEventListener(&quot;hello&quot;, function(event) {
+    alert(event.detail.name);
+  });
+
+  elem.dispatchEvent(new CustomEvent(&quot;hello&quot;, {
+    detail: { name: &quot;John&quot; }
+  }));
+&lt;/script&gt;
+</code></pre><p id="b6fbc317-3aee-4a29-aa18-b02a3dec6438" class="">Usually events are processed in a queue. That is: if the browser is processing <code>onclick</code> and a new event occurs, e.g. mouse moved, then its handling is queued up, corresponding <code>mousemove</code> handlers will be called after <code>onclick</code> processing is finished.</p><p id="f2ba2105-7595-4bb5-b6f6-135e87f97fe0" class="">The notable exception is when one event is initiated from within another one, e.g. using <code>dispatchEvent</code>. Such events are processed immediately: the new event handlers are called, and then the current event handling is resumed.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4a923948-53c7-4ed8-aaf3-4d2b3775714e" class="code"><code class="language-JavaScript">&lt;button id=&quot;menu&quot;&gt;Menu (click me)&lt;/button&gt;
+
+&lt;script&gt;
+  menu.onclick = function() {
+    alert(1);
+
+    menu.dispatchEvent(new CustomEvent(&quot;menu-open&quot;, {
+      bubbles: true
+    }));
+
+    alert(2);
+  };
+
+  // triggers between 1 and 2
+  document.addEventListener(&#x27;menu-open&#x27;, () =&gt; alert(&#x27;nested&#x27;));
+&lt;/script&gt;
+
+/* 1
+	nested
+	2
+*/</code></pre><p id="269924fd-5159-4f1a-888a-01d914b91100" class="">can use this</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c0a23f7c-f7c3-495b-bdef-83b00e2dcf67" class="code"><code class="language-JavaScript">setTimeout(() =&gt; menu.dispatchEvent(new CustomEvent(&quot;menu-open&quot;, {
+      bubbles: true
+    })));
+
+to prevent the &#x27;menu-open&#x27; handler to be fired right away</code></pre><p id="f6300827-c343-4696-bd62-a245021ff7e9" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

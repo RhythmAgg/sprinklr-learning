@@ -1,0 +1,832 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Document</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="837fe685-0682-477c-b25f-6a0c9a8aaa72" class="page sans"><header><h1 class="page-title">Document</h1><p class="page-description"></p></header><div class="page-body"><p id="e561c5d5-e223-474c-879b-da96fe08d60a" class="">A host environment provides its own objects and functions in addition to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.</p><figure id="e76cf7f4-876b-4055-9e06-76b9f6118250" class="image"><a href="Document%20837fe6850682477cb25f6a0c9a8aaa72/Untitled.png"><img style="width:708px" src="Document%20837fe6850682477cb25f6a0c9a8aaa72/Untitled.png"/></a></figure><h3 id="4612666a-6a6e-484a-b3ee-c891f33ae071" class="">DOM</h3><p id="44bb9cd9-e189-4d7e-af95-bca723e93ba7" class="">The Document Object Model, or DOM for short, represents all page content as objects that can be modified.</p><p id="428f5bf3-9bab-4e41-bc5e-3d16298ac9d1" class="">The <code>document</code> object is the main “entry point” to the page. We can change or create anything on the page using it.</p><p id="957ff5b1-bfa2-44ce-804b-56540f6ee4b3" class="">NOTE: There’s also a separate specification, <a href="https://www.w3.org/TR/cssom-1/">CSS Object Model (CSSOM)</a> for CSS rules and stylesheets, that explains how they are represented as objects, and how to read and write them.</p><p id="84ef5f27-032a-4d99-ab37-077ded42f230" class="">The CSSOM is used together with the DOM when we modify style rules for the document. In practice though, the CSSOM is rarely required, because we rarely need to modify CSS rules from JavaScript (usually we just add/remove CSS classes, not modify their CSS rules), but that’s also possible.</p><h3 id="6eb187eb-7e49-4769-b517-5b7768668bbe" class="">BOM</h3><p id="b0a2ce5f-ef19-42f3-a4f7-6b67238d0f72" class="">The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.</p><p id="7a81a7a3-002b-4cff-ae6a-be9959b15035" class="">For instance:</p><ul id="945ed448-f6b9-4a34-9f6a-a88dab41d305" class="bulleted-list"><li style="list-style-type:disc">The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/navigator">navigator</a> object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: <code>navigator.userAgent</code> – about the current browser, and <code>navigator.platform</code> – about the platform (can help to differentiate between Windows/Linux/Mac etc).</li></ul><ul id="c1de437a-f765-454a-be1f-cd1cfb73e3ed" class="bulleted-list"><li style="list-style-type:disc">The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/location">location</a> object allows us to read the current URL and can redirect the browser to a new one.</li></ul><p id="c755c062-05a4-470b-8a59-12b47135df1e" class="">The functions <code>alert/confirm/prompt</code> are also a part of the BOM: they are not directly related to the document, but represent pure browser methods for communicating with the user.</p><h2 id="d2615266-b2ff-4043-b74e-12498ff1d00a" class="">Document</h2><p id="38f444c6-a917-451e-8996-1fcff3f9defe" class="">According to the Document Object Model (DOM), every HTML tag is an object. Nested tags are “children” of the enclosing one. The text inside a tag is an object as well.</p><p id="0dad2620-e647-444f-9fe7-b5353af86a53" class="">All these objects are accessible using JavaScript, and we can use them to modify the page.</p><p id="e04b517a-c483-4711-bd37-2e669851fb4d" class="">For example, <code>document.body</code> is the object representing the <code>&lt;body&gt;</code> tag.</p><p id="e45a04a6-96e4-495a-a0b9-97bef4e4115a" class="">The text inside elements forms <em>text nodes</em>, labelled as <code>#text</code>. A text node contains only a string. It may not have children and is always a leaf of the tree.</p><p id="3d3e9e8a-7516-4e02-b7b7-b4d5dd4514cc" class="">Spaces and newlines are totally valid characters, like letters and digits. They form text nodes and become a part of the DOM. So, for instance, in the example above the <code>&lt;head&gt;</code> tag contains some spaces before <code>&lt;title&gt;</code>, and that text becomes a <code>#text</code> node (it contains a newline and some spaces only).</p><p id="86d25242-0ed0-416d-98b1-367512181eff" class="">There are only two top-level exclusions:</p><ol type="1" id="06b6d742-eee6-46ad-9d36-cad55635d590" class="numbered-list" start="1"><li>Spaces and newlines before <code>&lt;head&gt;</code> are ignored for historical reasons.</li></ol><ol type="1" id="45f506c3-47ab-44be-9093-9034d489bbea" class="numbered-list" start="2"><li>If we put something after <code>&lt;/body&gt;</code>, then that is automatically moved inside the <code>body</code>, at the end, as the HTML spec requires that all content must be inside <code>&lt;body&gt;</code>. So there can’t be any spaces after <code>&lt;/body&gt;</code>.</li></ol><p id="27f8da5a-ba35-4f90-bbf7-7b07a16fd3f2" class=""><em>comment node</em>, labeled as <code>#comment</code>, between two text nodes.</p><p id="616550b1-3051-45b2-b830-dfa23d5fc63e" class="">We may think – why is a comment added to the DOM? It doesn’t affect the visual representation in any way. But there’s a rule – if something’s in HTML, then it also must be in the DOM tree.</p><p id="624dc3b5-cafc-4bb5-b3da-5ceb5b5c0bfb" class="">The topmost tree nodes are available directly as <code>document</code> properties:</p><p id="c7f8050a-fde0-40a5-9cec-d5d7ad5d3898" class=""><code><strong>&lt;html&gt;</strong></code><strong> = </strong><code><strong>document.documentElement</strong></code>The topmost document node is <code>document.documentElement</code>. That’s the DOM node of the <code>&lt;html&gt;</code> tag.<code><strong>&lt;body&gt;</strong></code><strong> = </strong><code><strong>document.body</strong></code>Another widely used DOM node is the <code>&lt;body&gt;</code> element – <code>document.body</code>.<code><strong>&lt;head&gt;</strong></code><strong> = </strong><code><strong>document.head</strong></code>The <code>&lt;head&gt;</code> tag is available as <code>document.head</code>.</p><p id="f818db3b-7012-4ce5-a851-6c04dfb58e85" class="">NOTE: In particular, if a script is inside <code>&lt;head&gt;</code>, then <code>document.body</code> is unavailable, because the browser did not read it yet.</p><p id="77bfa1a2-d1b8-48e1-a01c-25170e3954dc" class=""><strong>The </strong><code><strong>childNodes</strong></code><strong> collection lists all child nodes, including text nodes.</strong></p><p id="9247710b-4810-492f-91ca-b583aa86b206" class=""><strong>Properties </strong><code><strong>firstChild</strong></code><strong> and </strong><code><strong>lastChild</strong></code><strong> give fast access to the first and last children.</strong></p><p id="ece94f5b-ec80-4b02-a735-1faf02182e58" class="">As we can see, <code>childNodes</code> looks like an array. But actually it’s not an array, but rather a <em>collection</em> – a special array-like iterable object, so we can use for … of. To convert it into a Array, use Array.from(document.body.childNodes)</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3807ed2e-bc76-4016-86f1-47676a69f29a" class="code"><code class="language-JavaScript">// parent of &lt;body&gt; is &lt;html&gt;
+alert( document.body.parentNode === document.documentElement ); // true
+
+// after &lt;head&gt; goes &lt;body&gt;
+alert( document.head.nextSibling ); // HTMLBodyElement
+
+// before &lt;body&gt; goes &lt;head&gt;
+alert( document.body.previousSibling ); // HTMLHeadElement</code></pre><p id="177d8fe8-9d6b-44b7-aa78-beac5a2e203a" class="">To get only element nodes and not text, comment like leaf nodes,</p><ul id="26627ef4-ef1b-4c1f-9539-1f10d5581346" class="bulleted-list"><li style="list-style-type:disc"><code>children</code> – only those children that are element nodes.</li></ul><ul id="f5026d02-0006-4996-80c3-82dccd903fde" class="bulleted-list"><li style="list-style-type:disc"><code>firstElementChild</code>, <code>lastElementChild</code> – first and last element children.</li></ul><ul id="ebcdec47-201b-409c-b1ad-3be09ac43aba" class="bulleted-list"><li style="list-style-type:disc"><code>previousElementSibling</code>, <code>nextElementSibling</code> – neighbor elements.</li></ul><ul id="250775b8-141a-476f-b182-35a8c155061b" class="bulleted-list"><li style="list-style-type:disc"><code>parentElement</code> – parent element.</li></ul><p id="ff54d2bf-ca2b-4dc8-a6e0-30875a287cd0" class=""><code>elem.querySelectorAll(css)</code> returns all elements inside <code>elem</code> matching the given CSS selector.</p><p id="989e0de7-3d10-4751-88c9-4973116fa72a" class="">The call to <code>elem.querySelector(css)</code> returns the first element for the given CSS selector.</p><div id="44c966b8-3deb-486b-9b96-a71da191fb3e" class="column-list"><div id="4f421649-d77c-4f5e-b208-bd4e01cd9ab2" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="38328b62-d0e2-42b1-82f4-a334f1e1a33e" class="code"><code class="language-JavaScript">&lt;div&gt;First div&lt;/div&gt;
+
+&lt;script&gt;
+  let divs = document.getElementsByTagName(&#x27;div&#x27;);
+  alert(divs.length); // 1
+&lt;/script&gt;
+
+&lt;div&gt;Second div&lt;/div&gt;
+
+&lt;script&gt;
+  alert(divs.length); // 2
+&lt;/script&gt;</code></pre></div><div id="a9810450-211c-493d-b1c5-17ff4ac54f9e" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f7b730d0-eec2-4e0f-b76f-c37ff6a595d0" class="code"><code class="language-JavaScript">&lt;div&gt;First div&lt;/div&gt;
+
+&lt;script&gt;
+  let divs = document.querySelectorAll(&#x27;div&#x27;);
+  alert(divs.length); // 1
+&lt;/script&gt;
+
+&lt;div&gt;Second div&lt;/div&gt;
+
+&lt;script&gt;
+  alert(divs.length); // 1
+&lt;/script&gt;
+</code></pre></div></div><figure id="177eaa77-2fb3-47a9-9c6e-b4fc3ae4f702" class="image"><a href="Document%20837fe6850682477cb25f6a0c9a8aaa72/Untitled%201.png"><img style="width:708px" src="Document%20837fe6850682477cb25f6a0c9a8aaa72/Untitled%201.png"/></a></figure><figure id="15c43062-33e1-4b39-be4c-4d3acc67af68" class="image"><a href="Document%20837fe6850682477cb25f6a0c9a8aaa72/Untitled%202.png"><img style="width:708px" src="Document%20837fe6850682477cb25f6a0c9a8aaa72/Untitled%202.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f91b754c-432d-4262-9fa2-105fe905b00d" class="code"><code class="language-JavaScript">alert( document.body instanceof HTMLBodyElement ); // true
+alert( document.body instanceof HTMLElement ); // true
+alert( document.body instanceof Element ); // true
+alert( document.body instanceof Node ); // true
+alert( document.body instanceof EventTarget ); // true</code></pre><p id="c143e00e-1c4c-429a-91c1-36e031d598ac" class="">Given a DOM node, we can read its tag name from <code>nodeName</code> or <code>tagName</code> properties:</p><ul id="a7ff27df-7c6d-4bf5-9d3c-e32fd4157552" class="bulleted-list"><li style="list-style-type:disc">The <code>tagName</code> property exists only for <code>Element</code> nodes.</li></ul><ul id="9916e340-0035-451c-97ef-8f62cc4ce997" class="bulleted-list"><li style="list-style-type:disc">The <code>nodeName</code> is defined for any <code>Node</code>:<ul id="04a4e68a-f9c5-4bad-ab6a-368c9604377c" class="bulleted-list"><li style="list-style-type:circle">for elements it means the same as <code>tagName</code>.</li></ul><ul id="19fb02c8-c4ec-461b-a365-a54b51e01574" class="bulleted-list"><li style="list-style-type:circle">for other node types (text, comment, etc.) it has a string with the node type.</li></ul></li></ul><p id="e8a67f30-4a22-4bc9-8330-677b3aac5746" class="">The <a href="https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin">innerHTML</a> property allows to get the HTML inside the element as a string.</p><p id="4a72237f-93b1-41f9-91a4-280944bca358" class="">NOTE: If <code>innerHTML</code> inserts a <code>&lt;script&gt;</code> tag into the document – it becomes a part of HTML, but doesn’t execute.</p><p id="81340265-f44b-4b71-bbbf-0a2e00e5d822" class=""><code>innerHTML+=</code> does this:</p><ol type="1" id="da2d46fd-1fd4-473d-a867-6e1e75cc8771" class="numbered-list" start="1"><li>The old contents is removed.</li></ol><ol type="1" id="1ea121bd-8f3a-43ef-a76a-16ad8acd7d36" class="numbered-list" start="2"><li>The new <code>innerHTML</code> is written instead (a concatenation of the old and the new one).</li></ol><p id="091372f0-a66e-459e-a511-8bdb2e39bbbe" class=""><strong>As the content is “zeroed-out” and rewritten from the scratch, all images and other resources will be reloaded</strong>.</p><p id="9b54ee2b-2980-4eb7-a25d-a3eb35fd4c28" class="">In the <code>chatDiv</code> example above the line <code>chatDiv.innerHTML+=&quot;How goes?&quot;</code> re-creates the HTML content and reloads <code>smile.gif</code> (hope it’s cached). If <code>chatDiv</code> has a lot of other text and images, then the reload becomes clearly visible.</p><p id="38b1aed7-fbce-44a3-8ec7-56b2a5232ea7" class="">There are other side-effects as well. For instance, if the existing text was selected with the mouse, then most browsers will remove the selection upon rewriting <code>innerHTML</code>. And if there was an <code>&lt;input&gt;</code> with a text entered by the visitor, then the text will be removed. And so on.</p><p id="bef7f25d-e1a1-41cc-85aa-ca9c03a41bbb" class="">The <code>outerHTML</code> property contains the full HTML of the element. That’s like <code>innerHTML</code> plus the element itself.</p><p id="84edd646-8350-4d31-b396-d1cc2281f9a6" class="">NOTE: <strong>unlike </strong><code><strong>innerHTML</strong></code><strong>, writing to </strong><code><strong>outerHTML</strong></code><strong> does not change the element. Instead, it replaces it in the DOM.</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25a710d1-503a-4ab4-ab23-27fb622074e8" class="code"><code class="language-JavaScript">&lt;div&gt;Hello, world!&lt;/div&gt;
+
+&lt;script&gt;
+  let div = document.querySelector(&#x27;div&#x27;);
+
+  // replace div.outerHTML with &lt;p&gt;...&lt;/p&gt;
+  div.outerHTML = &#x27;&lt;p&gt;A new element&lt;/p&gt;&#x27;; // (*)
+
+  // Wow! &#x27;div&#x27; is still the same!
+  alert(div.outerHTML); // &lt;div&gt;Hello, world!&lt;/div&gt; (**)
+&lt;/script&gt;</code></pre><p id="2f8f70fb-8298-4c98-94ad-e9b8b9382ab2" class="">So what happened in <code>div.outerHTML=...</code> is:</p><ul id="4b6cf246-e2c2-4c8c-af6d-146cb3295082" class="bulleted-list"><li style="list-style-type:disc"><code>div</code> was removed from the document.</li></ul><ul id="d382df22-fab9-4d8d-9562-d6f90e08ab73" class="bulleted-list"><li style="list-style-type:disc">Another piece of HTML <code>&lt;p&gt;A new element&lt;/p&gt;</code> was inserted in its place.</li></ul><ul id="f74104d3-9c4f-4293-ae82-d54695df37b8" class="bulleted-list"><li style="list-style-type:disc"><code>div</code> still has its old value. The new HTML wasn’t saved to any variable.</li></ul><p id="8543576c-5349-47b7-829b-0aa838c77617" class="">
+</p><p id="f26f8154-eb72-40f4-9ac8-10fd578704da" class="">The <code>innerHTML</code> property is only valid for element nodes.</p><p id="0faba5ad-67ca-4d3c-9541-561b3ece2648" class="">Other node types, such as text nodes, have their counterpart: <code>nodeValue</code> and <code>data</code> properties. These two are almost the same for practical use, there are only minor specification differences. So we’ll use <code>data</code></p><p id="81bca22c-a7dc-4e5f-b29c-2f5a6b107496" class="">The <code>textContent</code> provides access to the <em>text</em> inside the element: only text, minus all <code>&lt;tags&gt;</code>.</p><p id="468baa43-6571-4489-9b2a-d8000b409b08" class=""><strong>Writing to </strong><code><strong>textContent</strong></code><strong> is much more useful, because it allows to write text the “safe way”.</strong></p><p id="4a528feb-2692-4fab-aeec-77529c32cc3a" class="">Let’s say we have an arbitrary string, for instance entered by a user, and want to show it.</p><ul id="18339cd4-fbbe-4a43-824f-9b6dfc71f7fb" class="bulleted-list"><li style="list-style-type:disc">With <code>innerHTML</code> we’ll have it inserted “as HTML”, with all HTML tags.</li></ul><ul id="3a1f5885-4253-4468-8671-deb989851185" class="bulleted-list"><li style="list-style-type:disc">With <code>textContent</code> we’ll have it inserted “as text”, all symbols are treated literally.</li></ul><p id="48d4e764-99b7-4565-9df3-4a814cdf2e49" class="">
+</p><p id="70aae867-366a-46ac-9f9e-dad2c7224253" class="">The “hidden” attribute and the DOM property specifies whether the element is visible or not.</p><p id="d399958a-129b-4d0f-81e7-eeb72cef6ce6" class="">Technically, <code>hidden</code> works the same as <code>style=&quot;display:none&quot;</code>. But it’s shorter to write.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3e8b15c6-2a9c-4542-9b6f-19025b2f2889" class="code"><code class="language-JavaScript">document.body.myData = {
+  name: &#x27;Caesar&#x27;,
+  title: &#x27;Imperator&#x27;
+};
+
+alert(document.body.myData.title); // Imperator</code></pre><p id="552c9682-fb7f-4cd0-ac97-410ac41cebfd" class="">We can also modify built-in prototypes like <code>Element.prototype</code> and add new methods to all elements:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a1cdebc4-ed17-42ac-827f-8bf9e6b2edd8" class="code"><code class="language-JavaScript">Element.prototype.sayHi = function() {
+  alert(`Hello, I&#x27;m ${this.tagName}`);
+};
+
+document.documentElement.sayHi(); // Hello, I&#x27;m HTML
+document.body.sayHi(); // Hello, I&#x27;m BODY</code></pre><h3 id="742ccbdd-5b2f-4ccb-86b1-208cf6c09abe" class="">HTML attributes</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8b91ddc1-189b-45f1-94fd-548b606e09e1" class="code"><code class="language-JavaScript">&lt;body id=&quot;test&quot; something=&quot;non-standard&quot;&gt;
+  &lt;script&gt;
+    alert(document.body.id); // test
+    // non-standard attribute does not yield a property
+    alert(document.body.something); // undefined
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre><p id="0a9b7889-c437-43a2-a099-94dc33d7c93a" class="">Please note that a standard attribute for one element can be unknown for another one.</p><p id="dfc112dc-00ad-4157-8fde-eedf78fdf9ad" class="">All attributes are accessible by using the following methods:</p><ul id="0a34b1ae-b88c-4027-b038-57002159f12a" class="bulleted-list"><li style="list-style-type:disc"><code>elem.hasAttribute(name)</code> – checks for existence.</li></ul><ul id="f070bae5-d37e-4ace-8e55-0d9a9a4fff91" class="bulleted-list"><li style="list-style-type:disc"><code>elem.getAttribute(name)</code> – gets the value.</li></ul><ul id="bdde5204-cfa1-4edf-a0f0-50a0c95c357d" class="bulleted-list"><li style="list-style-type:disc"><code>elem.setAttribute(name, value)</code> – sets the value.</li></ul><ul id="d55da37d-e22d-44f9-a7d3-793bab9017aa" class="bulleted-list"><li style="list-style-type:disc"><code>elem.removeAttribute(name)</code> – removes the attribute.</li></ul><p id="f6f14873-90f7-4eca-8625-08fae2beefc6" class="">HTML attributes have the following features:</p><ul id="f3997cb4-766a-4704-b54d-5b293bcfe4d5" class="bulleted-list"><li style="list-style-type:disc">Their name is case-insensitive (<code>id</code> is same as <code>ID</code>).</li></ul><ul id="5edfa3ca-37c0-4ce9-87cd-8258ddb1bf44" class="bulleted-list"><li style="list-style-type:disc">Their values are always strings.</li></ul><p id="f3310b54-92f0-494f-ac02-e6241832480b" class="">DOM properties are not always strings</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="936260fe-a37b-40aa-9569-7dc4c96bdbb3" class="code"><code class="language-JavaScript">&lt;input id=&quot;input&quot; type=&quot;checkbox&quot; checked&gt; checkbox
+
+&lt;script&gt;
+  alert(input.getAttribute(&#x27;checked&#x27;)); // the attribute value is: empty string
+  alert(input.checked); // the property value is: true
+&lt;/script&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8941000c-2dda-4806-8b55-da7ffc99662b" class="code"><code class="language-JavaScript">&lt;div id=&quot;div&quot; style=&quot;color:red;font-size:120%&quot;&gt;Hello&lt;/div&gt;
+
+&lt;script&gt;
+  // string
+  alert(div.getAttribute(&#x27;style&#x27;)); // color:red;font-size:120%
+
+  // object
+  alert(div.style); // [object CSSStyleDeclaration]
+  alert(div.style.color); // red
+&lt;/script&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1363b2ac-a98d-4620-8b1f-230a7f90a572" class="code"><code class="language-JavaScript">&lt;a id=&quot;a&quot; href=&quot;#hello&quot;&gt;link&lt;/a&gt;
+&lt;script&gt;
+  // attribute
+  alert(a.getAttribute(&#x27;href&#x27;)); // #hello
+
+  // property
+  alert(a.href ); // full URL in the form http://site.com/page#hello
+&lt;/script&gt;
+</code></pre><p id="8ac10606-8a28-4eb7-9350-c3298da66f90" class="">Eg:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="be444af9-511b-4aff-ad4f-1702ce8e8ba0" class="code"><code class="language-JavaScript">&lt;!-- mark the div to show &quot;name&quot; here --&gt;
+&lt;div show-info=&quot;name&quot;&gt;&lt;/div&gt;
+&lt;!-- and age here --&gt;
+&lt;div show-info=&quot;age&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  // the code finds an element with the mark and shows what&#x27;s requested
+  let user = {
+    name: &quot;Pete&quot;,
+    age: 25
+  };
+
+  for(let div of document.querySelectorAll(&#x27;[show-info]&#x27;)) {
+    // insert the corresponding info into the field
+    let field = div.getAttribute(&#x27;show-info&#x27;);
+    div.innerHTML = user[field]; // first Pete into &quot;name&quot;, then 25 into &quot;age&quot;
+  }
+&lt;/script&gt;
+
+can also style like
+div[show-info = &quot;name&quot;] {
+	...
+}</code></pre><p id="a0e22e0a-b339-4ba2-b7e0-01400fb25beb" class=""><strong>All attributes starting with “data-” are reserved for programmers’ use. They are available in the </strong><code><strong>dataset</strong></code><strong> property.</strong></p><p id="cd701704-476c-44d6-a2fb-e9b3c11eb619" class="">For instance, if an <code>elem</code> has an attribute named <code>&quot;data-about&quot;</code>, it’s available as <code>elem.dataset.about</code>. Multiword attributes like <code>data-order-state</code> become camel-cased: <code>dataset.orderState</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8498e491-3a07-4487-8f92-5929aa17f82d" class="code"><code class="language-JavaScript">&lt;style&gt;
+  .order[data-order-state=&quot;new&quot;] {
+    color: green;
+  }
+
+  .order[data-order-state=&quot;pending&quot;] {
+    color: blue;
+  }
+
+  .order[data-order-state=&quot;canceled&quot;] {
+    color: red;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;order&quot; class=&quot;order&quot; data-order-state=&quot;new&quot;&gt;
+  A new order.
+&lt;/div&gt;
+
+&lt;script&gt;
+  // read
+  alert(order.dataset.orderState); // new
+
+  // modify
+  order.dataset.orderState = &quot;pending&quot;; // (*)
+&lt;/script&gt;
+</code></pre><p id="484a22ce-2ca3-4533-810a-90934da73e13" class=""><strong>document.createElement(tag), document.createTextNode(text)</strong></p><ul id="e332a954-e7d1-4f4d-91d1-d8dd3d0c603a" class="bulleted-list"><li style="list-style-type:disc"><code>node.append(...nodes or strings)</code> – append nodes or strings <em>at the end</em> of <code>node</code>,</li></ul><ul id="f563c875-7081-4639-8d88-b4c613136ebd" class="bulleted-list"><li style="list-style-type:disc"><code>node.prepend(...nodes or strings)</code> – insert nodes or strings <em>at the beginning</em> of <code>node</code>,</li></ul><ul id="2cc9358f-f6dd-4b3a-b0cc-f2cdebd09672" class="bulleted-list"><li style="list-style-type:disc"><code>node.before(...nodes or strings)</code> –- insert nodes or strings <em>before</em> <code>node</code>,</li></ul><ul id="54ee86b0-7739-4c14-bf0c-b79b6c00d74c" class="bulleted-list"><li style="list-style-type:disc"><code>node.after(...nodes or strings)</code> –- insert nodes or strings <em>after</em> <code>node</code>,</li></ul><ul id="4238beb9-cf3a-419b-be5a-89ed9d00efa8" class="bulleted-list"><li style="list-style-type:disc"><code>node.replaceWith(...nodes or strings)</code> –- replaces <code>node</code> with the given nodes or strings.</li></ul><h1 id="5927c1bc-e15e-4117-bef1-10af4e560abe" class=""><a href="https://javascript.info/modifying-document#insertadjacenthtml-text-element">insertAdjacentHTML/Text/Element</a></h1><p id="f2125674-c32a-4d68-b687-015d75e5cee6" class="">For that we can use another, pretty versatile method: <code>elem.insertAdjacentHTML(where, html)</code>.</p><p id="e53c5847-ac0c-4d7d-9acc-142a0ddcfed0" class="">The first parameter is a code word, specifying where to insert relative to <code>elem</code>. Must be one of the following:</p><ul id="d351b6a6-4ed7-4667-87a0-586de55580cb" class="bulleted-list"><li style="list-style-type:disc"><code>&quot;beforebegin&quot;</code> – insert <code>html</code> immediately before <code>elem</code>,</li></ul><ul id="ca64dda2-3363-4c5e-bb85-c29c295537f2" class="bulleted-list"><li style="list-style-type:disc"><code>&quot;afterbegin&quot;</code> – insert <code>html</code> into <code>elem</code>, at the beginning,</li></ul><ul id="cca1ac06-1b27-49de-a626-e171fcbebcbd" class="bulleted-list"><li style="list-style-type:disc"><code>&quot;beforeend&quot;</code> – insert <code>html</code> into <code>elem</code>, at the end,</li></ul><ul id="f173e611-31a4-4510-9d2f-761fc0317faf" class="bulleted-list"><li style="list-style-type:disc"><code>&quot;afterend&quot;</code> – insert <code>html</code> immediately after <code>elem</code>.</li></ul><p id="02e36cb7-fe41-49aa-9764-0614774f14a3" class="">The second parameter is an HTML string, that is inserted “as HTML”.</p><p id="38852d90-1e8a-4c3a-91c1-82aaf88caa0b" class="">Remove a node→ node.remove()</p><p id="1b91f8ee-6d1f-48be-afdf-4520f88dca56" class=""><strong>All insertion methods automatically remove the node from the old place. So if we want to shift from one place to another, no need for node.remove()</strong></p><p id="bab03fbb-ef6c-496c-a7c1-bd0217dba54a" class="">Sometimes when we have a big element, that may be faster and simpler.</p><ul id="b83573ff-fa21-4d05-babb-a0047e2a98e9" class="bulleted-list"><li style="list-style-type:disc">The call <code>elem.cloneNode(true)</code> creates a “deep” clone of the element – with all attributes and subelements. If we call <code>elem.cloneNode(false)</code>, then the clone is made without child elements.</li></ul><h3 id="1ab0f426-f66b-4c72-8cd6-820666026917" class="">Styles</h3><p id="b84f0d09-d93d-4e16-aa5f-42fe2bcb1316" class="">Methods of <code>classList</code>:</p><ul id="9ce7deb3-fe2d-46e2-b6f6-6ce8e7fc259e" class="bulleted-list"><li style="list-style-type:disc"><code>elem.classList.add/remove(&quot;class&quot;)</code> – adds/removes the class.</li></ul><ul id="c12da52c-e53f-4f56-9b01-18e7b7cc95fa" class="bulleted-list"><li style="list-style-type:disc"><code>elem.classList.toggle(&quot;class&quot;)</code> – adds the class if it doesn’t exist, otherwise removes it.</li></ul><ul id="64b83f3f-903e-4e2b-b3de-c3c899f51b0c" class="bulleted-list"><li style="list-style-type:disc"><code>elem.classList.contains(&quot;class&quot;)</code> – checks for the given class, returns <code>true/false</code>.</li></ul><p id="87d73940-ae84-4139-947c-d91e614b5fb0" class="">For multi-word property the camelCase is used:</p><p id="e58ff20a-8456-42b4-9417-02255b532ffa" class="">Normally, we use <code>style.*</code> to assign individual style properties. We can’t set the full style like <code>div.style=&quot;color: red; width: 100px&quot;</code>, because <code>div.style</code> is an object, and it’s read-only.</p><p id="807fe71f-e6f7-4229-b0fa-ef3730768304" class="">To set the full style as a string, there’s a special property <code>style.cssText</code>:</p><p id="c72162cf-d38a-422a-bf6d-430d30463a1f" class="">NOTE : <strong>The </strong><code><strong>style</strong></code><strong> property operates only on the value of the </strong><code><strong>&quot;style&quot;</strong></code><strong> attribute, without any CSS cascade.</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="350d50c7-948d-4316-9ae5-c68e428abdaa" class="code"><code class="language-JavaScript">&lt;head&gt;
+  &lt;style&gt; body { color: red; margin: 5px } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  The red text
+  &lt;script&gt;
+    alert(document.body.style.color); // empty
+    alert(document.body.style.marginTop); // empty
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre><p id="6e7b3667-1ba8-4d93-a7b0-5430d8436bd3" class="">Use getComputedStyle(element, [pseudo])</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="66701606-83f5-4811-b40e-127bc406cd38" class="code"><code class="language-JavaScript">&lt;head&gt;
+  &lt;style&gt; body { color: red; margin: 5px } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;script&gt;
+    let computedStyle = getComputedStyle(document.body);
+
+    // now we can read the margin and the color from it
+
+    alert( computedStyle.marginTop ); // 5px
+    alert( computedStyle.color ); // rgb(255, 0, 0)
+  &lt;/script&gt;
+
+&lt;/body&gt;</code></pre><h1 id="68ab173a-a87a-4c0f-8f6b-961292d50a39" class="">Scrolling and Cordinates</h1><p id="fe39890d-90af-40aa-b3c6-3f37c0ddf541" class="">refer <a href="https://javascript.info/document">https://javascript.info/document</a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

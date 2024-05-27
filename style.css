@@ -214,6 +214,9 @@ body, html {
     background-color: #e8e8e8;
     min-width: 300px;
     text-wrap: nowrap;
+    max-height: calc(100vh - 3rem);
+    overflow-y: scroll;
+    padding-bottom: 10px;
 
 }
 .sidebar-show {

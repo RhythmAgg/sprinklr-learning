@@ -1,0 +1,1055 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>GraphQL</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="abdeebdd-ef36-49b3-8352-d33e4e08b168" class="page sans"><header><h1 class="page-title">GraphQL</h1><p class="page-description"></p></header><div class="page-body"><p id="ba404509-f164-4f10-bc52-6a0073d69ec8" class="">A GraphQL service is created by defining types and fields on those types, then providing functions for each field on each type. For example, a GraphQL service that tells you who the logged in user is (<code>me</code>) as well as that user’s name might look like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c1200c68-c59e-4866-9040-1ee21ed96b6b" class="code"><code class="language-JavaScript">type Query {
+  me: User
+}
+ 
+type User {
+  id: ID
+  name: String
+}
+
+Along with functions for each field on each type:
+
+function Query_me(request) {
+  return request.auth.user
+}
+ 
+function User_name(user) {
+  return user.getName()
+}</code></pre><p id="40a39aef-e370-4063-9ea5-094c6ecd53b9" class="">After a GraphQL service is running (typically at a URL on a web service), it can receive GraphQL queries to validate and execute. The service first checks a query to ensure it only refers to the types and fields defined, and then runs the provided functions to produce a result.</p><div id="66eac8a5-f17c-4d2d-a6c2-4d0670e88e1c" class="column-list"><div id="c30d04b8-e136-4dc7-ab55-67e617a2faa7" style="width:50%" class="column"><p id="61e9cb00-b709-4930-99cb-e5ab861fe0df" class="">QUERY</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b10aaf32-f77f-4993-a97a-85c38d091cd3" class="code"><code class="language-JavaScript">{
+  me {
+    name
+  }
+}</code></pre></div><div id="8a72ccf1-f762-44b6-9644-294a935a8238" style="width:50%" class="column"><p id="7f1ff6ec-a70d-4eeb-8bb5-80318b9192d5" class="">JSON result:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3830b36a-fd2f-4b40-be46-84da90ad6e51" class="code"><code class="language-JavaScript">{
+  &quot;me&quot;: {
+    &quot;name&quot;: &quot;Luke Skywalker&quot;
+  }
+}</code></pre></div></div><h3 id="4c687cee-14a5-4e2c-89a3-8b5f3c88b1e7" class=""><strong><strong>Queries and Mutations</strong></strong></h3><p id="76c91a30-f2da-4794-917b-e3ebc38e31af" class="">Eg:</p><div id="284fa7a2-fd8c-4792-a7da-2750cfb33ec0" class="column-list"><div id="b6ba7379-9026-45cf-b439-15d4f97aaedd" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3652970b-9d16-412c-8299-cc3914efc6a1" class="code"><code class="language-JavaScript">{
+  hero {
+    name
+    appearsIn
+    friends {
+      name
+    }
+  }
+}</code></pre></div><div id="c4be4786-92ef-4518-92f9-760b8728a0fb" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b9354f3d-c5f9-46e8-8a28-e4ca69c3910b" class="code"><code class="language-JavaScript">{
+  &quot;data&quot;: {
+    &quot;hero&quot;: {
+      &quot;name&quot;: &quot;R2-D2&quot;,
+      &quot;appearsIn&quot;: [
+        &quot;NEWHOPE&quot;,
+        &quot;EMPIRE&quot;,
+        &quot;JEDI&quot;
+      ]
+      &quot;friends&quot;: [
+        {
+          &quot;name&quot;: &quot;Luke Skywalker&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Han Solo&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Leia Organa&quot;
+        }
+      ]
+    }
+  }
+}</code></pre></div></div><p id="78c7648f-7d2b-402d-9cc4-cc161bcc6bcc" class=""><code>friends</code> field returns an array of items. GraphQL queries look the same for both single items or lists of items; however, we know which one to expect based on what is indicated in the schema.</p><p id="a6e0daf0-e500-42d8-8c08-d92936d8d720" class="">We can also pass<strong> arguements:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="af19158e-1bc8-418d-8346-ab11ff47506b" class="code"><code class="language-JavaScript">{
+  human(id: &quot;1000&quot;) {
+    name
+    height(unit: FOOT)
+  }
+}</code></pre><p id="8a1794a8-5bd8-4f5e-b998-59c430c2c0a1" class="">In a system like REST, you can only pass a single set of arguments - the query parameters and URL segments in your request. But in GraphQL, every field and nested object can get its own set of arguments, making GraphQL a complete replacement for making multiple API fetches.</p><h3 id="9cdf2b60-b59e-400e-88fc-fe59752fa8d8" class="">Aliases</h3><div id="bcdda0e3-52ba-4724-9b54-34fe652da1e8" class="column-list"><div id="ed7723c0-9432-40cd-b5d3-40b1d977f9a2" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12201cf5-df91-43e3-97bb-afc526d363fa" class="code"><code class="language-JavaScript">{
+  empireHero: hero(episode: EMPIRE) {
+    name
+  }
+  jediHero: hero(episode: JEDI) {
+    name
+  }
+}</code></pre></div><div id="a9053374-66f9-4d8c-aa56-b25ea1733bb1" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8821fd3f-60b3-4d6c-b57c-642034c9c4ce" class="code"><code class="language-JavaScript">{
+  &quot;data&quot;: {
+    &quot;empireHero&quot;: {
+      &quot;name&quot;: &quot;Luke Skywalker&quot;
+    },
+    &quot;jediHero&quot;: {
+      &quot;name&quot;: &quot;R2-D2&quot;
+    }
+  }
+}</code></pre></div></div><p id="84c79bb5-be1e-47ca-ae64-940d14db0692" class="">you can’t directly query for the same field with different arguments. That’s why you need <em>aliases</em> - they let you rename the result of a field to anything you want.</p><h3 id="91859ce4-a0e7-45ef-8536-cfbfbf327025" class="">Fragments</h3><div id="b27065b6-a140-467a-bf93-e58f4417993f" class="column-list"><div id="6a63bf65-8471-4153-91cf-d86f27d5d2c7" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3efb8193-eee4-4315-b5ab-07ff020153f1" class="code"><code class="language-JavaScript">{
+  leftComparison: hero(episode: EMPIRE) {
+    ...comparisonFields
+  }
+  rightComparison: hero(episode: JEDI) {
+    ...comparisonFields
+  }
+}
+
+fragment comparisonFields on Character {
+  name
+  appearsIn
+  friends {
+    name
+  }
+}</code></pre><p id="4ead428e-afda-42be-9ccf-4a11c89fe7f9" class="">Fragments let you construct sets of fields, and then include them in queries where you need to. Here’s an example of how you could solve the above situation using fragments:</p><p id="2d990dcb-4c20-4838-ac3a-1aef32e340d4" class="">fragment name: comparisonFields</p><p id="3c286e35-c18b-435a-a735-846e4f27f66f" class="">fragment Type ( acts on which object): Character</p><p id="70f0d4d3-e5f2-406c-835a-5d3dfe7aabf1" class="">Note: Every fragment includes a subset of the fields that belong to its associated type. In the above example, the <code>Character</code> type mustdeclare <code>name, appearsIn and friends</code>fields</p></div><div id="fc7c5ccb-0011-47bc-8dc0-7636729c7f30" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6a9e0310-45b0-4cb5-948b-068e74c21329" class="code"><code class="language-JavaScript">{
+  &quot;data&quot;: {
+    &quot;leftComparison&quot;: {
+      &quot;name&quot;: &quot;Luke Skywalker&quot;,
+      &quot;appearsIn&quot;: [
+        &quot;NEWHOPE&quot;,
+        &quot;EMPIRE&quot;,
+        &quot;JEDI&quot;
+      ],
+      &quot;friends&quot;: [
+        {
+          &quot;name&quot;: &quot;Han Solo&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Leia Organa&quot;
+        },
+        {
+          &quot;name&quot;: &quot;C-3PO&quot;
+        },
+        {
+          &quot;name&quot;: &quot;R2-D2&quot;
+        }
+      ]
+    },
+    &quot;rightComparison&quot;: {
+      &quot;name&quot;: &quot;R2-D2&quot;,
+      &quot;appearsIn&quot;: [
+        &quot;NEWHOPE&quot;,
+        &quot;EMPIRE&quot;,
+        &quot;JEDI&quot;
+      ],
+      &quot;friends&quot;: [
+        {
+          &quot;name&quot;: &quot;Luke Skywalker&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Han Solo&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Leia Organa&quot;
+        }
+      ]
+    }
+  }
+}</code></pre></div></div><h3 id="3ad49fbc-9288-409f-bcd0-0610a6ae2143" class="">Variables</h3><p id="a3a709f2-5e02-454b-b78c-c14916534745" class="">we have been writing all of our arguments inside the query string. But in most applications, the arguments to fields will be dynamic: For example, there might be a dropdown that lets you select which Star Wars episode you are interested in, or a search field, or a set of filters.</p><p id="4d25a2d5-88a2-447f-9904-d742658b0f32" class="">When we start working with variables, we need to do three things:</p><ol type="1" id="7a345e2b-5ead-4b18-af9b-c50cac0e8968" class="numbered-list" start="1"><li>Replace the static value in the query with <code>$variableName</code></li></ol><ol type="1" id="7cf70dbc-78a8-4ced-a451-95434c552ab0" class="numbered-list" start="2"><li>Declare <code>$variableName</code> as one of the variables accepted by the query</li></ol><ol type="1" id="a221a7d9-a4ce-4b55-8140-c0debfbdff4a" class="numbered-list" start="3"><li>Pass <code>variableName: value</code> in the separate, transport-specific (usually JSON) variables dictionary</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="61c5511e-1894-4f35-bb55-937bd7507b27" class="code"><code class="language-JavaScript">query HeroNameAndFriends($episode: Episode) {
+  hero(episode: $episode) {
+    name
+    friends {
+      name
+    }
+  }
+}
+{
+	&quot;episode&quot;: &quot;Jedi&quot;
+}</code></pre><p id="fab8708b-ad86-4156-88ee-83e0419d3f0d" class=""><strong>Variable Definitions</strong></p><p id="cadc7577-6be7-4d96-af0c-953c2b4f3e7f" class="">The variable definitions are the part that looks like <code>($episode: Episode)</code> in the query above prefixed by <code>$</code>, followed by their type, in this case <code>Episode</code>.</p><p id="59002228-ee1c-4551-8e90-1f3dba14ce62" class="">All declared variables must be either scalars, enums, or input object types. So if you want to pass a complex object into a field, you need to know what input type that matches on the server.</p><p id="011b6456-6aa0-4cc3-872e-04f398ad47c6" class="">$episode: Episode = JEDI is the way to assign the default values to the variables</p><h3 id="8907ec27-7fcd-426f-97ce-1d76e356e856" class="">Directives</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f2b136e7-eac1-4730-82c6-c95ea9d2b7b1" class="code"><code class="language-JavaScript">query Hero($episode: Episode, $withFriends: Boolean!) {
+  hero(episode: $episode) {
+    name
+    friends @include(if: $withFriends) {
+      name
+    }
+  }
+}
+{
+  &quot;episode&quot;: &quot;JEDI&quot;,
+  &quot;withFriends&quot;: false
+}</code></pre><p id="6b1d21a7-b6b3-458f-95c4-def0d3db00ff" class="">A directive can be attached to a field or fragment inclusion, and can affect execution of the query in any way the server desires. The core GraphQL specification includes exactly two directives, which must be supported by any spec-compliant GraphQL server implementation:</p><ul id="049cd0b3-136e-41b0-8173-c422a6b0c5e5" class="bulleted-list"><li style="list-style-type:disc"><code>@include(if: Boolean)</code> Only include this field in the result if the argument is <code>true</code>.</li></ul><ul id="261b5e7e-2886-4aec-a604-0d96a4bf62b4" class="bulleted-list"><li style="list-style-type:disc"><code>@skip(if: Boolean)</code> Skip this field if the argument is <code>true</code>.</li></ul><h3 id="3f85e5d7-b98b-418b-90aa-a758c1a837b4" class="">Mutations</h3><p id="cfd70ad1-13e9-43cc-94da-64b09d291346" class="">In REST, any request might end up causing some side-effects on the server, but by convention it’s suggested that one doesn’t use <code>GET</code> requests to modify data. GraphQL is similar - technically any query could be implemented to cause a data write. However, it’s useful to establish a convention that any operations that cause writes should be sent explicitly via a mutation.</p><div id="66a7ee21-43f4-4bb2-9b8b-3197b794e6d9" class="column-list"><div id="85e88ee0-cd0b-4bda-8160-584ba3c6d508" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c5083c3a-99b6-4b53-a83f-c27489a283ae" class="code"><code class="language-JavaScript">mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+  createReview(episode: $ep, review: $review) {
+    stars
+    commentary
+  }
+}
+{
+  &quot;ep&quot;: &quot;JEDI&quot;,
+  &quot;review&quot;: {
+    &quot;stars&quot;: 5,
+    &quot;commentary&quot;: &quot;This is a great movie!&quot;
+  }
+}</code></pre></div><div id="70635060-47bf-4ca2-b770-c54b29286902" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7cf31c00-8bb5-49ef-ba74-83175f049754" class="code"><code class="language-JavaScript"> {
+  &quot;data&quot;: {
+    &quot;createReview&quot;: {
+      &quot;stars&quot;: 5,
+      &quot;commentary&quot;: &quot;This is a great movie!&quot;
+    }
+  }
+}</code></pre></div></div><p id="08fcfba4-7b85-4bb5-a60a-fd621e68b4d1" class=""><strong>ReviewInput! makes the variable necessarily non-null</strong></p><p id="730746d7-eb06-4083-aae7-a7b3b7185a75" class=""><code>review</code> variable we passed in is not a scalar. It’s an <em>input object type</em>, a special kind of object type that can be passed in as an argument. </p><p id="69df76c8-4dfc-45d8-8195-31fae4a04e6e" class="">NOTE: <strong>While query fields are executed in parallel, mutation fields run in series, one after the other.</strong></p><p id="fd5fde6c-bf50-40fa-b2c3-c22c1b6c5e8d" class="">This means that if we send two <code>incrementCredits</code> mutations in one request, the first is guaranteed to finish before the second begins, ensuring that we don’t end up with a race condition with ourselves.</p><h2 id="c28b66c2-04e8-4b76-a485-59f6c488eb14" class="">Schemas and types</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c51e22a7-54c4-4fb6-877d-671afdc6f7c3" class="code"><code class="language-JavaScript">{
+  hero {
+    name
+    appearsIn
+  }
+}</code></pre><ol type="1" id="0e08f053-68e6-4b36-9bd5-1c24e91a6f49" class="numbered-list" start="1"><li>We start with a special “root” object</li></ol><ol type="1" id="9774c26d-ee93-4655-807e-5813e12c0a8e" class="numbered-list" start="2"><li>We select the <code>hero</code> field on that</li></ol><ol type="1" id="7c0cf1e5-d166-4cfa-a1e0-2180702444f1" class="numbered-list" start="3"><li>For the object returned by <code>hero</code>, we select the <code>name</code> and <code>appearsIn</code> fields</li></ol><p id="a6b50567-9477-45d2-b3a8-cf0ad5587531" class="">Every GraphQL service defines a set of types which completely describe the set of possible data you can query on that service. Then, when queries come in, they are validated and executed against that schema.</p><p id="edd92458-d217-4ffe-be55-7547f55ed126" class="">We’ll use the “GraphQL schema language” - it’s similar to the query language, and allows us to talk about GraphQL schemas in a language-agnostic way.</p><h3 id="5d9c7d9a-3033-4ed0-ab16-0415370d8958" class="">Objects and Fields</h3><p id="81c80124-fb48-464d-bda4-6e6e12fe3e8e" class="">The most basic components of a GraphQL schema are object types, which just represent a kind of object you can fetch from your service, and what fields it has. In the GraphQL schema language, we might represent it like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2b25c447-9ba4-4963-8130-cdd5ee0b72aa" class="code"><code class="language-JavaScript">type Character {
+  name: String!
+  appearsIn: [Episode!]!
+}</code></pre><ul id="a51d9940-bd4f-4715-843e-70209c12d9f1" class="bulleted-list"><li style="list-style-type:disc"><code>Character</code> is a <em>GraphQL Object Type</em>, meaning it’s a type with some fields. Most of the types in your schema will be object types.</li></ul><ul id="810caa1d-21d9-48e3-8e3f-f8ce6c3b0fcf" class="bulleted-list"><li style="list-style-type:disc"><code>name</code> and <code>appearsIn</code> are <em>fields</em> on the <code>Character</code> type. That means that <code>name</code> and <code>appearsIn</code> are the only fields that can appear in any part of a GraphQL query that operates on the <code>Character</code> type.</li></ul><ul id="d9aced34-f5d9-4764-b122-8b7f5ab1b5c0" class="bulleted-list"><li style="list-style-type:disc"><code>String</code> is one of the built-in <em>scalar</em> types - these are types that resolve to a single scalar object, and can’t have sub-selections in the query. We’ll go over scalar types more later.</li></ul><ul id="d2b93afa-d988-45f6-a6ca-ba56805ce68c" class="bulleted-list"><li style="list-style-type:disc"><code>String!</code> means that the field is <em>non-nullable</em>, meaning that the GraphQL service promises to always give you a value when you query this field. In the type language, we’ll represent those with an exclamation mark.</li></ul><ul id="c836bcb9-63d0-4f24-acf2-8e4505265325" class="bulleted-list"><li style="list-style-type:disc"><code>[Episode!]!</code> represents an <em>array</em> of <code>Episode</code> objects. Since it is also <em>non-nullable</em>, you can always expect an array (with zero or more items) when you query the <code>appearsIn</code> field. And since <code>Episode!</code> is also <em>non-nullable</em>, you can always expect every item of the array to be an <code>Episode</code> object.</li></ul><p id="8281877f-2e56-49a7-8000-bdfc54a2e3f2" class="">Every field on a GraphQL object type can have zero or more arguments, </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="50927fe5-dde6-4bfc-9568-1b2456722a87" class="code"><code class="language-JavaScript">type Starship {
+  id: ID!
+  name: String!
+  length(unit: LengthUnit = METER): Float
+}</code></pre><p id="5cc712f6-0209-4050-8a37-d1425a84f0c3" class="">NOTE: All arguments are named. Arguments can be either required or optional. When an argument is optional, we can define a <em>default value</em> - if the <code>unit</code> argument is not passed, it will be set to <code>METER</code> by default.</p><figure id="6e35c7ba-5246-41fb-b7f5-24355c8aef77" class="image"><a href="GraphQL%20abdeebddef3649b38352d33e4e08b168/Untitled.png"><img style="width:2046px" src="GraphQL%20abdeebddef3649b38352d33e4e08b168/Untitled.png"/></a></figure><p id="a56b0863-87f7-4764-9baf-b8cf96e38445" class="">GraphQL comes with a set of default scalar types out of the box:</p><ul id="0efc129e-0ff5-45ab-b8f1-9bdab7992592" class="bulleted-list"><li style="list-style-type:disc"><code>Int</code>: A signed 32‐bit integer.</li></ul><ul id="39ae841f-91aa-43da-8d43-a38e8deee297" class="bulleted-list"><li style="list-style-type:disc"><code>Float</code>: A signed double-precision floating-point value.</li></ul><ul id="35031e08-366b-41f8-88c0-50668f1f70a3" class="bulleted-list"><li style="list-style-type:disc"><code>String</code>: A UTF‐8 character sequence.</li></ul><ul id="91ea3a92-26e1-441c-a117-2a76e10759ca" class="bulleted-list"><li style="list-style-type:disc"><code>Boolean</code>: <code>true</code> or <code>false</code>.</li></ul><ul id="abf14a9c-57d0-418e-9558-e44c5fcab273" class="bulleted-list"><li style="list-style-type:disc"><code>ID</code>: The ID scalar type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a String; however, defining it as an <code>ID</code> signifies that it is not intended to be human‐readable.</li></ul><p id="8ed8ce02-3c70-43ce-ba11-e7007e4ab266" class="">In most GraphQL service implementations, there is also a way to specify custom scalar types. For example, we could define a <code>Date</code> type:</p><p id="c1110c14-455b-4058-9618-c4ac2cabceff" class=""><code>scalar Date</code></p><h3 id="2da86f50-e324-4d08-a2a6-2ba382dfbed6" class="">Enums</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="abeedfa5-6442-4ccc-8706-d66b827c4810" class="code"><code class="language-JavaScript">enum Episode {
+NEWHOPE
+EMPIRE
+JEDI
+}</code></pre><ol type="1" id="bd666c59-510f-4c49-a214-73e2da2f926d" class="numbered-list" start="1"><li>Validate that any arguments of this type are one of the allowed values</li></ol><ol type="1" id="2ac299d7-e726-47a4-acf4-61751313d8a9" class="numbered-list" start="2"><li>Communicate through the type system that a field will always be one of a finite set of values</li></ol><h3 id="a6034c27-7874-4ee6-80c4-2fbfe3effc3e" class="">Interfaces</h3><p id="45deb6f4-d242-4b1c-999d-fe327f74857e" class="">An <em>Interface</em> is an abstract type that includes a certain set of fields that a type must include to implement the interface.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="29eeca47-c22b-484a-9098-6825ae683d80" class="code"><code class="language-JavaScript">interface Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+}
+// any type that implements Character needs to have these exact fields, with these arguments and return types
+
+type Human implements Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+  starships: [Starship]
+  totalCredits: Int
+}
+ 
+type Droid implements Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [Episode]!
+  primaryFunction: String
+}</code></pre><p id="38116ad9-af29-496e-a9cc-54a2f2bcac80" class="">Interfaces are useful when you want to return an object or set of objects, but those might be of several different types.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="67579d2c-8519-4fb2-bfbd-a76a7ff8aa8f" class="code"><code class="language-JavaScript">query HeroForEpisode($ep: Episode!) {
+  hero(episode: $ep) {
+    name
+    primaryFunction
+  }
+}
+{
+	&quot;ep&quot;: &quot;JEDI&quot;
+}
+
+This produces error.</code></pre><p id="af5dbfef-1d28-4bb6-83ce-f874a004cfd7" class="">The <code>hero</code> field returns the type <code>Character</code>, which means it might be either a <code>Human</code> or a <code>Droid</code> depending on the <code>episode</code> argument. In the query above, you can only ask for fields that exist on the <code>Character</code> interface, which doesn’t include <code>primaryFunction</code>.</p><p id="bb5c13d3-b6ce-41ad-935d-e6148fa1863b" class="">To ask for a field on a specific object type, you need to use an inline fragment:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="12cade2d-c1f3-47e8-88db-d599edea49a9" class="code"><code class="language-JavaScript">query HeroForEpisode($ep: Episode!) {
+  hero(episode: $ep) {
+    name
+    ... on Droid { // Inline Fragment
+      primaryFunction 
+    }
+  }
+}</code></pre><h3 id="a8fc3bd7-fef0-4281-9270-6f587b89f00f" class="">Union Types</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e7284ea5-61ee-4b97-b59d-4d8e6bf5fdac" class="code"><code class="language-JavaScript">union SearchResult = Human | Droid | Starship</code></pre><p id="a037c192-06e9-4144-af33-783ef9fa0e66" class=""> Wherever we return a <code>SearchResult</code> type in our schema, we might get a <code>Human</code>, a <code>Droid</code>, or a <code>Starship</code>. Note that members of a union type need to be concrete object types; you can’t create a union type out of interfaces or other unions.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fe7c9e81-94b2-4507-983a-d355e1aba71a" class="code"><code class="language-JavaScript">{
+  search(text: &quot;an&quot;) { // returns a SearchResult union type
+    __typename
+    ... on Human { // inline fragment to be used for querying subfields
+      name
+      height
+    }
+    ... on Droid {
+      name
+      primaryFunction
+    }
+    ... on Starship {
+      name
+      length
+    }
+  }
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf29658a-e252-49cf-818c-75ccd9af98e4" class="code"><code class="language-JavaScript">{
+  &quot;data&quot;: {
+    &quot;search&quot;: [
+      {
+        &quot;__typename&quot;: &quot;Human&quot;,
+        &quot;name&quot;: &quot;Han Solo&quot;,
+        &quot;height&quot;: 1.8
+      },
+      {
+        &quot;__typename&quot;: &quot;Human&quot;,
+        &quot;name&quot;: &quot;Leia Organa&quot;,
+        &quot;height&quot;: 1.5
+      },
+      {
+        &quot;__typename&quot;: &quot;Starship&quot;,
+        &quot;name&quot;: &quot;TIE Advanced x1&quot;,
+        &quot;length&quot;: 9.2
+      }
+    ]
+  }
+}</code></pre><h3 id="838c13c2-5cb5-41ef-82dd-0b1e5b99d193" class="">Input types</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ec599feb-a5b3-404d-821b-eddba5237c5a" class="code"><code class="language-JavaScript">input ReviewInput {
+  stars: Int!
+  commentary: String
+}</code></pre><p id="59f142c2-582c-442c-8add-418bdad188d9" class="">We could use it from client like:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c1ff70e7-c8cc-4153-989f-4f010bbe7e87" class="code"><code class="language-JavaScript">mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+  createReview(episode: $ep, review: $review) {
+    stars
+    commentary
+  }
+}
+{
+  &quot;ep&quot;: &quot;JEDI&quot;,
+  &quot;review&quot;: {
+    &quot;stars&quot;: 5,
+    &quot;commentary&quot;: &quot;This is a great movie!&quot;
+  }
+}</code></pre><p id="2b6d887c-d2d6-42a9-a51f-8cc17fa119c9" class="">The fields on an input object type can themselves refer to input object types, but you can’t mix input and output types in your schema. Input object types also can’t have arguments on their fields.</p><h1 id="642947d7-1c28-47eb-93ce-5ffb6ec865e2" class="">Validation</h1><ul id="903623d9-4f1b-4c7b-aec6-b17f2396c2c1" class="bulleted-list"><li style="list-style-type:disc">A fragment cannot refer to itself or create a cycle, as this could result in an unbounded result! </li></ul><div id="bf25be22-6cb4-44df-aefa-7c6c3d6c9891" class="column-list"><div id="00e6b48c-8588-4f56-be76-2cb707913595" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9f990fee-32a4-421f-a46a-914764ce8c19" class="code"><code class="language-JavaScript">{
+  hero {
+    ...NameAndAppearancesAndFriends
+  }
+}
+
+fragment NameAndAppearancesAndFriends on Character {
+  name
+  appearsIn
+  friends {
+    ...NameAndAppearancesAndFriends
+  }
+}</code></pre></div><div id="d3d7d8b5-badc-4e26-b6ba-0c2a2d9a4aac" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="42b6b81a-f713-4f96-95f5-e0f1c8b90b85" class="code"><code class="language-JavaScript">&quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Cannot spread fragment \&quot;NameAndAppearancesAndFriends\&quot; within itself.&quot;,
+      &quot;locations&quot;: [
+        {
+          &quot;line&quot;: 11,
+          &quot;column&quot;: 5
+        }
+      ]
+    }
+  ]
+}</code></pre></div></div><ul id="e026708e-eda1-485a-b5ac-6c00dbf006e1" class="bulleted-list"><li style="list-style-type:disc">When we query for fields, we have to query for a field that exists on the given type. So as <code>hero</code> returns a <code>Character</code>, we have to query for a field on <code>Character</code>. That type does not have a <code>favoriteSpaceship</code> field, so this query is invalid:</li></ul><ul id="984a127c-f330-4641-973f-e4702acaa1c9" class="bulleted-list"><li style="list-style-type:disc">Whenever we query for a field and it returns something other than a scalar or an enum, we need to specify what data we want to get back from the field. Hero returns a <code>Character</code>, and we’ve been requesting fields like <code>name</code> and <code>appearsIn</code> on it; if we omit that, the query will not be valid:  if a field is a scalar, it doesn’t make sense to query for additional fields on it, and doing so will make the query invalid:</li></ul><div id="81e04eb2-2bad-4934-9e70-774d8e9891c3" class="column-list"><div id="b71a0305-fabc-4e26-b1cb-91e32e051473" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8bd712f5-803d-45e1-8105-0d498613b901" class="code"><code class="language-JavaScript"># INVALID: hero is not a scalar, so fields are needed
+{
+  hero
+}</code></pre></div><div id="69d389d6-c11a-47b8-81a1-85f293bb7b14" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="518c55db-08dc-42f6-ab2e-3e5bd4299800" class="code"><code class="language-JavaScript">{
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Field \&quot;hero\&quot; of type \&quot;Character\&quot; must have a selection of subfields. Did you mean \&quot;hero { ... }\&quot;?&quot;,
+      &quot;locations&quot;: [
+        {
+          &quot;line&quot;: 3,
+          &quot;column&quot;: 3
+        }
+      ]
+    }
+  ]
+}</code></pre></div></div><ul id="69ee479a-92b6-4f6a-9810-25e7906bf839" class="bulleted-list"><li style="list-style-type:disc">when we query for <code>hero</code> which returns a <code>Character</code>, we can only query for fields that exist on <code>Character</code> but is character is a interface/union type we cant query for fields belonging to specific types of Character, use fragments/inline fragments for this<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e8a6691-0ec5-4359-90f4-9174a0466bbc" class="code"><code class="language-JavaScript">{
+  hero {
+    name
+    ...DroidFields
+  }
+}
+
+fragment DroidFields on Droid {
+  primaryFunction
+}
+// OR
+{
+  hero {
+    name
+    ... on Droid {
+      primaryFunction
+    }
+  }
+}</code></pre><h3 id="0164ad24-c532-4b5d-ae57-dd1b0488d512" class="">Execution</h3><p id="55b414d1-e679-4c8c-991d-e6a9bbbe6193" class="">After being validated, a GraphQL query is executed by a GraphQL server which returns a result that mirrors the shape of the requested query, typically as JSON.</p><p id="6ac4e5de-02b4-44f6-8a95-82b05a3eaa1a" class="">We need  a type system for any query, lets use</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0d29eb41-eded-4bfa-ac63-70b6316ee297" class="code"><code class="language-JavaScript">type Query {
+  human(id: ID!): Human
+}
+ 
+type Human {
+  name: String
+  appearsIn: [Episode]
+  starships: [Starship]
+}
+ 
+enum Episode {
+  NEWHOPE
+  EMPIRE
+  JEDI
+}
+ 
+type Starship {
+  name: String
+}</code></pre><p id="06bca7d5-6782-4a09-b4df-adad92fc5a5f" class="">each field in a GraphQL query as a function or method of the previous type which returns the next type. In fact, this is exactly how GraphQL works. Each field on each type is backed by a function called the <em>resolver</em> which is provided by the GraphQL server developer. When a field is executed, the corresponding <em>resolver</em> is called to produce the next value.</p><p id="1e379fa9-911d-4d37-bca2-429b1b7ac28f" class="">If a field produces a scalar value like a string or number, then the execution completes. However if a field produces an object value then the query will contain another selection of fields which apply to that object. This continues until scalar values are reached. GraphQL queries always end at scalar values.</p><p id="4c49c7d5-1f68-4394-94e8-9711c4c72fe8" class="">Let our query be”</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8d88135a-e8c7-4087-9820-30ee22accad8" class="code"><code class="language-JavaScript">{
+  human(id: 1002) {
+    name
+    appearsIn
+    starships {
+      name
+    }
+  }
+}</code></pre><figure id="21fca092-6af4-4fa7-897d-5d924ce6f515" class="image"><a href="GraphQL%20abdeebddef3649b38352d33e4e08b168/Untitled%201.png"><img style="width:680px" src="GraphQL%20abdeebddef3649b38352d33e4e08b168/Untitled%201.png"/></a></figure><p id="34420f0f-74fe-4528-bc35-e1e2137e3186" class="">The <code>context</code> is used to provide access to a database which is used to load the data for a user by the <code>id</code> provided as an argument in the GraphQL query. Since loading from a database is an asynchronous operation, this returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>. In JavaScript, Promises are used to work with asynchronous values, but the same concept exists in many languages, often called <em>Futures</em>, <em>Tasks</em> or <em>Deferred</em>. When the database returns, we can construct and return a new <code>Human</code> object.</p><p id="e12d34e0-6c1f-46c1-b3a5-914f4a6b333a" class="">Notice that while the resolver function needs to be aware of Promises, the GraphQL query does not. It simply expects the <code>human</code> field to return something which it can then ask the <code>name</code> of. During execution, GraphQL will wait for Promises, Futures, and Tasks to complete before continuing and will do so with optimal concurrency.</p><p id="15b9506a-2db9-46d7-9221-7ac5f1184237" class="">Now that a <code>Human</code> object is available, GraphQL execution can continue with the fields requested on it.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="51eba645-669e-4c3e-9467-91b5d30038bd" class="code"><code class="language-JavaScript">Human: {
+  name(obj, args, context, info) {
+    return obj.name
+  }
+}</code></pre><p id="1e7bccc7-5504-4c50-81fd-de997986ee12" class="">Resolving the name in this case is very straight-forward. The name resolver function is called and the <code>obj</code> argument is the <code>new Human</code> object returned from the previous field. In this case, we expect that Human object to have a <code>name</code> property which we can read and return directly.</p><p id="18c1143f-ce0c-4753-9269-c38b11e63277" class="">NOTE: if a resolver isn’t provided for a field, that a property of the same name will be read and returned.</p><h3 id="7c17dfa9-3896-4c2d-a3b8-02c3be3153c4" class="">Scalar coercion</h3><p id="3d069629-4905-450d-be35-518cb56f2ca0" class="">The type system knows what to expect and will convert the values returned by a resolver function into something that upholds the API contract. This is known as scalar coercion</p><h3 id="17994ba9-bdd1-4c3f-a0f2-1026cc9f428b" class="">List resolvers</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8391d210-28ec-46cf-b933-9bfa676b7b3d" class="code"><code class="language-JavaScript">Human: {
+  starships(obj, args, context, info) {
+    return obj.starshipIDs.map(
+      id =&gt; context.db.loadStarshipByID(id).then(
+        shipData =&gt; new Starship(shipData)
+      )
+    )
+  }
+}</code></pre><p id="814d554d-b1f7-4a67-8966-6588c1e185a8" class="">The resolver for this field is not just returning a Promise, it’s returning a <em>list</em> of Promises. The <code>Human</code> object had a list of ids of the <code>Starships</code> they piloted, but we need to go load all of those ids to get real Starship objects.</p><p id="8c526cc5-d014-41d4-8046-bc71a334def6" class="">GraphQL will wait for all of these Promises concurrently before continuing, and when left with a list of objects, it will concurrently continue yet again to load the <code>name</code> field on each of these items.</p><p id="5dab301f-396a-4f4e-9225-bf5ca0130fa2" class="">
+</p><p id="44237de0-92e9-4cab-9df1-29b95b2bc6bd" class=""> Collectively these produce a structure that mirrors the original query which can then be sent (typically as JSON) to the client which requested it.</p><p id="1f7b3e47-f82c-4e9b-8f5c-fcedee680405" class="">
+</p><p id="28578ee5-115c-485f-b257-e39e2ea95596" class="">For introspection, refer <a href="https://graphql.org/learn/introspection/">https://graphql.org/learn/introspection/</a></p><p id="fac06d38-ed2f-4800-950c-88b041dc5986" class="">For best practices including authorization, pagination, caching refer <a href="https://graphql.org/learn/best-practices/">https://graphql.org/learn/best-practices/</a></p></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

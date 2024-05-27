@@ -1,0 +1,1121 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>React 18</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2c13921c-e68c-4c8f-abdf-c2588f8f40a6" class="page sans"><header><h1 class="page-title">React 18</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_by"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedBy"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 10.4229C6.05176 10.4229 4.54785 11.1133 3.83008 11.9131C2.90039 10.9082 2.33301 9.55469 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 9.55469 13.1064 10.9082 12.1699 11.9131C11.4521 11.1133 9.94824 10.4229 8 10.4229ZM8 9.30176C9.32617 9.30859 10.3516 8.18066 10.3516 6.71094C10.3516 5.33008 9.31934 4.18164 8 4.18164C6.6875 4.18164 5.6416 5.33008 5.64844 6.71094C5.65527 8.18066 6.68066 9.28809 8 9.30176Z"></path></svg></span>Created by</th><td><span class="user"><img src="https://lh3.googleusercontent.com/a/AAcHTtdVMzWiNJElQvXdTP1pSxRi2yNGZEv9C2jiMYYmZar4=s100" class="icon user-icon"/>rhythm aggarwal</span></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Last edited</th><td><time>@May 26, 2024 6:56 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><h1 id="f3db35df-6140-43c9-a435-3357f2c6240e" class="">Pure functions</h1><ul id="a9810da7-8af0-48f4-8351-b75922a16fe6" class="bulleted-list"><li style="list-style-type:disc"><strong>It minds its own business.</strong> It does not change any objects or variables that existed before it was called.</li></ul><ul id="07996206-4b48-4dad-9afc-7fd56fdfb6c0" class="bulleted-list"><li style="list-style-type:disc"><strong>Same inputs, same output.</strong> Given the same inputs, a pure function should always return the same result.</li></ul><p id="95eaf1ed-1568-44c4-9229-8fbbadbc22a4" class="">Eg Impure function</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="506d3ad6-2351-4979-8d0a-36d64e9638d8" class="code"><code class="language-JavaScript">let guest = 0;
+
+function Cup() {
+  // Bad: changing a preexisting variable!
+  guest = guest + 1;
+  return &lt;h2&gt;Tea cup for guest #{guest}&lt;/h2&gt;;
+}
+
+export default function TeaSet() {
+  return (
+    &lt;&gt;
+      &lt;Cup /&gt;
+      &lt;Cup /&gt;
+      &lt;Cup /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre><p id="e1c22877-5502-456a-83cc-11bc71bb0465" class="">Its pure version</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="38fdc11d-c17a-4c08-8995-0d798ab18dfc" class="code"><code class="language-JavaScript">function Cup({ guest }) {
+  return &lt;h2&gt;Tea cup for guest #{guest}&lt;/h2&gt;;
+}
+
+export default function TeaSet() {
+  return (
+    &lt;&gt;
+      &lt;Cup guest={1} /&gt;
+      &lt;Cup guest={2} /&gt;
+      &lt;Cup guest={3} /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre><p id="44985650-c7e8-4e83-a001-30bba55d6dc7" class="">React offers a “Strict Mode” in which it calls each component’s function twice during development. <strong>By calling the component functions twice, Strict Mode helps find components that break these rules.</strong></p><p id="27d1954a-f71e-4ca2-b5c6-45d342036b0e" class="">Notice how the original example displayed “Guest #2”, “Guest #4”, and “Guest #6” instead of “Guest #1”, “Guest #2”, and “Guest #3”. The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. <strong>Pure functions only calculate, so calling them twice won’t change anything</strong>—just like calling <code>double(2)</code> twice doesn’t change what’s returned, and solving y = 2x twice doesn’t change what y is. Same inputs, same outputs. Always.</p><h1 id="c076bddf-83a4-478c-affc-d38bad639689" class="">Render Tree</h1><p id="fd087e93-5d4f-45df-80dd-bbd5e1ecb64d" class="">
+</p><figure id="630bc0fa-39a0-4345-89ea-1b03a760ab72" class="image"><a href="React%2018%202c13921ce68c4c8fabdfc2588f8f40a6/Untitled.png"><img style="width:1723px" src="React%2018%202c13921ce68c4c8fabdfc2588f8f40a6/Untitled.png"/></a></figure><h1 id="cad73733-aaef-423d-bb24-1dbf7fc957d0" class="">Rendering as a snapshot of the states</h1><p id="1f7834b8-c6ba-4f45-8cf1-15e38458aa7f" class=""><a href="https://react.dev/learn/render-and-commit#step-2-react-renders-your-components">“Rendering”</a> means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated <strong>using its state at the time of the render.</strong></p><p id="c3216d71-8e29-4d9f-ab6e-f6db6ec57505" class="">Unlike a photograph or a movie frame, the UI “snapshot” you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.</p><p id="b845367f-1311-45d5-a907-ed61176344b1" class="">As a component’s memory, state is not like a regular variable that disappears after your function returns. State actually “lives” in React itself—as if on a shelf!—outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated <strong>using the state values from that render!</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a84e3e66-026b-49bd-9ac3-358582dd3386" class="code"><code class="language-JavaScript">export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;{number}&lt;/h1&gt;
+      &lt;button onClick={() =&gt; {
+        setNumber(number + 1);
+        setNumber(number + 1);
+        setNumber(number + 1);
+      }}&gt;+3&lt;/button&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre><p id="913bde88-e5bf-44e2-9d84-8322050e1a92" class="">This will increase the number by 1 only and not 3 since for every call of setNumber, the state(number) is that of that renders state is is same for all the set calls.</p><p id="b6850db0-888f-48f3-b5a6-657fa49e8f4a" class=""><strong>Setting state only changes it for the </strong><em><strong>next</strong></em><strong> render.</strong> During the first render, <code>number</code> was <code>0</code>. This is why, in <em>that render’s</em> <code>onClick</code> handler, the value of <code>number</code> is still <code>0</code> even after <code>setNumber(number + 1)</code> was called:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e7f4bb83-cae4-4f54-b19c-18e83b4e5f31" class="code"><code class="language-JavaScript">// for the first render the above  code works like this
+&lt;button onClick={() =&gt; {
+  setNumber(0 + 1);
+  setNumber(0 + 1);
+  setNumber(0 + 1);
+}}&gt;+3&lt;/button&gt;</code></pre><p id="33490fb4-2d9d-4508-b0dc-5011ece8513c" class=""><strong>A state variable’s value never changes within a render,</strong> even if its event handler’s code is asynchronous.</p><p id="45b715ee-67ed-4e59-9ee9-98ae34419f31" class="">NOTE: <strong>React waits until </strong><em><strong>all</strong></em><strong> code in the event handlers has run before processing your state updates. Hence the update happen only after all the setNumber() calls are made in the handler. </strong></p><p id="2959c2da-e865-4782-b9a9-46271d3a71b5" class="">his also means that the UI won’t be updated until <em>after</em> your event handler, and any code in it, completes. This behavior, also known as <strong>batching,</strong></p><p id="eb26c970-91fd-4e2a-a2df-893ef7cfc81e" class="">
+</p><p id="eb2fa658-85b1-4b17-af21-a5ac37bc961a" class="">To get the latest value of the state and update accordingly, we can use a state updater function</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dbc93d0a-baf8-4ba8-92d2-692b31ae3b8c" class="code"><code class="language-JavaScript">import { useState } from &#x27;react&#x27;;
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;{number}&lt;/h1&gt;
+      &lt;button onClick={() =&gt; {
+        setNumber(n =&gt; n + 1);
+        setNumber(n =&gt; n + 1);
+        setNumber(n =&gt; n + 1);
+      }}&gt;+3&lt;/button&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre><p id="9081d566-002a-4eb4-8156-ed988cf705ba" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16f45f1a-b66a-4c0d-8599-3c0b5da63f24" class="code"><code class="language-JavaScript">import { useState } from &#x27;react&#x27;;
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;{number}&lt;/h1&gt;
+      &lt;button onClick={() =&gt; {
+        setNumber(number + 5);
+        setNumber(n =&gt; n + 1);
+      }}&gt;Increase the number&lt;/button&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre><ol type="1" id="43b176e7-c941-48ad-b70b-36318b36a716" class="numbered-list" start="1"><li><code>setNumber(number + 5)</code>: <code>number</code> is <code>0</code>, so <code>setNumber(0 + 5)</code>. React adds <em>“replace number with number + </em><em><code>5</code></em><em>”</em> to its queue.</li></ol><ol type="1" id="e80a2ff1-4624-4eb9-81d3-6b1d951b862d" class="numbered-list" start="2"><li><code>setNumber(n =&gt; n + 1)</code>: <code>n =&gt; n + 1</code> is an updater function. React adds <em>that function</em> to its queue.</li></ol><p id="7baa8006-d49d-4cb6-8c32-2be03a58e916" class="">NOTE: to copy deeply nested objects, we can use useImmer instead of useState</p><figure id="2a898819-ba12-4e0b-9a7e-3fbbd31fef64" class="link-to-page"><a href="React%2018%202c13921ce68c4c8fabdfc2588f8f40a6/Automatic%20Batching%202a898819ba124e0b9a7e3fbbd31fef64.html">Automatic Batching</a></figure><p id="8f717a1e-cc99-4bbc-80d5-8dca61f7d9c2" class="">
+</p><p id="3bc70382-38c0-4f9b-b9db-4505547a5374" class="">Note: <strong>React preserves a component’s state for as long as it’s being rendered at its position in the UI tree.</strong> If it gets removed, or a different component gets rendered at the same position, React discards its state. The component can be rendered with different props, but itself has to be the same.</p><p id="0060d4c3-6df5-4456-ab3b-5a13acb48ec8" class="">Also, <strong>when you render a different component in the same position, it resets the state of its entire subtree.</strong> </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ecdfd6af-d09d-48b3-b467-ee80da0688ab" class="code"><code class="language-JavaScript">import { useState } from &#x27;react&#x27;;
+
+export default function App() {
+  const [isFancy, setIsFancy] = useState(false);
+  return (
+    &lt;div&gt;
+      {isFancy ? (
+        &lt;div&gt;
+          &lt;Counter isFancy={true} /&gt; 
+        &lt;/div&gt;
+      ) : (
+        &lt;section&gt;
+          &lt;Counter isFancy={false} /&gt;
+        &lt;/section&gt;
+      )}
+      &lt;label&gt;
+        &lt;input
+          type=&quot;checkbox&quot;
+          checked={isFancy}
+          onChange={e =&gt; {
+            setIsFancy(e.target.checked)
+          }}
+        /&gt;
+        Use fancy styling
+      &lt;/label&gt;
+    &lt;/div&gt;
+  );
+}
+
+function Counter({ isFancy }) {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = &#x27;counter&#x27;;
+  if (hover) {
+    className += &#x27; hover&#x27;;
+  }
+  if (isFancy) {
+    className += &#x27; fancy&#x27;;
+  }
+
+  return (
+    &lt;div
+      className={className}
+      onPointerEnter={() =&gt; setHover(true)}
+      onPointerLeave={() =&gt; setHover(false)}
+    &gt;
+      &lt;h1&gt;{score}&lt;/h1&gt;
+      &lt;button onClick={() =&gt; setScore(score + 1)}&gt;
+        Add one
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><p id="b008b8cd-2a99-4e83-ab68-547c994dcf94" class="">Here conditionally either div or section with &lt;Counter /&gt; as the child gets rendered. Since divs are different from sections, the entire subtree( including &lt;Counter /&gt;) gets resetted</p><p id="523a0d96-db2d-465e-ac52-a5f98b7f6471" class="">To render same components at the same time but reset their states, we can distinguish between them using <code>keys</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4535a101-e1fb-45b5-aa25-8e1b30524867" class="code"><code class="language-JavaScript">import { useState } from &#x27;react&#x27;;
+
+export default function Scoreboard() {
+  const [isPlayerA, setIsPlayerA] = useState(true);
+  return (
+    &lt;div&gt;
+      {isPlayerA ? (
+        &lt;Counter key=&quot;Taylor&quot; person=&quot;Taylor&quot; /&gt;
+      ) : (
+        &lt;Counter key=&quot;Sarah&quot; person=&quot;Sarah&quot; /&gt;
+      )}
+      &lt;button onClick={() =&gt; {
+        setIsPlayerA(!isPlayerA);
+      }}&gt;
+        Next player!
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+function Counter({ person }) {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = &#x27;counter&#x27;;
+  if (hover) {
+    className += &#x27; hover&#x27;;
+  }
+
+  return (
+    &lt;div
+      className={className}
+      onPointerEnter={() =&gt; setHover(true)}
+      onPointerLeave={() =&gt; setHover(false)}
+    &gt;
+      &lt;h1&gt;{person}&#x27;s score: {score}&lt;/h1&gt;
+      &lt;button onClick={() =&gt; setScore(score + 1)}&gt;
+        Add one
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><h3 id="4ad62e26-5809-4852-a101-43e7533f772a" class="">Reducer</h3><p id="b923caeb-ea44-4f85-9570-1e83f8ebdc1f" class="">Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a <em>reducer.</em></p><div id="7c674e30-09fc-4e47-933b-b29e5eba8f8b" class="column-list"><div id="edc292af-28f2-4fe4-ad5b-a7b8746ccc21" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="13adc9cd-1047-4cf3-aa65-60e918f50273" class="code"><code class="language-JavaScript">import { useReducer } from &#x27;react&#x27;;
+import AddTask from &#x27;./AddTask.js&#x27;;
+import TaskList from &#x27;./TaskList.js&#x27;;
+import tasksReducer from &#x27;./tasksReducer.js&#x27;;
+
+export default function TaskApp() {
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+
+  function handleAddTask(text) {
+    dispatch({
+      type: &#x27;added&#x27;,
+      id: nextId++,
+      text: text,
+    });
+  }
+
+  function handleChangeTask(task) {
+    dispatch({
+      type: &#x27;changed&#x27;,
+      task: task,
+    });
+  }
+
+  function handleDeleteTask(taskId) {
+    dispatch({
+      type: &#x27;deleted&#x27;,
+      id: taskId,
+    });
+  }
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Prague itinerary&lt;/h1&gt;
+      &lt;AddTask onAddTask={handleAddTask} /&gt;
+      &lt;TaskList
+        tasks={tasks}
+        onChangeTask={handleChangeTask}
+        onDeleteTask={handleDeleteTask}
+      /&gt;
+    &lt;/&gt;
+  );
+}
+
+let nextId = 3;
+const initialTasks = [
+  {id: 0, text: &#x27;Visit Kafka Museum&#x27;, done: true},
+  {id: 1, text: &#x27;Watch a puppet show&#x27;, done: false},
+  {id: 2, text: &#x27;Lennon Wall pic&#x27;, done: false},
+];
+</code></pre></div><div id="dcde9ab5-0823-47c8-b7cd-71b8e869f4d7" style="width:50%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3e2a0707-3903-4012-989c-4dfd9228012f" class="code"><code class="language-JavaScript">export default function tasksReducer(tasks, action) {
+  switch (action.type) {
+    case &#x27;added&#x27;: {
+      return [
+        ...tasks,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
+    }
+    case &#x27;changed&#x27;: {
+      return tasks.map((t) =&gt; {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
+    case &#x27;deleted&#x27;: {
+      return tasks.filter((t) =&gt; t.id !== action.id);
+    }
+    default: {
+      throw Error(&#x27;Unknown action: &#x27; + action.type);
+    }
+  }
+}
+</code></pre><p id="ef96ac6d-f978-4577-81e9-1ac69070894e" class="">Reducer does similar to <code>reduce</code> method of the Array.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dce657cf-a95d-4cf2-9ff3-b07786eb9091" class="code"><code class="language-JavaScript">import tasksReducer from &#x27;./tasksReducer.js&#x27;;
+
+let initialState = [];
+let actions = [
+  {type: &#x27;added&#x27;, id: 1, text: &#x27;Visit Kafka Museum&#x27;},
+  {type: &#x27;added&#x27;, id: 2, text: &#x27;Watch a puppet show&#x27;},
+  {type: &#x27;deleted&#x27;, id: 1},
+  {type: &#x27;added&#x27;, id: 3, text: &#x27;Lennon Wall pic&#x27;},
+];
+
+let finalState = actions.reduce(tasksReducer, initialState);
+
+const output = document.getElementById(&#x27;output&#x27;);
+output.textContent = JSON.stringify(finalState, null, 2);</code></pre></div></div><p id="2fbb8bc6-27d0-4c85-8e6f-4df64d23ca98" class="">It accumulates all the past states and the current state into the final state. The reducer function needs to be <code>pure</code></p><h3 id="20dbe14a-acba-407d-b180-be49931cb615" class="">Context</h3><p id="e371b702-620c-4e0e-9fbd-539425fa7957" class="">prevents prop drilling</p><p id="7a363168-afd0-43a2-a588-68d9af12a30a" class="">1.) Create context in another file say LevelContext.js</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e95c76bc-4bf1-4e10-8009-eb7970692f3b" class="code"><code class="language-JavaScript">import { createContext } from &#x27;react&#x27;;
+
+export const LevelContext = createContext(1); // 1 is the default value</code></pre><p id="325f0df8-6378-485a-9052-29532cd600a5" class="">2.) in the component that needs the context, import the context and use it instead of the props</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="75b633c4-1304-4774-b089-d88c6e12fdd2" class="code"><code class="language-JavaScript">import { useContext } from &#x27;react&#x27;;
+import { LevelContext } from &#x27;./LevelContext.js&#x27;;
+
+/*
+	Using props earlier
+	export default function Heading({ level, children }) {
+  // ...
+}
+*/
+export default function Heading({ children }) {
+  const level = useContext(LevelContext); // use the context
+  // ...
+}</code></pre><p id="90df7f0f-ae4a-45df-8571-a2ccd721a5bb" class="">If you don’t provide the context, React will use the default value you’ve specified in the previous step. In this example, you specified <code>1</code> as the argument to <code>createContext</code>, so <code>useContext(LevelContext)</code> returns <code>1</code>, </p><p id="1304a672-ea48-4a37-8ce3-c7024c381546" class="">3.) Provide context</p><p id="d7e857cf-3547-4e36-99a1-03e9eb3321a1" class="">In the component that needs to provide the context ( the parent in the UI tree )</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="df4a2a38-40b5-4778-bb68-c016f83b066b" class="code"><code class="language-JavaScript">import { LevelContext } from &#x27;./LevelContext.js&#x27;;
+
+export default function Section({ level, children }) {
+  return (
+    &lt;section className=&quot;section&quot;&gt;
+      &lt;LevelContext.Provider value={level}&gt;
+        {children} // 
+      &lt;/LevelContext.Provider&gt;
+    &lt;/section&gt;
+  );
+}</code></pre><p id="19e99a69-7980-4165-b094-91c927447e19" class="">We can use reducer and context together to better manage the state</p><p id="856d504f-fa31-47c0-8d85-e91af5611545" class="">refer <a href="https://react.dev/learn/scaling-up-with-reducer-and-context">https://react.dev/learn/scaling-up-with-reducer-and-context</a></p><h3 id="43b3e83b-0bea-4200-b9f7-9d3c897d23a6" class="">Refs</h3><figure id="5cf2743c-b75f-4866-b08d-9ad602999bdc" class="image"><a href="React%2018%202c13921ce68c4c8fabdfc2588f8f40a6/Untitled%201.png"><img style="width:708px" src="React%2018%202c13921ce68c4c8fabdfc2588f8f40a6/Untitled%201.png"/></a></figure><p id="c36dcc4f-11f0-4dcf-89ea-b10265f87cbe" class="">Here the ref used in rendering doesnt update since updating the refs doesnt cause a re render.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7210dc8e-cbcd-435a-83c5-5d3eaf5197d4" class="code"><code class="language-JavaScript">import { useRef } from &#x27;react&#x27;;
+
+export default function Counter() {
+  let countRef = useRef(0);
+
+  function handleClick() {
+    // This doesn&#x27;t re-render the component!
+    countRef.current = countRef.current + 1;
+  }
+
+  return (
+    &lt;button onClick={handleClick}&gt;
+      You clicked {countRef.current} times
+    &lt;/button&gt;
+  );
+}
+</code></pre><p id="bf6faa77-0a6b-4446-8b17-16a741e7418f" class="">Refs used mainly for</p><ul id="f761938a-2386-4185-9378-92648144140b" class="bulleted-list"><li style="list-style-type:disc">Storing <a href="https://developer.mozilla.org/docs/Web/API/setTimeout">timeout IDs</a></li></ul><ul id="027b63d2-2d16-4de5-968e-fff30c6a5136" class="bulleted-list"><li style="list-style-type:disc">Storing and manipulating <a href="https://developer.mozilla.org/docs/Web/API/Element">DOM elements</a>, which we cover on <a href="https://react.dev/learn/manipulating-the-dom-with-refs">the next page</a></li></ul><ul id="5e8804c4-0209-4790-b19f-7506c242dc16" class="bulleted-list"><li style="list-style-type:disc">Storing other objects that aren’t necessary to calculate the JSX.</li></ul><p id="1a88720e-2906-4a02-aee6-a91696213826" class="">To use refs with DOM nodes</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e11d4507-4540-4ec3-b179-f3b069706b03" class="code"><code class="language-JavaScript">import { useRef } from &quot;react&quot;;
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    &lt;&gt;
+      &lt;input ref={inputRef} /&gt;
+      &lt;button onClick={handleClick}&gt;Focus the input&lt;/button&gt;
+    &lt;/&gt;
+  );
+}</code></pre><p id="0cfdc3dd-2cf7-46b3-aaed-f1370d998f11" class=""><strong>ref callback - pass a function to the </strong><code><strong>ref</strong></code><strong> attribute.</strong> This is called a <code><a href="https://react.dev/reference/react-dom/components/common#ref-callback">ref</a></code><a href="https://react.dev/reference/react-dom/components/common#ref-callback"> callback.</a> React will call your ref callback with the DOM node when it’s time to set the ref, and with <code>null</code> when it’s time to clear it. This lets you maintain your own array or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>, and access any ref by its index or some kind of ID.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28760587-48c8-485f-b49d-e0405d0698e1" class="code"><code class="language-JavaScript">import { useRef, useState } from &quot;react&quot;;
+
+export default function CatFriends() {
+  const itemsRef = useRef(null);
+  const [catList, setCatList] = useState(setupCatList);
+
+  function scrollToCat(cat) {
+    const map = getMap();
+    const node = map.get(cat);
+    node.scrollIntoView({
+      behavior: &quot;smooth&quot;,
+      block: &quot;nearest&quot;,
+      inline: &quot;center&quot;,
+    });
+  }
+
+  function getMap() {
+    if (!itemsRef.current) {
+      // Initialize the Map on first usage.
+      itemsRef.current = new Map();
+    }
+    return itemsRef.current;
+  }
+
+  return (
+    &lt;&gt;
+      &lt;nav&gt;
+        &lt;button onClick={() =&gt; scrollToCat(catList[0])}&gt;Tom&lt;/button&gt;
+        &lt;button onClick={() =&gt; scrollToCat(catList[5])}&gt;Maru&lt;/button&gt;
+        &lt;button onClick={() =&gt; scrollToCat(catList[9])}&gt;Jellylorum&lt;/button&gt;
+      &lt;/nav&gt;
+      &lt;div&gt;
+        &lt;ul&gt;
+          {catList.map((cat) =&gt; (
+            &lt;li
+              key={cat}
+              ref={(node) =&gt; { // ref callback, called with the node each render
+                const map = getMap();
+                if (node) {
+                  map.set(cat, node);
+                } else {
+                  map.delete(cat);
+                }
+              }}
+              // OR  
+              ref={node =&gt; {
+						    const map = getMap();
+						    // Add to the Map
+						    map.set(cat, node);
+						
+						    return () =&gt; { // ref cleanup function, called when node is removed
+						      // Remove from the Map
+						      map.delete(cat);
+						    };
+						  }}
+              
+            &gt;
+              &lt;img src={cat} /&gt;
+            &lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+}</code></pre><p id="85e28b69-cf08-40f6-9a38-3869a415f9aa" class="">We cant access <strong>another component’s DOM nodes. React does not let a component access the DOM nodes of other components. Not even for its own children</strong></p><p id="41acb3bc-b612-41ef-a9f4-e332cc045fcf" class="">To do this, we could specify the component to specifically allow this property using forwardRef</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="65909f66-ca30-418a-9368-68a77f5e1ae0" class="code"><code class="language-JavaScript">import { forwardRef, useRef } from &#x27;react&#x27;;
+
+const MyInput = forwardRef((props, ref) =&gt; {
+  return &lt;input {...props} ref={ref} /&gt;;
+});
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    &lt;&gt;
+      &lt;MyInput ref={inputRef} /&gt;
+      &lt;button onClick={handleClick}&gt;
+        Focus the input
+      &lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre><p id="04db326f-6331-444c-a5f7-7abbe5bf73bb" class="">In React, every update is split in <a href="https://react.dev/learn/render-and-commit#step-3-react-commits-changes-to-the-dom">two phases</a>:</p><ul id="002a32ef-1d60-494b-b379-12b3c3fef657" class="bulleted-list"><li style="list-style-type:disc">During <strong>render,</strong> React calls your components to figure out what should be on the screen.</li></ul><ul id="3ee87541-56b3-4364-af93-d76afa7298b9" class="bulleted-list"><li style="list-style-type:disc">During <strong>commit,</strong> React applies changes to the DOM.</li></ul><p id="7281fbf3-5dbd-4366-9751-98412dedebe4" class="">React sets <code>ref.current</code> during the commit. Before updating the DOM, React sets the affected <code>ref.current</code> values to <code>null</code>. After updating the DOM, React immediately sets them to the corresponding DOM nodes.</p><h3 id="7a125e8d-b6ca-4ece-adf7-cb3b9e5a9965" class="">Effects</h3><ul id="940bc8f8-84a5-4b76-892e-5cf667e555af" class="bulleted-list"><li style="list-style-type:disc"><strong>Rendering code</strong> (introduced in <a href="https://react.dev/learn/describing-the-ui">Describing the UI</a>) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. <a href="https://react.dev/learn/keeping-components-pure">Rendering code must be pure.</a> Like a math formula, it should only <em>calculate</em> the result, but not do anything else.</li></ul><ul id="d5aba705-a8b0-4bf9-b34c-226b4705cfb6" class="bulleted-list"><li style="list-style-type:disc"><strong>Event handlers</strong> (introduced in <a href="https://react.dev/learn/adding-interactivity">Adding Interactivity</a>) are nested functions inside your components that <em>do</em> things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain <a href="https://en.wikipedia.org/wiki/Side_effect_(computer_science)">“side effects”</a> (they change the program’s state) caused by a specific user action (for example, a button click or typing).</li></ul><p id="2c00b6bc-a0e6-49a4-9a1e-2665be1e4f65" class="">
+</p><p id="de714232-8e31-48fa-98b9-032430b687f7" class=""><em><strong>Effects</strong></em><strong> let you specify side effects that are caused by rendering itself, rather than by a particular event.</strong> Effects run at the end of a <a href="https://react.dev/learn/render-and-commit">commit</a> after the screen updates</p><p id="40cc5326-a974-40f4-9983-1d2b2e579641" class="">
+</p><p id="5225c9a2-f6ed-4087-8942-e11a06c0a1c0" class="">Eg</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3263b9a2-50fe-46f1-ae29-dae9fb099a46" class="code"><code class="language-JavaScript">function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  if (isPlaying) {
+    ref.current.play();  // Calling these while rendering isn&#x27;t allowed.
+  } else {
+    ref.current.pause(); // Also, this crashes.
+  }
+
+  return &lt;video ref={ref} src={src} loop playsInline /&gt;;
+}</code></pre><p id="4a1ab957-be57-43f9-881f-121a40425f9f" class="">This is not allowed since  In React, <a href="https://react.dev/learn/keeping-components-pure">rendering should be a pure calculation</a> of JSX and should not contain side effects like modifying the DOM.</p><p id="63c0ab8f-4899-494b-b9a5-de9905bcd6b0" class="">Moreover, when <code>VideoPlayer</code> is called for the first time, its DOM does not exist yet! There isn’t a DOM node yet to call <code>play()</code> or <code>pause()</code> on, because React doesn’t know what DOM to create until you return the JSX.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2ee65e2f-478c-4c8c-be74-c2801f77da8f" class="code"><code class="language-JavaScript">function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() =&gt; {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  });
+
+  return &lt;video ref={ref} src={src} loop playsInline /&gt;;
+}</code></pre><p id="5cd22dd3-14e4-4e3d-bf3f-70a6061687ce" class="">This makes the play(), pause() mutations to the dom after the rendering and commit</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ce49472c-7dc5-48e1-a752-98205a8b9063" class="code"><code class="language-JavaScript">useEffect(() =&gt; {
+    const connection = createConnection();
+    connection.connect();
+    return () =&gt; {
+      connection.disconnect();
+    };
+  }, []);</code></pre><p id="251fa5a6-7919-4c04-8107-6a8c0362d550" class="">React will call your cleanup function each time before the Effect runs again, and one final time when the component unmounts (gets removed).</p><p id="042d8044-bbe8-45cc-9589-1fdaafa89d21" class="">When we might need an effect:</p><ul id="d51d218d-82fb-46e1-925a-da15776e1728" class="bulleted-list"><li style="list-style-type:disc">If you can calculate something during render, you don’t need an Effect.</li></ul><ul id="9aace108-7074-43fc-988c-e6f656c15b77" class="bulleted-list"><li style="list-style-type:disc">To cache expensive calculations, add <code>useMemo</code> instead of <code>useEffect</code>.</li></ul><ul id="9c4bfa63-0c29-4e0f-a500-cb72c88067d1" class="bulleted-list"><li style="list-style-type:disc">To reset the state of an entire component tree, pass a different <code>key</code> to it.</li></ul><ul id="c8a0bbe8-5b3a-4bc8-86b4-14cafa88d653" class="bulleted-list"><li style="list-style-type:disc">To reset a particular bit of state in response to a prop change, set it during rendering.</li></ul><ul id="81c01c70-9951-4dfa-be4a-3e2653341442" class="bulleted-list"><li style="list-style-type:disc">Code that runs because a component was <em>displayed</em> should be in Effects, the rest should be in events.</li></ul><ul id="741b88cb-2617-49a8-930f-5a4b0e4f7bf1" class="bulleted-list"><li style="list-style-type:disc">If you need to update the state of several components, it’s better to do it during a single event.</li></ul><ul id="46ba3575-f0e9-49a7-88c7-8ec3fe37287f" class="bulleted-list"><li style="list-style-type:disc">Whenever you try to synchronize state variables in different components, consider lifting state up.</li></ul><ul id="092727ae-4c0e-4638-b24a-442b6e4264da" class="bulleted-list"><li style="list-style-type:disc">You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.</li></ul><p id="3ef0720e-e9ae-4d86-a354-660fd9b1ecd6" class="">
+</p><p id="0c39aabb-0a4d-48ad-a986-df98a44b8fee" class="">Every React component goes through the same lifecycle:</p><ul id="1f647cb1-b1d5-446d-8e9c-e663392f04e3" class="bulleted-list"><li style="list-style-type:disc">A component <em>mounts</em> when it’s added to the screen.</li></ul><ul id="4b0b4b29-b818-463f-b1eb-bcb1b0b0cd51" class="bulleted-list"><li style="list-style-type:disc">A component <em>updates</em> when it receives new props or state, usually in response to an interaction.</li></ul><ul id="1ee3ef3d-ef3b-4770-8009-84efa90bb6df" class="bulleted-list"><li style="list-style-type:disc">A component <em>unmounts</em> when it’s removed from the screen.</li></ul><p id="15202ca9-57ae-4501-8b72-632606104b37" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
